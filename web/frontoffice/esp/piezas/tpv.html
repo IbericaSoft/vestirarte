@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <?echo $this->executeBlock('DATA')?>
+    <?echo $this->executeBlock('HEAD')?>
+</head>
+<body>
+
+	<div id="contenido">
+            <div id="wrapper">
+
+				<!-- menu PÁGINA -->
+            	<?require("menu_header.html")?>
+    
+				<div id="main">
+					<?require("menu_movil.html")?>
+      				<div class="cesta-compra">
+	      				<table>
+				      			<tr class="">
+				      			<td><h1>TPV</h1></td>
+				      			</tr>
+			      		</table>      
+	
+				       	<div class="total">
+				            <p>Pago online temporalmente fuera de servicio. Contacte con nosotros <a href="/contactar.html">aqui</a> para cualquier duda</p>
+				      	</div>      
+	      				
+	      			</div>
+				</div>
+            	<!-- FOOTER -->
+				<?require("footer.html")?>
+        	</div>
+      </div>
+    
+</body>
+</html>

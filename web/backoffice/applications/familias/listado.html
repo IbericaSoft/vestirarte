@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript">
+		var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+		var PWEB_PATH 		= '<?=PUBLIC_WEB_PATH?>';
+		var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+		var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+		var MODULE_NAME		= "<?=strtolower($this->getOrderActionClass()->getClass())?>";
+		var IMPORT			= 'simple-details';
+	</script>
+	<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.v3.js"></script>
+	<script type="text/javascript">
+		/** ordernacion del grid */
+		var dataModelPHP = {
+		    location: 'remote',
+			sortIndx: "<?=$module->filtro_campo?>",
+	    	sortDir: "<?=$module->filtro_orden?>",
+	    	curPage: "<?=$module->filtro_pagina?>"
+		}
+	</script>
+</head>
+<body class="application list">
+	<form>
+		<div class="boxHeader">
+			<div class="title" title="<?=$module->version_detail?>">Familias - Listado<span class="version"><?=$module->version_info?></span></div>			
+			<div class="botones">
+				<div class="menuBotones" id="btNew"><img title="Nuevo familia" src="<?=OS_WEB_PATH?>/applications/familias/images/familias.btn.png" /></div>
+				<div class="menuBotones" id="btExport"><img title="Exportar los datos a formato excel" src="<?=OS_WEB_PATH?>/applications/_commons/_images/excel.png" /></div>
+				<div class="menuBotones" id="btPrint"><img title="Imprimir estos datos" src="<?=OS_WEB_PATH?>/applications/_commons/_images/pdf32.png" /></div>		
+				<div class="menuBotones" id="btLink"><img title="Acceso directo en el escritorio" src="<?=OS_WEB_PATH?>/applications/_commons/_images/link32.png" /></div>
+			</div>
+		</div>
+
+		<div class="filtros">
+			<table>
+			<tr>
+				<td class="filter">Categoría</td>
+				<td class="filter">Familia</td>
+			</tr>
+			<tr>
+				<td><input type="text" name="_categoria" id="_categoria" class="codigos" placeholder="&#9998; categoría" value="<?=$module->filtro_categoria?>"></td>
+				<td><input type="text" name="_familia" id="_familia" class="codigos" placeholder="&#9998; familia" value="<?=$module->filtro_familia?>"></td>
+			</tr>
+			</table>
+		</div>
+	
+		<div class="contenido">	
+			<!-- Grid -->
+			<div id="wrapper-grid">
+	    		<div id="grid"></div>
+	    	</div>
+		</div>
+		
+		<input type="hidden" name="id" id="id" value=""/>
+		<input type="hidden" name="filtro_pagina" id="filtro_pagina" value=""/>
+		<input type="hidden" name="filtro_campo" id="filtro_campo" value=""/>
+		<input type="hidden" name="filtro_orden" id="filtro_orden" value=""/>
+		<input type="hidden" name="do" id="do" value=""/>
+		<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>"/>		
+		<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>"/>
+		<input type="hidden" name="channel" id="channel" value="html"/>
+	</form>	
+</body>
+</html>

@@ -1,0 +1,33 @@
+<?
+	/** esta plantilla funcionara con los kernel aqui recogidos */
+	$kernel =  $this->oDataTemplate->getKeyData('kernel');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+	<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+	<title><?=$kernel['title']?></title>
+		
+		<script type="text/javascript">
+			var WEB_PATH = '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+		</script>
+		
+		<!-- DESKTOP CONTROL -->
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/prototype.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/dobleos/dobleosapiclient.js"></script>
+		
+		<!-- VENTANA ACTUAL -->
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/wellcome/resources/wellcome_msg.js"></script>
+		<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/applications/wellcome/resources/wellcome.css" />
+		
+		
+	</head>
+	<body id="desktop" onload="start()">
+		
+			<!-- mensaje de bienvenida e instrucciones para logon -->
+			<div id="wellcome"><?=$kernel['wellcome_msg']?></div>
+
+	</body>
+</html>	

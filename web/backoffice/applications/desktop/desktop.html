@@ -1,0 +1,64 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */
+	$kernel =  $this->oDataTemplate->getKeyData('kernel');
+	$desktop =  $this->oDataTemplate->getKeyData('desktop');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+	<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+	<title><?=$kernel['title']?></title>
+	
+		<!-- DESKTOP STYLES -->			
+		<link rel="shortcut icon" href="<?=OS_WEB_PATH?>/applications/_commons/_images/favicon.ico"  />
+		
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var _DEBUG			= <?=$kernel['debug']?>;
+			var ICONS_SIZE 		= '<?=$kernel['icon_size']?>';
+			var MENU_LABEL_STYLE= '<?=$kernel['dockmenu_label']?>';
+			var DESKTOP_WALLPAPER= '<?=OS_WEB_PATH."/wallpapers/$kernel[wallpaper]"?>';
+			var SECONS_RELOAD_TASK  = '<?=$kernel['refresh_task']?>';
+		</script>
+		
+		<!-- DESKTOP CONTROL -->
+		<script language="JavaScript1.3" src="<?=OS_WEB_PATH?>/jscore/system/prototype.js"></script>
+		<script language="JavaScript1.3" src="<?=OS_WEB_PATH?>/jscore/scriptaculous/scriptaculous.js"></script>
+		
+		<script language="JavaScript1.3" src="<?=OS_WEB_PATH?>/jscore/dobleos/dobleosapi.js"></script>
+		<script language="JavaScript1.3" src="<?=OS_WEB_PATH?>/jscore/menu/euDock.2.0.js"></script>
+		<script language="JavaScript1.3" src="<?=OS_WEB_PATH?>/jscore/menu/euDock.Image.js"></script>
+		<script language="JavaScript1.3" src="<?=OS_WEB_PATH?>/jscore/menu/euDock.Label.js"></script>
+		<script language="JavaScript1.3" src="<?=OS_WEB_PATH?>/jscore/menu/euDock.Ghost.js"></script>
+		<script language="JavaScript1.3" src="<?=OS_WEB_PATH?>/jscore/menu/euDock.DivMousePos.js"></script>
+		<script language="JavaScript1.3" src="<?=OS_WEB_PATH?>/jscore/menu/euDock.Blank.js"></script>
+		
+		<!-- VENTANA ACTUAL -->
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/desktop/resources/desktop.js"></script>
+		
+		<!-- configuracion para el usuario -->
+		<script type="text/javascript">
+			//grupo de iconos para el usuario 
+			var icons=<?=$desktop[icons]?>;
+
+			//grupo de menus para el usuario 
+			var menus=<?=$desktop[menu]?>;
+			
+			//process vivos y cacheado por el usuario 
+			var process=<?=$desktop[process]?>;
+		</script>
+
+	</head>
+	<body id="desktop" onload="start()">
+		<!-- escritorio -->
+		<div id="desktop"><img id="desktop" class="desktop" src=""/></div>
+		<script>dock = new euDock();</script>
+		
+		<!-- notificador-->
+		<div id="notifier">
+			<div id="userinfo"><div><?=$desktop[usuario]?></div></div>
+			<div id="taskinfo">...</div>
+		</div>
+	</body>
+</html>

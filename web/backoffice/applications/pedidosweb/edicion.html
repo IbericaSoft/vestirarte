@@ -1,0 +1,263 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */	
+	$kernel  =  $this->oDataTemplate->getKeyData('kernel');
+	$datos   =  $this->oDataTemplate->getKeyData('pedidosweb');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+		<meta http-equiv="conten-type" content="text/html; charset=ISO-8859-1" />
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var FORM_STYLE 		= 'custom-theme';
+			var PAGE_NAME		= 'view';
+			var IMPORT			= "numeric,blockui,tabs,formats,dobleos";
+			var MODULE_NAME		= "<?=$kernel['class']?>";
+		</script>		
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.v2.js"></script>
+</head>
+	
+<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">Pedidos - Nº:&nbsp;<?=$datos[id]?></div>
+	</div>
+
+	<div class="boxMenuButtons">
+		<div class="boxMenuButton" id="mnuLink">
+			<span class="boxMenuImage"><img title="Crea un acceso directo en el escritorio de la vista actual" src="<?=OS_WEB_PATH?>/applications/_commons/_images/shortcut.png" /></span>
+			<span class="boxMenuTitle">Link</span>
+		</div>
+		<div class="boxMenuButton" id="mnuPrint">
+			<span class="boxMenuImage"><img title="Imprimir estos datos" src="<?=OS_WEB_PATH?>/applications/_commons/_images/print.png" /></span>
+			<span class="boxMenuTitle">PDF</span>
+		</div>
+	</div>
+		
+	<form name="fapplication" id="fapplication">
+	<div class="">
+		
+		<div id="tabs" style="display:none">
+			<ul>
+			<li><a href="#tabs-1">Datos del pedido</a></li>
+			<li><a href="#tabs-2">Dirección Envío</a></li>
+			<li><a href="#tabs-3">Dirección Facturación</a></li>
+			<li><a href="#tabs-4">Control</a></li>
+			</ul>
+		
+			<div id="tabs-1">
+				<p>
+					<div class="label">
+					<label>Pedido Número:</label><br/>
+					<label class="b"><?=$datos[id]?></label>					
+					</div>
+					
+					<div class="label">				
+					<label>Fecha pedido:</label><br/>
+					<label class="b"><?=$datos[falta]?></label>					
+					</div>
+					
+					<div class="label">
+					<label>Fecha entrega:</label><br/>
+					<label class="b"><?=$datos[fenvio]?></label>
+					</div>					
+				</p>
+				
+				<p>
+					<div class="label">
+					<label>Cliente:</label><br/>
+					<label class="b"><?=$datos[cliente]?></label>					
+					</div>
+					
+					<div class="label">								
+					<label>Email:</label><br/>
+					<label class="b"><?=$datos[email]?></label>					
+					</div>
+					
+					<div class="label">
+					<label>Teléfono:</label><br/>
+					<label class="b"><?=$datos[telefono]?></label>
+					</div>
+					
+					<div class="label">
+					<label>Observaciones:</label><br/>
+					<label class="b"><?=$datos[observaciones]?></label>
+					</div>
+										
+				</p>
+				
+				<div class="CSSTableGenerator" >
+	                <table id="tblShop">
+	                    <tr>
+	                        <td width="70%">Artículo</td>
+	                        <td width="10%" class="derecha">Cantidad</td>
+	                        <td width="10%" class="derecha">Precio</td>	                        
+	                        <td width="10%" class="derecha">Subtotal</td>
+	                    </tr>
+	                    <? 	while( $item = $this->getConnection()->getColumnas( $this->getDataTemplate()->getKeyData('detalles') ) ){	?>
+                    	<tr class="shop">
+                    		<td><?=$item[articulo]?></td>
+                    		<td class="derecha"><?=$item[cantidad]?></td>
+                    		<td class="derecha"><?=$item[precio]?>&euro;</td>                    		
+                    		<td class="derecha"><?=$item[total]?>&euro;</td>
+                    	</tr>
+	                    <?  } ?>
+	                </table>
+	                <br>
+	                <table>	                	
+	                    <tr>
+	                        <td width="90%" class="derecha totales">Portes</td>
+	                        <td width="10%" class="derecha totales"><?=$datos[total_gastos]?>&euro;</td>
+	                    </tr>
+	                    <tr>
+	                        <td width="90%" class="derecha totales2">IVA <?=$datos[iva]?>%</td>
+	                        <td width="10%" class="derecha totales2"><?=$datos[tiva]?>&euro;</td>
+	                    </tr>
+	                    <tr>
+	                        <td width="90%" class="derecha totales3">Total</td>
+	                        <td width="10%" class="derecha totales3"><?=$datos[total_pedido]?>&euro;</td>
+	                    </tr>
+	                </table>
+	                <br>
+            	</div>
+			</div>
+			
+			<div id="tabs-2">
+				<p>	
+					
+					<? if ($datos[entienda]=="S"){ ?>
+						<div class="label">
+						<label>Recogida en tienda:</label><br/>
+						<label class="b"><?=$datos[entienda_direccion]?></label>					
+						</div>
+						<br/>
+					<? } else { ?>
+						<div class="label">
+						<label>Dirección de envío:</label><br/>
+						<label class="b"><?=$datos[direccion]?></label>					
+						</div>
+						<br/>
+						
+						<div class="label">								
+						<label>Población:</label><br/>
+						<label class="b"><?=$datos[poblacion]?></label>					
+						</div>					
+						
+						<div class="label">
+						<label>Provincia:</label><br/>
+						<label class="b"><?=$datos[provincia]?></label>
+						</div>
+						
+						<div class="label">
+						<label>Código postal:</label><br/>
+						<label class="b"><?=$datos[cpostal]?></label>
+						</div>
+						
+						<div class="label">								
+						<label>País:</label><br/>
+						<label class="b"><?=$datos[pais]?></label>					
+						</div>
+					<? } ?>				
+				</p>
+			</div>
+			
+			<div id="tabs-3">
+				<p>	
+					<div class="label">
+					<label>Cliente/Razón:</label><br/>
+					<label class="b"><?=$datos[razon]?></label>					
+					</div>
+					<br/>
+					
+					<div class="label">
+					<label>NIF/CIF:</label><br/>
+					<label class="b"><?=$datos[nifcif]?></label>					
+					</div>
+					<br/>
+					
+					<div class="label">								
+					<label>Dirección:</label><br/>
+					<label class="b"><?=$datos[fdireccion]?></label>					
+					</div>
+					<br/>
+					
+					<div class="label">								
+					<label>Población:</label><br/>
+					<label class="b"><?=$datos[fpoblacion]?></label>					
+					</div>					
+					
+					<div class="label">
+					<label>Provincia:</label><br/>
+					<label class="b"><?=$datos[fprovincia]?></label>
+					</div>
+					
+					<div class="label">
+					<label>Código postal:</label><br/>
+					<label class="b"><?=$datos[fcpostal]?></label>
+					</div>
+					
+					<div class="label">								
+					<label>País:</label><br/>
+					<label class="b"><?=$datos[fpais]?></label>					
+					</div>						
+				</p>
+			</div>
+			
+			<div id="tabs-4">
+				<p>	
+					<div class="label">
+					<label>Observaciones internas:</label><br/>
+					<label class="b"><textarea id="observaciones_internas" name="observaciones_internas"><?=$datos[observaciones_internas]?></textarea></label>					
+					</div>
+					<br/>
+					
+					<? if ($this->oUser->getRol()>2){ ?>
+					<div class="label">
+					<label>Confirmación de la entidad:</label><br/>
+					<label class="b"><?=$datos[entidad_report]?></label>					
+					</div>
+					<br/>
+										
+					<div class="label">
+					<label>Modificado por:</label><br/>
+					<label class="b"><?=$datos[usuario]?></label>					
+					</div>
+					<br/>
+					
+					<div class="label">
+					<label>Modificado el:</label><br/>
+					<label class="b"><?=$datos[fmodificacion]?></label>					
+					</div>
+					<br/>
+					
+					<?} else echo "Información de auditoría"; ?>
+				</p>
+			</div>
+		</div>
+		
+		<table cellpadding="0" cellspacing="5" id="buttons" >
+		<tr>
+				<td><input class="" id="btAvanzar" type="button" value="Marcar como leido"/></td>
+				<td><input class="" id="btCancelar" type="button" value="Cancelar"/></td>
+				<td><input class="" id="btAceptar" type="button" value="Aceptar"/></td>
+		</tr>
+		</table>
+	
+	</div>
+	
+	<input type="hidden" name="estado" id="estado" value="<?=$datos[estado]?>"/>
+	<input type="hidden" name="avanzar_estado" id="avanzar_estado" value=""/>
+	<input type="hidden" name="id" id="id" value="<?=$datos[id]?>"/>
+	<input type="hidden" name="do" id="do" value=""/>
+	<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>"/>		
+	<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>"/>
+	<input type="hidden" name="channel" id="channel" value="html"/>
+	</form>
+	
+</body>
+</HTML>
+			
+			

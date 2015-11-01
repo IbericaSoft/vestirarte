@@ -1,0 +1,7 @@
+.boxHeader{		
+	background-image: url(../images/tallas.small.png);
+	background-repeat: no-repeat;
+	background-position:right center;
+	border-bottom:5px double #CCC;
+}
+#descripcion {min-width:100%;}

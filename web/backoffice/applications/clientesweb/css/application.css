@@ -1,0 +1,47 @@
+.boxHeader{		
+	background-image: url(../images/clientes.png);
+	background-repeat: no-repeat;
+	background-position:right center;
+	border-bottom:5px double #CCC;
+}
+
+div#tabs label {
+	display: inline-block;
+	font-weight: bold;
+	font-size: 12px;
+	padding:0px;
+	margin:0px;
+	line-height: 15px;
+	vertical-align: middle;
+	border:0px solid black;
+}
+p {
+	display: inline-block;
+	padding:0px;
+	height: 30px;
+  	vertical-align: top;
+  	border:0px solid black;
+}
+#tabs p {margin-top: -5px;}
+input { color:#333; }
+input.error, select.error{	background: #FDBFBF;}
+
+input[name="_id_cliente"]{ width:30px;background:#FFFFAA; }
+input[name="_nombre"]{ width:100px; }
+input[name="_telefono"]{ width:90px; }
+input[name="_email"]{ width:100px; }
+input[name="_desde"]{ width:80px; }
+input[name="_hasta"]{ width:80px; }
+
+input[name="nombre"]{ width:420px; }
+input[name="razon_social"]{ width:400px; }
+input[name="nifcif"]{ width:90px; }
+input[name="email"]{ width:300px; }
+input[name="telefono"]{ width:90px; }
+
+input[name="direccion"],input[name="fdireccion"]{ width:540px; }
+input[name="poblacion"],input[name="fpoblacion"]{ width:200px; }
+input[name="provincia"],input[name="fprovincia"]{ width:250px; }
+input[name="cpostal"],input[name="fcpostal"]{ width:70px; }
+
+textarea[name="observaciones"]{width:500px;height:50px;}

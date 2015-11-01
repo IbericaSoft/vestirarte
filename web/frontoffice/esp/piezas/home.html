@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">            
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?echo $this->executeBlock('DATA')?>
+    <?echo $this->executeBlock('HEAD')?>
+</head>
+<body class="home">
+      <div id="contenido">
+            <div id="wrapper">
+            	
+				
+				
+      			<!--                             HEADER DE LA PÁGINA                                 -->
+                <?require("menu_header.html")?>
+
+                <div id="main">
+      			
+      			<?require("menu_movil.html")?>
+				
+			    <!--                           SLIDER DE LA HOME                                 -->
+				<div id="slider" class="slider_home">
+				      <ul class="rslides">
+				            <li><img src="{web}/images/slider_1b.png" alt=""></li>
+				            <li><img src="{web}/images/slider_2b.png" alt=""></li>
+				            <li><img src="{web}/images/slider_3b.png" alt=""></li>
+				            <li><img src="{web}/images/slider_4b.png" alt=""></li>
+				      </ul>
+				</div>
+			</div>
+			<!--                             FOOTER DE LA PÁGINA                                 -->
+			<?require("footer.html")?>
+			
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="{web}/js/colorbox/jquery.colorbox-min.js"></script>
+    <link href="{web}/js/colorbox/colorbox.css" rel="stylesheet"/> 
+	
+	<script>
+		$(document).ready(function(){
+			//sliders
+			$(".rslides").responsiveSlides({
+			      auto: true,             // Boolean: Animate automatically, true or false
+			      speed: 300,            // Integer: Speed of the transition, in milliseconds
+			      timeout: 4000,          // Integer: Time between slide transitions, in milliseconds
+			      pager: false,           // Boolean: Show pager, true or false
+			      nav: false,             // Boolean: Show navigation, true or false
+			      random: false,          // Boolean: Randomize the order of the slides, true or false
+			      pause: false,           // Boolean: Pause on hover, true or false
+			      pauseControls: true,    // Boolean: Pause when hovering controls, true or false
+			      prevText: "<<",   	// String: Text for the "previous" button
+			      nextText: ">>",       // String: Text for the "next" button
+				  maxwidth: "",           // Integer: Max-width of the slideshow, in pixels
+			      navContainer: "",       // Selector: Where controls should be appended to, default is after the 'ul'
+			      manualControls: "",     // Selector: Declare custom pager navigation
+			      namespace: "rslides",   // String: Change the default namespace used
+			      before: function(){},   // Function: Before callback
+			      after: function(){}     // Function: After callback
+			});
+		});
+	</script>
+		
+</body>
+</html>

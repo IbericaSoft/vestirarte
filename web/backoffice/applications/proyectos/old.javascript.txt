@@ -1,0 +1,55 @@
+//definir pestañas
+		//initTabs('tabs',Array('Proyecto','Historico','Caja','Facturación','Condiciones','Control'),0);
+		
+		//nuevo registro, deshabilitamos boton eliminar
+		if ( $F('id')==''||$F('id')=='0' ){
+			$('btEliminar').setStyle({'display':'none'});
+			$('btCaja').setStyle({'display':'none'});
+			$('btFinalizar').setStyle({'display':'none'});
+		} 
+		
+		var detallesReadOnly = false;
+		//los estados nos dice que botones se muestran
+		switch ( $F('estado') ){
+		case 'PRESUPUESTO':
+			$('btAbono').setStyle({'display':'none'});
+			$('btCaja').setStyle({'display':'none'});
+			$('btPendiente').setStyle({'display':'none'});
+			$('btFinalizar').setStyle({'display':'none'});
+			break;
+		case 'PROYECTO':
+			$('btEliminar').setStyle({'display':'none'});
+			if ( !$F('pendiente') || parseFloat($F('pendiente'),10)<=0 ){
+				$('btCaja').setStyle({'display':'none'});
+				$('btPendiente').setStyle({'display':'none'});
+			}
+			break;
+		case 'ABONO':
+			$('btBuscadorArticulos').setStyle({'display':'none'});
+			$('btAbono').setStyle({'display':'none'});
+			$('btEliminar').setStyle({'display':'none'});
+			$('btFinalizar').setStyle({'display':'none'});
+			if ( !$F('pendiente') || parseFloat($F('pendiente'),10)>=0 ){
+				$('btCaja').setStyle({'display':'none'});
+				$('btPendiente').setStyle({'display':'none'});
+			}
+			if ( $F('id')!='' && $F('id')!='0' ){
+				detallesReadOnly = true;
+				soloLectura();
+			}
+			break;
+		case 'FINALIZADO':
+			soloLectura();
+			$('btBuscadorArticulos').setStyle({'display':'none'});
+			$('btEliminar').setStyle({'display':'none'});
+			$('btFinalizar').setStyle({'display':'none'});
+			if ( !$F('pendiente') || parseFloat($F('pendiente'),10)<=0 ){
+				$('btCaja').setStyle({'display':'none'});
+				$('btPendiente').setStyle({'display':'none'});
+			}
+			detallesReadOnly = true;
+		}
+		
+			
+		/* añade los detalles del pedido que hemos cargado en javascript*/
+		rellena(detallesReadOnly);

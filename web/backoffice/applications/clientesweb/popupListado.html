@@ -1,0 +1,82 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */	
+	$kernel  =  $this->oDataTemplate->getKeyData('kernel');
+	$datos   =  $this->oDataTemplate->getKeyData('clientesweb');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<head>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>		
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var FORM_STYLE 		= 'custom-theme';
+			var PAGE_NAME		= 'list';
+			var IMPORT			= "blockui,pmask,dobleosPopup";
+			var MODULE_NAME		= "<?=strtolower($this->getOrderActionClass()->getClass())?>";
+			var CALLBACK		= '<?=$_REQUEST['callBack']?>';
+			var PARENT			= '<?=$_REQUEST['parent']?>';
+		</script>		
+		<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.v2.js"></script>
+</head>
+	
+<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">Buscador Clientes</div>
+	</div>
+
+	<div class="boxFilters" id="boxFilters">
+		<fieldset class="filter">
+		<legend class="filter">Campos filtro</legend>
+		<form name="filters" id="filters" class="" >
+		<table cellpadding="0" cellspacing="0" height="55px" width="100%">
+		<tr>
+			<td class="filter" width="30%">Cliente</td>	
+			<td class="filter" width="30%">Telefonos</td>
+			<td colspan="2" rowspan="2" >
+				<div class="boxMenuButton" id="mnuSearchPopup">
+					<span class="boxMenuImage"><img title="Buscar datos con los criterios indicados en filtros" src="<?=OS_WEB_PATH?>/applications/_commons/_images/search.png" /></span>
+					<span class="boxMenuTitle">Buscar</span>
+				</div>
+			</td>				
+		</tr>
+		<tr>		
+			<td><input class="" type="text" name="_cliente" id="_cliente" value="<?=$_REQUEST[_cliente]?>" /></td>
+			<td><input class="p-mask" type="text" name="_telefonos" id="_telefonos" value="<?=$_REQUEST[_telefonos]?>" alt="{type:'fixed', mask:'999-999-999', stripMask:true}" /></td>
+		</tr>
+		</table>
+		</form>
+		</fieldset>
+	</div>
+	
+	<div class="boxResultList">
+		
+		<!--RESULTADOS-->
+		<table cellpadding="0" cellspacing="0" width="100%" id="tbLista">
+			<tr>
+				<th class="colIcon" 	width="5%">&nbsp;</th>
+				<th class="colSort" 	width="75%">Cliente</th>
+				<th class="colSort" 	width="20%">Teléfonos</th>
+			</tr>
+			
+			<tr class="rowDataOff" id="">
+				<td class="colSort" title="" colspan="10">&nbsp;</td>
+			</tr>
+		</table>
+		<!--FIN RESULTADOS-->
+		
+	</div>	
+	
+	
+	<form name="fapplication" id="fapplication" class="" >
+	<input type="hidden" name="do" id="do" value="">
+	<input type="hidden" name="sessionclass" id="sessionclass" value="">		
+	<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>">
+	<input type="hidden" name="channel" id="channel" value="json">
+	</form>
+	
+</body>
+</HTML>

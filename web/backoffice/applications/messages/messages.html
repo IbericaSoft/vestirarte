@@ -1,0 +1,28 @@
+<?
+	$kernel = $this->oDataTemplate->getKeyData('kernel');
+	$datos	= $this->oDataTemplate->getKeyData('messages');	
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<head>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+		
+		<!-- DESKTOP CONTROL -->
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/prototype.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/shortcut.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/dobleos/dobleosapiclient.js"></script>
+		<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/applications/messages/application.css" />
+		
+</head>
+	
+<body id="desktop" onload="">
+	
+	<div id="title-<?=$datos[type]?>"><span id="verticalmiddle"><?=$datos[title]?></span></div>
+	<div id="text"><?=$datos['message']?>
+	<? if ( $datos['class'] ) { ?>
+	&nbsp;<a class="button-<?=$datos[type]?>" href="<?=$datos['url']?>?class=<?=$datos['class']?>&sessionclass=<?=$datos['sessionclass']?>&do=<?=$datos['do']?>">Continuar</a>
+	<? } ?>
+	</div>
+	
+</body>
+</HTML>	

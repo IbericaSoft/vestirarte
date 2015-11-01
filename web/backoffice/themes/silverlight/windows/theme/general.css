@@ -1,0 +1,170 @@
+body {
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #000000;
+  background-color: #f6f6f6; 
+}
+
+td, th, input, select, textarea, optgroup {
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+
+.input_largo{
+	width: 250px;
+}
+
+.input_muy_largo{
+	width: 450px;
+}
+
+a:link {
+  color: #0240a3;
+}
+
+a:visited {
+  color: #0240a3;
+}
+
+a:active {
+  color: #000000;
+}
+
+img {
+  border: none;
+}
+
+legend {
+  white-space: nowrap;
+}
+
+
+
+.displayNone {
+  display: none !important;
+}
+
+/* --- loader ---*/
+
+#loader {
+  width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#loader td {
+  padding: 3px;
+  background: #ffffff;
+}
+
+#loader p {
+  border: 3px solid #6E89DD;
+  padding: 10px;
+  margin: 0;
+  background: #EEF0FC;
+}
+
+#loader img {
+  float: left;
+  margin-right: 12px;
+}
+
+#loader strong {
+  display: block;
+  margin-bottom: 3px;
+}
+
+#loaderContainer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: expression('absolute');
+  height: expression(document.documentElement.scrollHeight+'px');
+  width: expression(document.documentElement.scrollWidth+'px');
+  z-index: 1000;
+}
+
+#loaderContainer td {
+	padding-top: 150px;
+	vertical-align: top;
+	text-align: center;
+	background-image: url(../images/semi-transparent.gif);
+}
+
+#loaderContainer td td {
+	padding-top: 3px;
+	text-align: left;
+}
+
+.scrollingBox {
+  overflow: auto;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+table.scrollingBoxBorder {
+ border: 1px solid #8daac4; 
+ background-color: #FFFFFF;
+}
+
+div.scrollingBoxAround {
+ margin-right: 1px;
+}
+
+.noBold {
+  font-weight: normal;
+}
+
+#mensajes{
+	vertical-align: middle;
+	text-align: center;
+ 	padding: 5 5;
+ 	font-size: 10px;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  color: red; 	
+}
+
+#tablaDetalle{
+	overflow: auto;
+	display: block;
+	height: 150px;
+	border: 1px solid black;	
+}
+
+#filaDetalle{
+	
+	padding:1px 1px;
+}
+
+.filaDetalleI{
+	background-color: #C9D3F6;
+}
+
+.filaDetalleP{
+	background-color: #AFC9F0;
+}
+
+.filaDetalleStock{
+	text-align: right;
+	background-color: yellow;
+	
+} 
+            
+.filaSel{
+	font-weight: bold;
+	cursor: pointer;	
+}
+
+.pointer {
+	cursor: pointer;	
+}
+
+#nuevaVariedad, #modificarVariedad{
+	display:none;
+	height:auto;
+	border:1px solid silver;	
+}

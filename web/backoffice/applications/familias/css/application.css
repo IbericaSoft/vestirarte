@@ -1,0 +1,74 @@
+.boxHeader{		
+	background-image: url(../images/familias.small.png);
+	background-repeat: no-repeat;
+	background-position:right center;
+	border-bottom:5px double #CCC;
+}
+
+.thum{ width:50px; height-max:50px; }
+.thum-big{ max-width:200px; height-max:200px; }
+#descripcion {min-width:100%;}
+/***************** UPLOAD *********************************/
+.fotos{
+	max-width: 100%;
+	max-height: 100%;
+}
+input[type="file"]{display: none;}
+.fileupload{
+	display: inline-block;
+	background: #77BCD8;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    opacity: 1;
+    width: 195px;
+    height: 195px;
+    text-align: center;
+    font-size: 11px;
+    border:1px dotted #000;
+    border-radius: 10px;
+}
+
+.fileupload > div#upload-title {	
+	width: 100%;
+	height: 10%;
+	text-align: center;
+	border-bottom:1px solid #000;
+}
+
+.fileupload > div#upload-title > span {
+	border:1px solid #000;
+	background: #3EA0C8;
+    border-radius: 4px;
+    color:#fff;
+    padding: 3px;
+    cursor: pointer;	
+}
+
+.fileupload > div#upload-body {
+	width: 100%;
+	height: 75%;	
+	text-align: center;
+	overflow: hidden;
+}
+
+.fileupload > div#upload-info {
+	width: 100%;
+	height: 15%;
+	text-align: center;
+	border-top:1px solid #000;
+}
+
+.dragOver{
+    background: #7FB644;
+}
+
+.dragOut {
+    background: #77BCD8;
+}
+
+.drop {
+	background: #7FB644;
+}

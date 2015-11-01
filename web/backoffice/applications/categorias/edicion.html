@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript">
+		var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+		var PWEB_PATH 		= '<?=PUBLIC_WEB_PATH?>';
+		var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+		var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+		var MODULE_NAME		= "<?=strtolower($this->getOrderActionClass()->getClass())?>";
+		var IMPORT			= 'upload';
+	</script>
+	<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.v3.js"></script>
+</head>
+<body class="application edit">
+	
+	<form>
+		<div class="boxHeader">
+			<div class="title" title="<?=$module->version_detail?>">Categorías - <?=$datos[operacion]?><span class="version"><?=$module->version_info?></span></div>			
+			<div class="botones">
+				<div class="menuBotones" id="btExport"><img title="Exportar los datos a formato excel" src="<?=OS_WEB_PATH?>/applications/_commons/_images/excel.png" /></div>
+				<div class="menuBotones" id="btPrint"><img title="Imprimir estos datos" src="<?=OS_WEB_PATH?>/applications/_commons/_images/pdf32.png" /></div>
+				<div class="menuBotones" id="btLink"><img title="Acceso directo en el escritorio" src="<?=OS_WEB_PATH?>/applications/_commons/_images/link32.png" /></div>
+			</div>
+		</div>
+	
+		<div class="contenido">	
+			<div id="tabs">
+				<ul>
+				<li><a href="#tabs-1">Ficha</a></li>
+				<li><a href="#tabs-2">Fotos</a></li>
+				<li><a href="#tabs-3">Control</a></li>
+				</ul>
+			
+				<div id="tabs-1">
+					<p>
+						<label>Categoría:</label>
+						<label><input class="" type="text" name="categoria" id="categoria" value="<?=$datos[categoria]?>" size="30"/></label>
+					</p>					
+					<p>
+						<label>Posici&oacute;n:</label>
+						<label><input class="integer" name="posicion" id="posicion" value="<?=$datos[posicion]?>" size="5"/></label>
+					</p>
+					<br>
+					<p>
+						<label>Descripción:</label>
+					</p>
+					<label><textarea class="" name="descripcion" id="descripcion"><?=$datos[descripcion]?></textarea></label>
+					
+					<br>
+					<p>
+						<label>Estado:</label>
+						<label class="radio-ui">
+					 		<?	
+							echo '<input type="radio" id="radio1" value="ON" name="estado" '.($datos[estado]=='ON'?'checked':'').'><label for="radio1">Online</label>';
+							echo '<input type="radio" id="radio2" value="OFF" name="estado" '.($datos[estado]=='OFF'?'checked':'').'><label for="radio2">Offline</label>';
+							?>
+						</label>					
+					</p>
+				</div>
+			
+				<div id="tabs-2">
+					<div class="fileupload" folder-write="<?=$module->dir_images?>" folder-read="<?=$module->dir_images?>" type="image">
+						<div id="upload-title"><input type="file" name="files[]" /><input type="hidden" id="foto_1" name="foto_1" value="<?=$datos[foto_1]?>"/><span>Foto...</span></div>
+						<div id="upload-body"><?=($datos[foto_1])?"<img class='fotos' src='$module->dir_images/$datos[foto_1]' />":""?></div>
+						<div id="upload-info">&nbsp;<?=$datos[foto_1]?></div>
+					</div>
+					<div class="fileupload" folder-write="<?=$module->dir_images?>" folder-read="<?=$module->dir_images?>" type="image">
+							<div id="upload-title"><input type="file" name="files[]" /><input type="hidden" id="foto_2" name="foto_2" value="<?=$datos[foto_2]?>"/><span>Foto...</span></div>
+							<div id="upload-body"><?=($datos[foto_2])?"<img class='fotos' src='$module->dir_images/$datos[foto_2]' />":""?></div>
+							<div id="upload-info">&nbsp;<?=$datos[foto_2]?></div>
+					</div>
+					<div class="fileupload" folder-write="<?=$module->dir_images?>" folder-read="<?=$module->dir_images?>" type="image">
+							<div id="upload-title"><input type="file" name="files[]" /><input type="hidden" id="foto_3" name="foto_3" value="<?=$datos[foto_3]?>"/><span>Foto...</span></div>
+							<div id="upload-body"><?=($datos[foto_3])?"<img class='fotos' src='$module->dir_images/$datos[foto_3]' />":""?></div>
+							<div id="upload-info">&nbsp;<?=$datos[foto_3]?></div>
+					</div>
+					<p>
+						<label><br>Arrastra las imagenes sobre las cajas para que suban automáticamente al servidor o haz click sobre el boton foto</label>
+					</p>
+				</div>
+			
+				<div id="tabs-3">
+					<? if ($this->oUser->getRol()>1){ ?>
+					<p>
+						<label>Fecha modificación:</label>
+						<label class="data"><?=$datos[ffmodificacion]?></label>			
+					</p>
+					<br>
+					<p>
+						<label>Usuario:</label>
+						<label><?=($datos[usuario]!="0")?$datos[usuario]:'no auditado'?></label>
+					</p>
+					<?} else echo "<label>Información reservada</label>";?>
+				</div>
+		
+			</div>
+		</div>
+		
+		<div id="botonera">
+			<?if(!$datos[categoria]){?>
+			<button id="btAccept"><img src="<?=OS_WEB_PATH?>/applications/_commons/_images/ok16.png"/> Aceptar</button>
+			<?}else{?>
+			<button id="btUpdate"><img src="<?=OS_WEB_PATH?>/applications/_commons/_images/ok16.png"/> Modificar</button>
+			<?}?>
+			<button id="btCancel"><img src="<?=OS_WEB_PATH?>/applications/_commons/_images/back16.png"/> Cancelar</button>
+		</div>	
+		
+		<input type="hidden" name="id" id="id" value="<?=$datos[id]?>"/>
+		<input type="hidden" name="do" id="do" value=""/>
+		<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>"/>		
+		<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>"/>
+		<input type="hidden" name="channel" id="channel" value="html"/>
+	</form>	
+	
+</body>
+</HTML>
+			
+			

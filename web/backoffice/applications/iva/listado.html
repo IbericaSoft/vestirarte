@@ -1,0 +1,86 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */	
+	$kernel  =  $this->oDataTemplate->getKeyData('kernel');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<head>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var FORM_STYLE 		= 'custom-theme';
+			var PAGE_NAME		= 'list';
+			var IMPORT			= "dobleos,blockui";
+			var MODULE_NAME		= "<?=$kernel['class']?>";
+		</script>		
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.v2.js"></script>
+</head>
+	
+<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">IVA</div>
+	</div>
+
+	<div class="boxMenuButtons">
+		<div class="boxMenuButton" id="mnuNew">
+			<span class="boxMenuImage"><img title="Nuevo registro" src="<?=OS_WEB_PATH?>/applications/iva/images/iva.btn.png" /></span>
+			<span class="boxMenuTitle">Nuevo</span>
+		</div>
+		
+	</div>
+	
+	<div class="boxFilters" id="boxFilters">
+	</div>
+	
+	<div class="boxResultList">
+		
+		<!--RESULTADOS-->
+		<table cellpadding="0" cellspacing="0" width="100%" id="tbLista">
+			<tr>
+				<th class="colIcon" 	width="5%">&nbsp;</th>
+				<th class="colSort" 	width="40%">Descripción</th>
+				<th class="colNumber" 	width="50%">IVA%&nbsp;</th>
+			</tr>
+			<? 	while( $datos = $this->getConnection()->getColumnas( $this->getDataTemplate()->getKeyData('iva') ) ){	?>
+					<tr title="click para editar" class="rowDataOff" id="tr_rowdata_<?=$datos[id]?>">
+						<td class="colIcon">
+							<? if ( $datos[estado]=='OFF' ) { ?>
+								<img src="<?=OS_WEB_PATH?>/applications/_commons/_images/lock.png" title="inactivo">
+							<? } else { ?>
+								<img src="<?=OS_WEB_PATH?>/applications/_commons/_images/edit.png" title="click para ver fichar"/>
+							<? } ?>
+						</td>
+						<td class="colSort"><?=$datos[descripcion]?></td>
+						<td class="colNumber"><?=$datos[iva]?></td>
+					</tr>
+			<? 	} ?> 
+			<tr class="rowDataOff" id="">
+				<td class="colSort" title="" colspan="10">&nbsp;</td>
+			</tr>
+		</table>
+		<!--FIN RESULTADOS-->
+		
+	</div>	
+	
+	<!--Info paginacion-->
+	<div class="pagination">	
+		<table cellpadding="0" cellspacing="0" width="100%" id="tbCount">
+			<tr class="pagination"><td class="pagination"><?=$this->getConnection()->pintaPaginacion();?></td></tr>
+		</table>
+	</div>
+	<!--FIN Info paginacion-->
+	
+	<form name="fapplication" id="fapplication" class="" >
+	<input type="hidden" name="id" id="id" value="">
+	<input type="hidden" name="do" id="do" value="">
+	<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>">		
+	<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>">
+	<input type="hidden" name="channel" id="channel" value="html">
+	</form>
+	
+</body>
+</HTML>

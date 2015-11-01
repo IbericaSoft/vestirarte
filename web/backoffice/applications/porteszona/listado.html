@@ -1,0 +1,136 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */	
+	$kernel  =  $this->oDataTemplate->getKeyData('kernel');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var FORM_STYLE 		= 'custom-theme';
+			var PAGE_NAME		= 'list';
+			var IMPORT			= "numeric,dobleos,blockui";
+			var MODULE_NAME		= "<?=$kernel['class']?>";
+		</script>		
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.v2.js"></script>
+		<script type="text/javascript">
+			var listaPais=<?=(null!=$this->oDataTemplate->getKeyData('cache_pais'))?$this->oDataTemplate->getKeyData('cache_pais'):null?>;
+			var listaProvincias=<?=(null!=$this->oDataTemplate->getKeyData('cache_provincias'))?$this->oDataTemplate->getKeyData('cache_provincias'):null?>;
+		</script>
+</head>
+	
+<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">Zonas</div>
+	</div>
+
+	<div class="boxMenuButtons">
+		<div class="boxMenuButton" id="mnuNew">
+			<span class="boxMenuImage"><img title="Nuevo registro" src="<?=OS_WEB_PATH?>/applications/porteszona/images/zonas.btn.png" /></span>
+			<span class="boxMenuTitle">Zona</span>
+		</div>
+		<div class="boxMenuButton" id="mnuSearch">
+			<span class="boxMenuImage"><img title="Buscar datos con los criterios indicados en filtros" src="<?=OS_WEB_PATH?>/applications/_commons/_images/search.png" /></span>
+			<span class="boxMenuTitle">Buscar</span>
+		</div>
+		<div class="boxMenuButton" id="mnuExport">
+			<span class="boxMenuImage"><img title="Exportar los datos a formato excel" src="<?=OS_WEB_PATH?>/applications/_commons/_images/excel.png" /></span>
+			<span class="boxMenuTitle">Excel</span>
+		</div>		
+		<div class="boxMenuButton" id="mnuLink">
+			<span class="boxMenuImage"><img title="Crea un acceso directo en el escritorio de la vista actual" src="<?=OS_WEB_PATH?>/applications/_commons/_images/shortcut.png" /></span>
+			<span class="boxMenuTitle">Link</span>
+		</div>
+		<div class="boxMenuButton" id="mnuPrint">
+			<span class="boxMenuImage"><img title="Imprimir estos datos" src="<?=OS_WEB_PATH?>/applications/_commons/_images/print.png" /></span>
+			<span class="boxMenuTitle">PDF</span>
+		</div>
+
+	</div>
+	
+	<div class="boxFilters" id="boxFilters">
+		<fieldset class="filter">
+		<legend class="filter">&#128269; Buscar</legend>
+		<form name="filters" id="filters" class="forms" >
+		<table cellpadding="0" cellspacing="0">
+ 		<tr>		
+			<td>
+				<select name="_id_zona" id="_id_zona" class="sel_100">
+				<option value="">&#9998; zona</option>
+				<? 
+					$items = json_decode($this->oDataTemplate->getKeyData('cache_zonas'));
+					foreach($items as $item){
+						$selection='';
+						if ($item->id==$_REQUEST[_id_zona]) 
+							$selection='selected';					
+						echo "<option value='$item->id' $selection>".utf8_decode($item->zona)."</option>\n";
+					} 
+				?>
+				</select>&nbsp;
+			</td>
+			<td><input class="field text_ID" type="text" name="_id_pais" id="_id_pais" value="<?=$_REQUEST[_id_pais]?>" readOnly/><input class="field text_75" type="text" name="_pais" id="_pais" value="<?=$_REQUEST[_pais]?>" placeholder="&#9998; pais"/></td>
+			<td><input class="field text_ID" type="text" name="_id_provincia" id="_id_provincia" value="<?=$_REQUEST[_id_provincia]?>" readOnly/><input class="field text_100" type="text" name="_provincia" id="_provincia" value="<?=$_REQUEST[_provincia]?>" placeholder="&#9998; provincia"/></td>
+			<td>
+				<select name="_estado" id="_estado" class="sel_100">
+					<option value="">&#9998; estado</option>
+					<? 
+						foreach(array("ON,Habilitado","OFF,Inhabilitado") as $options){
+							list($option,$description) = explode(",",$options);
+							$selection='';
+							if ($option==$_REQUEST[_estado]) $selection='selected';
+							echo "<option value='$option' $selection>$description</option>";
+						} 
+					?>
+				</select>
+			</td>
+		</tr>
+		</table>
+		</form>
+		</fieldset>
+	</div>
+	
+	<div class="boxResultList">
+		<!--RESULTADOS-->
+		<table cellpadding="0" cellspacing="0" width="100%" id="tbLista">
+			<tr>
+				<th class="colIcon" 	width="5%">&nbsp;</th>
+				<th class="colSort" 	width="35%">Zona</th>
+				<th class="colSort" 	width="60%">Provincias</th>
+			</tr>
+			<? 	while( $datos = $this->getConnection()->getColumnas( $this->getDataTemplate()->getKeyData('porteszona') ) ){	?>
+					<tr title="click para editar" class="rowDataOff" id="tr_rowdata_<?=$datos[id]?>">
+						<td class="colIcon <?=( $datos[estado]=='OFF' )?'filainactiva':'filaactiva';?>" title="<?=( $datos[estado]=='OFF' )?'inactiva':'click para ver detalles';?>">&nbsp;</td>
+						<td class="colSort"><?=$datos[zona]?></td>
+						<td class="colSort"><?=$datos[provincias]?></td>
+					</tr>
+			<? 	} ?>
+			<tr class="rowDataOff" id="">
+				<td class="colSort" title="" colspan="10">&nbsp;</td>
+			</tr>
+		</table>
+		<!--FIN RESULTADOS-->
+	</div>	
+	
+	<!--Info paginacion-->
+	<div class="pagination">	
+		<table cellpadding="0" cellspacing="0" width="100%" id="tbCount">
+			<tr class="pagination"><td class="pagination"><?=$this->getConnection()->pintaPaginacion();?></td></tr>
+		</table>
+	</div>
+	<!--FIN Info paginacion-->
+	
+	<form name="fapplication" id="fapplication" class="" >
+	<input type="hidden" name="id" id="id" value="">
+	<input type="hidden" name="do" id="do" value="">
+	<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>">		
+	<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>">
+	<input type="hidden" name="channel" id="channel" value="html">
+	</form>
+	
+</body>
+</HTML>

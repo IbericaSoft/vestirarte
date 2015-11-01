@@ -1,0 +1,74 @@
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="dompdf.view" content="FitB" />
+	<link rel="stylesheet" type="text/css" href="{WEB_PATH}/applications/pedidosweb/css/pedido_high.css" />
+	</head>
+	
+	<body>
+		<div id="header"></div>
+		
+		<div id="footer">			
+			<div class="page-number"></div>
+		</div>
+		
+		<div class="datagrid">
+			<div class="etiquetas">Pedido n&uacute;mero<br><strong>{id}</strong></div>
+			<div class="etiquetas">Fecha pedido<br><strong>{falta}</strong></div>
+			<div class="etiquetas">Fecha entrega<br><strong>{fenvio}</strong></div><br>		
+			<br><br>
+			<div class="etiquetas">Cliente<br><strong>{cliente}</strong></div>
+			<div class="etiquetas">Email<br><strong>{email}</strong></div>
+			<div class="etiquetas">Tel&eacute;fono<br><strong>{telefono}</strong></div>
+			<br><br>
+			<div class="CSSTableGenerator" >
+	                <table>
+	                    <tr>
+	                        <td width="70%">Artículo</td>
+	                        <td width="10%" class="derecha">Cantidad</td>
+	                        <td width="10%" class="derecha">Precio</td>	                        
+	                        <td width="10%" class="derecha">Subtotal</td>
+	                    </tr>
+	                    <!--LIST1
+                    	<tr class="shop">
+                    		<td>{articulo}</td>
+                    		<td class="derecha">{cantidad}</td>
+                    		<td class="derecha">{precio}&euro;</td>                    		
+                    		<td class="derecha">{total}&euro;</td>
+                    	</tr>
+	                     LIST1-->
+	                </table>
+	                <br>
+	                <table>	                	
+	                    <tr>
+	                        <td width="90%" class="derecha totales">Portes</td>
+	                        <td width="10%" class="derecha totales">{total_gastos}&euro;</td>
+	                    </tr>
+	                    <tr>
+	                        <td width="90%" class="derecha totales2">IVA {iva}%</td>
+	                        <td width="10%" class="derecha totales2">{tiva}&euro;</td>
+	                    </tr>
+	                    <tr>
+	                        <td width="90%" class="derecha totales3">Total</td>
+	                        <td width="10%" class="derecha totales3">{total_pedido}&euro;</td>
+	                    </tr>
+	                </table>
+	                <br>
+            </div>
+			<br><br>
+			<div class="etiquetas largo">Recogida en tienda<br><strong>{entienda_direccion}</strong></div>
+			<div class="etiquetas largo">Direcci&oacute;n de env&iacute;o<br><strong>{direccion}</strong></div>
+			<div class="etiquetas">Poblaci&oacute;n<br><strong>{poblacion}</strong></div>	
+			<div class="etiquetas">Provincia<br><strong>{provincia}</strong></div>
+			<div class="etiquetas">C&oacute;digo postal<br><strong>{cpostal}/{pais}</strong></div>
+			&nbsp;<br><br>&nbsp;
+			<div class="etiquetas largo">Cliente/Raz&oacute;n<br><strong>{razon}</strong></div>
+			<div class="etiquetas largo">NIF/CIF<br><strong>{nifcif}</strong></div>
+			<div class="etiquetas largo">Direcci&oacute;n de env&iacute;o<br><strong>{fdireccion}</strong></div>
+			<div class="etiquetas">Poblaci&oacute;n<br><strong>{fpoblacion}</strong></div>	
+			<div class="etiquetas">Provincia<br><strong>{fprovincia}</strong></div>
+			<div class="etiquetas">C&oacute;digo postal<br><strong>{fcpostal}/{fpais}</strong></div>
+			
+		</div>
+	</body>
+</html>

@@ -1,0 +1,77 @@
+
+@media all {
+.featherlight {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    bottom: 0;
+    cursor: pointer;
+    display: none;
+    left: 0;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    top: 0;
+    white-space: nowrap;
+    z-index: 2;
+}
+.featherlight:last-of-type {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
+}
+.featherlight::before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    margin-right: -0.25em;
+    vertical-align: top;
+}
+.featherlight .featherlight-content {
+    background: none repeat scroll 0 0 transparent;
+    border-bottom: 25px solid transparent;
+    cursor: auto;
+    display: inline-block;
+    height: 95%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2.5%;
+    overflow: auto;
+    padding: 25px 25px 0;
+    position: relative;
+    text-align: left;
+    vertical-align: top;
+    white-space: normal;
+    width: 90%;
+}
+.featherlight .featherlight-inner {
+    display: block;
+}
+.featherlight .featherlight-close-icon {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.3);
+    color: #000;
+    cursor: pointer;
+    line-height: 25px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 25px;
+    z-index: 9999;
+}
+.featherlight .featherlight-image {
+    width: 100%;
+}
+.featherlight-iframe .featherlight-content {
+    border-bottom: 0 none;
+    padding: 0;
+}
+.featherlight iframe {
+    border: 0 none;
+}
+}
+@media only screen and (max-width: 1024px) {
+.featherlight .featherlight-content {
+    border-bottom: 10px solid transparent;
+    margin-left: 10px;
+    margin-right: 10px;
+    max-height: 98%;
+    padding: 10px 10px 0;
+}
+}

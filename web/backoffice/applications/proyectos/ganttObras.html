@@ -1,0 +1,173 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */
+	$kernel =  $this->oDataTemplate->getKeyData('kernel');
+	$gantt =  $this->oDataTemplate->getKeyData('gantt');
+	$obras =  $this->oDataTemplate->getKeyData('obras');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+	<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+	<title></title>
+	
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var PAGE_NAME		= 'gantt';
+			var CALLBACK		= '<?=$_REQUEST['callBack']?>';
+			var PARENT			= '<?=$_REQUEST['parent']?>';	
+		</script>
+	
+		<!-- DESKTOP CONTROL -->
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/prototype.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/shortcut.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/dobleos/dobleosapiclient.js"></script>
+		
+		<!-- VENTANA ACTUAL -->
+		<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/applications/_commons/<?=$kernel[theme]?>/css/application.css" />
+		<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/applications/proyectos/css/application.css" />
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/proyectos/js/mygantt.js"></script>
+	   	
+	   	<!-- GANTT -->
+	   	<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/applications/proyectos/css/mygantt.css" />
+	   	<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/proyectos/js/mygantt.js"></script>
+		
+	   	<!-- calendarios -->
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/calendar/js/jscal2.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/calendar/js/lang/es.js"></script>
+		<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/jscore/calendar/css/jscal2.css" />
+    	<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/jscore/calendar/css/border-radius.css" />
+    	<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/jscore/calendar/css/steel/steel.css" />
+	   	
+	</head>
+	
+	<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">Selector de Fechas de Obra</div>
+	</div>
+
+	<div class="boxResultList">
+	
+		<div class="ganttContainer">
+			<?
+				$sizeGantt = '+6 month';
+				$mes = array("1"=>"Enero","2"=>"Febrero","3"=>"Marzo","4"=>"Abril","5"=>"Mayo","6"=>"Junio","7"=>"Julio","8"=>"Agosto","9"=>"Septiembre","10"=>"Octubre","11"=>"Noviembre","12"=>"Diciembre");
+				$dia = array("1"=>"L","2"=>"M","3"=>"X","4"=>"J","5"=>"V","6"=>"S","7"=>"D");
+				
+				$dateinfo = $gantt[inicio];
+				$enddate  = date("Y-m-d",strtotime(date("Y-m-d", strtotime($gantt[inicio])) . $sizeGantt));
+				$period = (strtotime($enddate) - strtotime($gantt[inicio]). $sizeGantt )/(60*60*24);
+				
+//MESES
+				$a_moths = array();
+				$t_moths = array();
+				echo "<table cellpadding='0' cellspacing='0' class='gantt'>";
+				do {
+					$month = date("m",strtotime($dateinfo)).'_'.date("Y",strtotime($dateinfo));
+					if ( !array_key_exists($month, $a_moths) ){
+						$diaMes = date("j",strtotime($dateinfo));
+						$diasMes = date("t",strtotime($dateinfo))+1;						
+						$a_moths[$month] = ($diasMes-$diaMes);
+						//echo "dia de mes ($diasMes)-($diaMes): ".($diasMes-$diaMes);
+						$t_moths[$month] = $mes[date("n",strtotime($dateinfo))].'('.date("Y",strtotime($dateinfo)).')';
+					}
+					$dateinfo = date ( 'Y-m-d' , strtotime ( '+1 day' , strtotime ( $dateinfo ) ) );
+     				$period-- ;
+				} while ($period > 0);
+				echo '<tr>';
+				foreach (array_keys($a_moths) as $mes)
+					echo "<td class='meses' colspan='".$a_moths[$mes]."'>".$t_moths[$mes]."</td>";				
+				echo '</tr>';
+//DIA SEMANA				
+				echo '<tr>';
+$numDias = 0;
+				$dateinfo = $gantt[inicio];
+				$period = (strtotime($enddate) - strtotime($gantt[inicio]). $sizeGantt )/(60*60*24);				
+				do {	
+     				$numDias++;
+					echo '<td class="diasemana">' . $dia[date("N",strtotime($dateinfo))] . '</td>'; 
+					$dateinfo = date ( 'Y-m-d' , strtotime ( '+1 day' , strtotime ( $dateinfo ) ) );
+     				$period-- ;
+     			} while ($period > 0);
+				echo '</tr>';
+//DIAS
+				echo '<tr>';
+				$dateinfo = $gantt[inicio];
+				$period = (strtotime($enddate) - strtotime($gantt[inicio]). $sizeGantt )/(60*60*24);				
+				do {	
+     				echo '<td class="diames">' . date("d",strtotime($dateinfo)) . '</td>'; 
+					$dateinfo = date ( 'Y-m-d' , strtotime ( '+1 day' , strtotime ( $dateinfo ) ) );
+     				$period-- ;
+     			} while ($period > 0);
+				echo '</tr>';
+//OBRAS
+				while( $datos = $this->getConnection()->getColumnas( $this->getDataTemplate()->getKeyData('obras') ) ){						
+					echo "<tr>\n\n";
+					$dateinfo = $gantt[inicio];
+					$period = (strtotime($enddate) - strtotime($gantt[inicio]). $sizeGantt )/(60*60*24);				
+					$duracion = 0;
+					$filaTarea='';
+					do {
+						if( strtotime($dateinfo)  >= strtotime($datos[finicio]) && strtotime($dateinfo) <= strtotime($datos[ffin]) ){
+							if ( !$duracion )
+								$filaTarea.="<td class='diamesocupado' colspan='{duracion}'>$datos[estado]:$datos[obra]<br>$datos[duracion] días</td>\n";
+							$duracion++;							
+						}else {
+							$filaTarea.="<td class='diamesvacio'>&nbsp;</td>\n";
+						} 
+						$dateinfo = date ( 'Y-m-d' , strtotime ( '+1 day' , strtotime ( $dateinfo ) ) );
+     					$period-- ;
+     				} while ($period > 0);
+					echo  str_replace("{duracion}","$duracion",$filaTarea);
+					echo "</tr>\n\n";
+				}
+//VACIA
+				echo '<tr>';
+				$dateinfo = $gantt[inicio];
+				$period = (strtotime($enddate) - strtotime($gantt[inicio]). $sizeGantt )/(60*60*24);				
+				do {	
+     				echo "<td class='diamesseleccion' day='".date("d",strtotime($dateinfo)).'-'.date("m",strtotime($dateinfo)).'-'.date("Y",strtotime($dateinfo))."'>&nbsp;</td>\n";
+					$dateinfo = date ( 'Y-m-d' , strtotime ( '+1 day' , strtotime ( $dateinfo ) ) );
+     				$period-- ;
+     			} while ($period > 0);
+				echo '</tr>';
+				
+				echo '</table>';
+			?>
+			
+					
+		</div>
+		
+		
+		<table cellpadding="0" cellspacing="0" class="fields">
+			<tr>
+			<td width="35%">
+				<div id="cont_desde"></div>
+				Inicio:<input class="field ganttStart" type="text" name="_desde" id="_desde" value="<?=$datos[_desde]?>" size="8" readOnly/><button id="calendar_desde"><img src="<?=OS_WEB_PATH?>/applications/_commons/_images/calendar.png" alt="Mostrar calendario"></button>
+			</td>
+			<td width="35%">
+				<div id="cont_hasta"></div>
+				Fin:<input class="field ganttEnd" type="text" name="_hasta" id="_hasta" value="<?=$datos[_hasta]?>" size="8" readOnly/><button id="calendar_hasta"><img src="<?=OS_WEB_PATH?>/applications/_commons/_images/calendar.png" alt="Mostrar calendario"></button>
+			</td>
+			<td width="20%"><div id="cont_dias">--</div></td>
+			<td width="10%">&nbsp;</td>
+			</tr>
+		</table>
+		
+		
+		</div>
+		
+		<table cellpadding="0" cellspacing="5" id="buttons" >
+			<tr>
+				
+				<td><input class="field" id="btCancelar" type="button" value="Cancelar" /></td>
+				<td><input class="field" id="btAceptar" type="button" value="Aceptar" /></td>
+				
+			</tr>
+		</table>
+		
+	</body>
+</html>

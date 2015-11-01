@@ -1,0 +1,259 @@
+.overlay___invisible__ {
+  background-color: #666;
+	filter:alpha(opacity=0);
+	-moz-opacity: 0;
+	opacity: 0;
+}
+
+.top_draggable, .bottom_draggable {
+	cursor:move;
+}
+
+.status_bar {
+	font-size:12px;
+}
+.status_bar input{
+	font-size:12px;
+}
+
+.wired_frame {
+	display:block;
+	position:absolute;
+	border:1px #000 dashed;
+}
+
+/**
+ *  THEME correcamins
+*/
+
+.overlay_correcamins {
+	background-color:#FFF;
+	filter:alpha(opacity=60);
+	-moz-opacity:0.6;
+	opacity:0.6;
+}
+
+.correcamins_wired_frame {
+	background:#FFF;
+	filter:alpha(opacity=60);
+	-moz-opacity:0.6;
+	opacity:0.6;	
+}
+
+.correcamins_nw {
+	background:transparent url(lighting/left-top.png) no-repeat 0 0;			
+	width:5px;
+	height:23px;
+}
+
+.correcamins_n {
+	background:transparent url(lighting/top-middle.png) repeat-x 0 0;			
+	height:23px;
+}
+
+.correcamins_ne {
+	background:transparent url(lighting/right-top.png) no-repeat 0 0;			
+	width:5px;	  
+	height:23px;
+}
+
+.correcamins_w {
+	background:transparent url(lighting/frame-left.png) repeat-y top left;			
+	width:5px;
+}
+
+.correcamins_e {
+	background:transparent url(lighting/frame-right.png) repeat-y top right;			
+	width:5px;	  
+}
+
+.correcamins_sw {
+	background:transparent url(lighting/bottom-left.png) no-repeat 0 0;			
+	width:5px;
+	height:5px;
+}
+
+.correcamins_s {
+	background:transparent url(lighting/bottom-middle.png) repeat-x 0 0;			
+	height:5px;
+}
+
+.correcamins_se, .correcamins_sizer  {
+	background:transparent url(lighting/bottom-right-unfocus.png) no-repeat 0 0;			
+	width:5px;
+	height:5px;
+}
+
+.correcamins_sizer {
+	cursor:se-resize;	
+}
+
+.correcamins_close {
+	width:25px;
+	height:23px;
+	background:transparent url(lighting/button-close.png) no-repeat 0 0;			
+	position:absolute;
+	top:1px;
+	right:10px;
+	cursor:pointer;
+	z-index:1000;
+}
+
+.correcamins_maximize {
+	width:25px;
+	height:23px;
+	background:transparent url(lighting/button-max.png) no-repeat 0 0;			
+	position:absolute;
+	top:1px;
+	right:35px;
+	cursor:pointer;
+	z-index:1000;
+}
+
+.correcamins_minimize {
+	width:25px;
+	height:23px;
+	background:transparent url(lighting/button-min.png) no-repeat 0 0;			
+	position:absolute;
+	top:1px;
+	right:60px;
+	cursor:pointer;
+	z-index:1000;
+}
+
+.correcamins_title {
+	float:left;
+	height:14px;
+	font-size:14px;
+	font-weight:bold;
+	font-family:Verdana, Arial, sans-serif;
+	text-align:center;
+	margin-top:1px;
+	width:100%;
+	color:#FFF;
+}
+
+.correcamins_content {
+	overflow:auto;
+	color:#000;
+	font-family:Verdana, Arial, sans-serif;
+	font-size:12px;
+	background:#BFDBFF;
+}
+
+/* For alert/confirm dialog */
+.correcamins_window {
+	border:1px solid #F00;	
+	background:#FFF;
+	padding:20px;
+	margin-left:auto;
+	margin-right:auto;
+	width:400px;
+}
+
+.correcamins_message {
+  	font-size:12px;
+	text-align:center;
+	width:100%;
+	padding-bottom:10px;
+}
+
+.correcamins_buttons {
+	text-align:center;
+	width:100%;
+}
+
+.correcamins_buttons input {
+	border:1px solid #999;
+	border-top-color:#CCC;
+	border-left-color:#CCC;
+	padding:2px;
+	background-color:#FFF;
+	color:#333;
+	background-image:url(lighting/background_buttons.gif);
+	background-repeat:repeat-x;
+	font-family:Verdana, Arial, sans-serif;
+	font-size:10px;
+	font-weight:bold;
+	text-align:center;
+}
+
+.correcamins_progress {
+	float:left;
+	margin:auto;
+	text-align:center;
+	width:100%;
+	height:16px;
+	background:transparent url(lighting/spinner.gif) no-repeat center center
+}
+
+/* FOR IE */
+* html .correcamins_nw {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//top-left-grey.png", sizingMethod="crop");
+}
+
+* html .correcamins_n {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//top-middle-grey.png", sizingMethod="scale");
+}
+
+* html .correcamins_ne {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//top-right-grey.png", sizingMethod="crop");
+}
+
+* html .correcamins_w {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//left-grey.png", sizingMethod="scale");
+}
+
+* html .correcamins_e {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//right-grey.png", sizingMethod="scale");
+}
+
+* html .correcamins_sw {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//bottom-left-grey.png", sizingMethod="crop");
+}
+
+* html .correcamins_s {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//bottom-middle-grey.png", sizingMethod="scale");
+}
+
+* html .correcamins_se, * html .correcamins_sizer {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//bottom-right-grey.png", sizingMethod="crop");
+}
+
+* html .correcamins_close {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//button-close-grey.png", sizingMethod="crop");
+}
+
+* html .correcamins_minimize {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//button-minimize-grey.png", sizingMethod="crop");
+}
+
+* html .correcamins_maximize {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//button-maximize-grey.png", sizingMethod="crop");
+}
+
+* html .correcamins_content {
+	background:#B8D7FF;
+}

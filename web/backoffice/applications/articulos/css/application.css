@@ -1,0 +1,12 @@
+.boxHeader{		
+	background-image: url(../images/articulos.small.png);
+	background-repeat: no-repeat;
+	background-position:right center;
+	border-bottom:5px double #CCC;
+}
+.thum{ width:50px; height-max:50px; }
+.thum-big{ max-width:200px; height-max:200px; }
+
+#articulo{ min-width:250px; max-width:50%; }
+#codigo,#codigo_proveedor,#precio,#oferta,#peso,#stock,.stock_variedad { width:50px;}
+#descripcion { min-width:100%; }

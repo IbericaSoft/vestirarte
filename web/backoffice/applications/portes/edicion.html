@@ -1,0 +1,125 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */	
+	$kernel  =  $this->oDataTemplate->getKeyData('kernel');
+	$datos   =  $this->oDataTemplate->getKeyData('portes');
+?>
+<html>
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var FORM_STYLE 		= 'custom-theme';
+			var PAGE_NAME		= 'edit';
+			var IMPORT			= "blockui,tabs,dobleos,numeric";
+			var MODULE_NAME		= "<?=$kernel['class']?>";
+		</script>		
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.v2.js"></script>		
+</head>
+	
+<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">Portes - <?="$datos[operacion] : $datos[zona]"?></div>
+	</div>
+
+	<div class="boxMenuButtons">
+		<div class="boxMenuButton" id="mnuLink">
+			<span class="boxMenuImage"><img title="Crea un acceso directo en el escritorio de la vista actual" src="<?=OS_WEB_PATH?>/applications/_commons/_images/shortcut.png" /></span>
+			<span class="boxMenuTitle">Link</span>
+		</div>
+	</div>
+	
+	
+	<form name="fapplication" id="fapplication" class="" >
+	
+		<div id="tabs" style="display:none">
+			<ul>
+			<li><a href="#tabs-1">Ficha</a></li>
+			<li><a href="#tabs-2">Control</a></li>
+			</ul>
+	
+			<div id="tabs-1">
+				<p>
+					<label>Zona</label>
+					<label>
+						<select class="roField sel_150" name="id_zona" id="id_zona">
+						<option value="">&#9998; zona </option>
+						<? 
+							$items = json_decode($this->oDataTemplate->getKeyData('cache_zonas'));
+							foreach($items as $item){
+								$selection='';
+								if ( $datos[id_zona]==$item->id ) $selection='selected';
+								echo "<option value='$item->id' $selection>".utf8_decode($item->zona)."</option>\n";
+							} 
+						?>
+						</select>
+					</label>
+				</p>
+				<br/>
+				<p>	
+					<label>Peso</label>
+					<label><input class="currency roField text_75" type="text" name="peso" id="peso" value="<?=$datos[peso]?>" placeholder="&#9998; peso"/></label>
+				</p>
+				<br/>
+				<p>	
+					<label>Importe</label>
+					<label><input class="currency roField text_75" type="text" name="importe" id="importe" value="<?=$datos[importe]?>" placeholder="&#9998; importe"/></label>
+				</p>
+				<br/>
+				<p>
+					<label>Estado:</label>
+					<label>
+						<select name="estado" id="estado" class="roField">
+							<option value="">&#9998; estado</option>
+							<? 
+								foreach(array("ON,Habilitado","OFF,Inhabilitado") as $options){
+									list($option,$description) = explode(",",$options);
+									$selection='';
+									if ($option==$datos[estado]) $selection='selected';
+										echo "<option value='$option' $selection>$description</option>";
+								}
+							?>
+						</select>
+					</label>					
+				</p>
+			</div>
+			
+			<div id="tabs-2">
+				<? if ($this->oUser->getRol()>2){ ?>
+					<table cellpadding="1" cellspacing="4" class="fields">
+					<tr>
+						<td width="29%">Fecha registro:</td>
+						<td><?=$datos[falta]?></td>					
+					</tr>
+					<tr>
+						<td>Fecha modificaci&oacute;n:</td>
+						<td><?=$datos[fmodificacion]?>&nbsp;&nbsp;&nbsp;(<?=$datos[usuario]?>)</td>					
+					</tr>
+					</table>
+				<?} else echo "Información de auditor&iacute;a"; ?>
+			</div>
+		</div>
+			
+
+		
+		<table cellpadding="0" cellspacing="5" id="buttons" >
+			<tr>
+				<td><input class="warn" id="btEliminar" type="button" value="Eliminar" /></td>
+				<td><input class="" id="btCancelar" type="button" value="Cancelar" /></td>
+				<td><input class="" id="btAceptar" type="button" value="Aceptar" /></td>
+			</tr>
+		</table>
+		
+
+	<input type="hidden" name="id" id="id" value="<?=$datos[id]?>"/>
+	<input type="hidden" name="do" id="do" value=""/>
+	<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>"/>		
+	<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>"/>
+	<input type="hidden" name="channel" id="channel" value="html"/>
+	</form>
+	
+</body>
+</html>

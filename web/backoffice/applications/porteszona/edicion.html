@@ -1,0 +1,140 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */	
+	$kernel  =  $this->oDataTemplate->getKeyData('kernel');
+	$datos   =  $this->oDataTemplate->getKeyData('porteszona');
+?>
+<html>
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var FORM_STYLE 		= 'custom-theme';
+			var PAGE_NAME		= 'edit';
+			var IMPORT			= "blockui,tabs,dobleos,numeric";
+			var MODULE_NAME		= "<?=$kernel['class']?>";
+		</script>		
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.v2.js"></script>
+		<script type="text/javascript">
+			var listaPais=<?=(null!=$this->oDataTemplate->getKeyData('cache_pais'))?$this->oDataTemplate->getKeyData('cache_pais'):null?>;
+			var listaProvincias=<?=(null!=$this->oDataTemplate->getKeyData('provincias_libres'))?$this->oDataTemplate->getKeyData('provincias_libres'):null?>;
+		</script>
+</head>
+	
+<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">Portes - <?="$datos[operacion] : $datos[zona]"?></div>
+	</div>
+
+	<div class="boxMenuButtons">
+		<div class="boxMenuButton" id="mnuLink">
+			<span class="boxMenuImage"><img title="Crea un acceso directo en el escritorio de la vista actual" src="<?=OS_WEB_PATH?>/applications/_commons/_images/shortcut.png" /></span>
+			<span class="boxMenuTitle">Link</span>
+		</div>
+	</div>
+	
+	
+	<form name="fapplication" id="fapplication" class="" >
+	
+		<div id="tabs" style="display:none">
+			<ul>
+			<li><a href="#tabs-1">Ficha</a></li>
+			<li><a href="#tabs-2">Control</a></li>
+			</ul>
+	
+			<div id="tabs-1">
+				<p>
+					<label>Zona</label>
+					<label>
+						<input type="text" class="roField text_150" name="zona" id="zona" value="<?=$datos[zona]?>" placeholder="&#9998; alias zona"/>
+					</label>
+				</p>
+				<br/>
+				
+				<p>
+					<label>Pa&iacute;s:</label>
+					<label>
+						<img title="Seleccione el pa&iacute;s, ver&aacute; que la lista inferior se carga con sus provincias*. Haciendo doble click en cada elemento pasar&aacute;n a la lista de la derecha. La lista de la derecha representa las provincias* incluidas en este porte. Con doble click en esta lista, las excluir&aacute;." src="<?=OS_WEB_PATH?>/applications/_commons/_images/detalles.png" width="16"/>
+						<select class="roField" name="id_pais" id="id_pais" style="background:#FFFFAA;">
+						<option value="">&#10068; buscar por pais </option>
+						<? 
+							$items = json_decode($this->oDataTemplate->getKeyData('cache_pais'));
+							foreach($items as $item){
+								if ( $datos[id_pais]==$item->id ) $selection='selected';
+								echo "<option value='$item->id' $selection>".utf8_decode($item->label)."</option>\n";
+							} 
+						?>
+						</select><span class="flechas">&nbsp;&#9759;&nbsp;</span>
+					</label>					
+				</p>
+				<br/>
+				<p>
+					<label>						
+						<select class="roField" name="seleccion" id="seleccion" multiple="multiple" style="height:125px;" title="Doble clic">
+						</select><span class="flechas">&nbsp;&#9758;&nbsp;</span>
+						<select class="roField" name="provincias[]" id="provincias" multiple="multiple" style="height:125px;width:175px;" title="Doble clic">
+						<?
+							foreach( $this->getDataTemplate()->getKeyData('provincias') as $item)								
+								echo "<option value='$item[id]'>$item[provincia]</option>\n";							
+						?>
+						</select>
+					</label>
+				</p>
+				<br/>				
+				<p>
+					<label>Estado:</label>
+					<label>
+						<select name="estado" id="estado" class="roField">
+							<option value="">&#9998; estado</option>
+							<? 
+								foreach(array("ON,Habilitado","OFF,Inhabilitado") as $options){
+									list($option,$description) = explode(",",$options);
+									$selection='';
+									if ($option==$datos[estado]) $selection='selected';
+										echo "<option value='$option' $selection>$description</option>";
+								}
+							?>
+						</select>
+					</label>					
+				</p>
+			</div>
+			
+			<div id="tabs-2">
+				<? if ($this->oUser->getRol()>2){ ?>
+					<table cellpadding="1" cellspacing="4" class="fields">
+					<tr>
+						<td width="29%">Fecha registro:</td>
+						<td><?=$datos[falta]?></td>					
+					</tr>
+					<tr>
+						<td>Fecha modificación:</td>
+						<td><?=$datos[fmodificacion]?>&nbsp;&nbsp;&nbsp;(<?=$datos[usuario]?>)</td>					
+					</tr>
+					</table>
+				<?} else echo "Información de auditor&iacute;a"; ?>
+			</div>
+		</div>
+			
+
+		
+		<table cellpadding="0" cellspacing="5" id="buttons" >
+			<tr>
+				<td><input class="warn" id="btEliminar" type="button" value="Eliminar" /></td>
+				<td><input class="" id="btCancelar" type="button" value="Cancelar" /></td>
+				<td><input class="" id="btAceptar" type="button" value="Aceptar" /></td>
+			</tr>
+		</table>
+		
+
+	<input type="hidden" name="id" id="id" value="<?=$datos[id]?>"/>
+	<input type="hidden" name="do" id="do" value=""/>
+	<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>"/>		
+	<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>"/>
+	<input type="hidden" name="channel" id="channel" value="html"/>
+	</form>
+	
+</body>
+</html>

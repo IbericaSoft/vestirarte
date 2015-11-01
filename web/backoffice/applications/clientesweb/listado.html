@@ -1,0 +1,152 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */	
+	$kernel  =  $this->oDataTemplate->getKeyData('kernel');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var FORM_STYLE 		= 'custom-theme';
+			var PAGE_NAME		= 'list';
+			var IMPORT			= "dobleos,numeric,blockui";
+			var MODULE_NAME		= "<?=$kernel['class']?>";
+		</script>		
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.v2.js"></script>
+		<script type="text/javascript">
+			var listCli=null;var listMail=null;
+			<? 	
+			if (null!=$this->oDataTemplate->getKeyData('clientes_cache'))
+				echo "listCli = ".$this->oDataTemplate->getKeyData('clientes_cache').";\n";
+			if (null!=$this->oDataTemplate->getKeyData('emails_cache'))	
+				echo "listMail = ".$this->oDataTemplate->getKeyData('emails_cache').";\n";
+			?>
+		</script>
+</head>
+	
+<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">Clientes</div>
+	</div>
+
+	<div class="boxMenuButtons">
+		<div class="boxMenuButton" id="mnuNew">
+			<span class="boxMenuImage"><img title="Nuevo registro" src="<?=OS_WEB_PATH?>/applications/clientesweb/images/clientes.btn.png" /></span>
+			<span class="boxMenuTitle">Nuevo</span>
+		</div>
+		<div class="boxMenuButton" id="mnuSearch">
+			<span class="boxMenuImage"><img title="Buscar datos con los criterios indicados en filtros" src="<?=OS_WEB_PATH?>/applications/_commons/_images/search.png" /></span>
+			<span class="boxMenuTitle">Buscar</span>
+		</div>
+		<div class="boxMenuButton" id="mnuExport">
+			<span class="boxMenuImage"><img title="Exportar los datos a formato excel" src="<?=OS_WEB_PATH?>/applications/_commons/_images/excel.png" /></span>
+			<span class="boxMenuTitle">Excel</span>
+		</div>		
+		<div class="boxMenuButton" id="mnuLink">
+			<span class="boxMenuImage"><img title="Crea un acceso directo en el escritorio de la vista actual" src="<?=OS_WEB_PATH?>/applications/_commons/_images/shortcut.png" /></span>
+			<span class="boxMenuTitle">Link</span>
+		</div>
+		<div class="boxMenuButton" id="mnuPrint">
+			<span class="boxMenuImage"><img title="Imprimir estos datos" src="<?=OS_WEB_PATH?>/applications/_commons/_images/print.png" /></span>
+			<span class="boxMenuTitle">PDF</span>
+		</div>
+		<div class="boxMenuButton" id="mnuInfo">
+			<span class="boxMenuImage"><img title="Información sobre la versión de esta aplicación" src="<?=OS_WEB_PATH?>/applications/_commons/_images/information.png" /></span>
+			<span class="boxMenuTitle">Info.</span>
+		</div>
+	</div>
+	
+	<div class="boxFilters" id="boxFilters">
+		<fieldset class="filter">
+		<legend class="filter">Campos filtro</legend>
+		<form name="filters" id="filters" class="forms" >
+		<table cellpadding="0" cellspacing="0">
+		<tr>
+			<td class="filter">Cliente</td>					
+			<td class="filter">Teléfono/Móvil</td>
+			<td class="filter">Email</td>
+			<td class="filter">Fecha alta entre el / y el</td>
+			<td class="filter">Estado</td>
+		</tr>
+		<tr>		
+			<td><input class="" type="text" name="_id_cliente" id="_id_cliente" value="<?=$_REQUEST[_id_cliente]?>" readOnly/><input class="" type="text" name="_nombre" id="_nombre" value="<?=$_REQUEST[_nombre]?>" /></td>					
+			<td><input class="null" type="text" name="_telefono" id="_telefono" value="<?=$_REQUEST[_telefono]?>" />&nbsp;</td>
+			<td><input class="" type="text" name="_email" id="_email" value="<?=$_REQUEST[_email]?>" />&nbsp;</td>
+			<td>
+				<input class="" type="text" name="_desde" id="_desde" value="<?=$_REQUEST[_desde]?>" readOnly/><img title="Seleccione una fecha del calendario. Esto le permitirá acotar su búsqueda. Si quiere eliminar la fecha, simplemente haga clic en el campo. Con la tecla 'esc' cierra el calendario" src="<?=OS_WEB_PATH?>/applications/_commons/_images/calendar.png" width="12"/>&nbsp;
+				<input class="" type="text" name="_hasta" id="_hasta" value="<?=$_REQUEST[_hasta]?>" readOnly/><img title="Igual que el anterior campo fecha" src="<?=OS_WEB_PATH?>/applications/_commons/_images/calendar.png" width="12"/>&nbsp;
+			</td>
+			<td>
+				<select class="" name="_estado" id="_estado">
+					<option value="">-Todos-</option>
+					<? 
+						foreach(array("ACT,Habilitado","DES,Inhabilitado") as $options){
+							list($option,$description) = explode(",",$options);
+							$selection='';
+							if ($option==$_REQUEST[_estado]) $selection='selected';
+							echo "<option value='$option' $selection>$description</option>";
+						} 
+					?>
+				</select>
+			</td>
+		</tr>
+		</table>
+		</form>
+		</fieldset>
+	</div>
+	
+	<div class="boxResultList">
+		
+		<!--RESULTADOS-->
+		<table cellpadding="0" cellspacing="0" width="100%" id="tbLista">
+			<tr>
+				<th class="colIcon" 	width="5%">&nbsp;</th>
+				<th class="colSort" 	width="45%">Cliente</th>				
+				<th class="colSort" 	width="20%">Telefonos</th>
+				<th class="colSort" 	width="30%">Emails</th>
+			</tr>
+			<? 	while( $datos = $this->getConnection()->getColumnas( $this->getDataTemplate()->getKeyData('clientesweb') ) ){	?>
+					<tr title="click para ver ficha" class="rowDataOff" id="tr_rowdata_<?=$datos[id]?>">
+						<td class="colIcon">
+							<? if ( $datos[estado]=='OFF' ) { ?>
+								<img src="<?=OS_WEB_PATH?>/applications/_commons/_images/lock.png" title="Inhabilitado">
+							<? } else { ?>
+								<img src="<?=OS_WEB_PATH?>/applications/_commons/_images/edit.png" title="click para ver ficha"/>
+							<? } ?>
+						</td>
+						<td class="colSort"><?=$datos[nombre]?>&nbsp;</td>
+						<td class="colSort"><?=$datos[telefono]?>&nbsp;</td>
+						<td class="colSort"><?=$datos[email]?>&nbsp;</td>
+					</tr>
+			<? 	} ?> 
+			<tr class="rowDataOff" id="">
+				<td class="colSort" title="" colspan="10">&nbsp;</td>
+			</tr>
+		</table>
+		<!--FIN RESULTADOS-->
+		
+	</div>	
+	
+	<!--Info paginacion-->
+	<div class="pagination">	
+		<table cellpadding="0" cellspacing="0" width="100%" id="tbCount">
+			<tr class="pagination"><td class="pagination"><?=$this->getConnection()->pintaPaginacion();?></td></tr>
+		</table>
+	</div>
+	<!--FIN Info paginacion-->
+	
+	<form name="fapplication" id="fapplication" class="" >
+	<input type="hidden" name="id" id="id" value="">
+	<input type="hidden" name="do" id="do" value="">
+	<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>">		
+	<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>">
+	<input type="hidden" name="channel" id="channel" value="html">
+	</form>
+	
+</body>
+</HTML>

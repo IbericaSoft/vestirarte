@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <?echo $this->executeBlock('DATA')?>
+    <?echo $this->executeBlock('HEAD')?>
+    <?$json=self::getData("json");?>
+</head>
+<body>
+
+	<div id="contenido">
+            <div id="wrapper">
+
+				<!-- menu PÁGINA -->
+            	<?require("menu_header.html")?>
+    
+				<div id="main">
+					<form>
+					<?require("menu_movil.html")?>
+					
+					
+            		<div id="facturacion">
+            			<span>DATOS DEL PEDIDO</span>
+            			<div id="direccion-envio" style="width:30%;">                  
+			                  <span>DIRECCIÓN DE ENVÍO</span>
+			                  <div id=""><span><?=self::$shop->cliente->nombre?></span></div>
+			                  <div id=""><span><?=self::$shop->cliente->email?></span></div>
+			                  <div id=""><span><?=self::$shop->cliente->telefono?></span></div>
+			                  <div id=""><span><?=self::$shop->cliente->direccion?></span></div>
+			                  <div id=""><span><?=self::$shop->cliente->poblacion?></span></div>
+			                  <div id=""><span><?=utf_server(self::$shop->cliente->provincia_)?> (<?=self::$shop->cliente->cpostal?>)</span></div>
+			                  <div id=""><span><?=utf_server(self::$shop->cliente->pais_)?></span></div>
+			                  			
+			            </div>
+			           
+            			<div id="direccion-facturacion" style="width:30%;">
+			                  <span>DIRECCIÓN DE FACTURACIÓN</span>
+			                  <div id=""><span><?=self::$shop->cliente->nifcif?></span></div>
+			                  <div id=""><span><?=self::$shop->cliente->razon?></span></div>
+			                  <div id=""><span><?=self::$shop->cliente->direccion_facturacion?></span></div>
+			                  <div id=""><span><?=self::$shop->cliente->poblacion_facturacion?></span></div>
+			                  <div id=""><span><?=utf_server(self::$shop->cliente->provincia_facturacion_)?> (<?=self::$shop->cliente->cpostal_facturacion?>)</span></div>
+			                  <div id=""><span><?=utf_server(self::$shop->cliente->pais_facturacion_)?></span></div>
+			                  <div id="">&nbsp;</div>
+			            </div>
+			            
+			            <div id="direccion-facturacion" style="width:25%;vertical-align: top !important;">
+			                  <span>Nombre persona a regalar</span>
+			                  <div id="">
+			                  	<? if (self::$shop->cliente->persona) { ?>
+			                  	<span><?=self::$shop->cliente->persona?></span>
+			                  	<? } else { ?>
+			                  	<span>---</span>
+			                  	<? } ?>
+			                  </div>
+			            </div>
+			            
+      				</div>
+					
+					<div class="cesta-compra">      
+						<table>
+				      		<tr class="cabecera">
+				            <td width="40%">ARTÍCULO</td>
+				            <td width="15%">TALLA</td>
+				            <td width="15%">UNIDADES</td>
+				            <td width="15%">PRECIO/UNIDAD</td>
+				            <td width="15%">PRECIO TOTAL</td>
+				      		</tr>
+							<? foreach ( $json->lista_articulos as $datos) { ?>
+				      		<tr>
+			            	<td>
+			            		<div>
+			            			<img src="{web}/images/<?=utf_server($datos->foto)?>" style="max-width:100px;max-height:100px;"><?=utf_server($datos->articulo)?>
+			            		</div>
+			            	</td>
+			            	<td><?=$datos->talla?></td> 
+			            	<td>
+			            		<?=$datos->unidades?>
+			            	</td>
+			            	<td><?=($datos->oferta>0)?$datos->oferta_iva_formato:$datos->precio_iva_formato?></td>
+			            	<td><?=$datos->subtotal_iva_formato?></td>
+				      		</tr>
+				      		<? } ?>
+						</table>
+				        
+				        <div id="seleccion-metodo">
+				        <br>
+				            <span>Métodos de pago permitidos</span>      
+				            <div id="visa"><img src="{web}/images/visa.jpg" alt=""></div>
+				            <div id="mastercard"><img src="{web}/images/mc.png" alt=""></div>
+				            <div id="americanexpress"><img src="{web}/images/ae.png" alt=""></div>
+				       	</div> 
+				       <div id="seleccion-metodo">
+				        	<br><br>
+				            <span>Observaciones a la entrega</span>      
+				            <textarea id="observaciones" name="observaciones" placeholder="Entregar a nombre de ..." style="resize: none;width:75%;border:1px solid silver"></textarea>
+				       	</div> 
+				       	<div class="total">
+				            <div id="total-pedido"><p>subtotal</p><span><?=$json->importe_articulos_con_iva?></span></div>
+				            <div id="portes" style="margin-top:15px;"><p>PORTES</p><span><?=$json->importe_portes_con_iva?></span></div>
+				            <div id="total-iva" style="margin-top:30px; border-top: solid black 3px; padding-top: 13px;"><p>TOTAL PEDIDO</p><span><?=$json->total_cesta_con_iva?></span><span class="txt11">Todos los precios con iva</span></div>
+				      	</div>
+	      				
+	      		
+				      	
+	      				<div id="container-center"><button id="atras">ATRÁS</button><button id="comprar">PAGAR PEDIDO</button></div>
+	      				<br>
+	      			</div>
+					</form>
+				</div>
+				
+            	<!-- FOOTER -->
+				<?require("footer.html")?>
+        	</div>
+      </div>
+      
+    <!--EFECTO DEL LIGHTBOX PARA MOSTRAR LAS PRENDAS-->
+    <link rel="stylesheet" type="text/css" href="{web}/js/featherlight-master/featherlight.min.css"/>
+    <script type="text/javascript" src="{web}/js/featherlight-master/featherlight.min.js"></script>
+    <script src="{web}/js/jquery.blockUI.js"></script>
+	        
+    <script>
+	    
+		$(document).ready(function(){
+			$("#observaciones").focus();
+			
+			/** vamos a comprar */
+			$("#comprar").click(function(){
+				wait('Iniciando proceso de pago ...');
+				var postData = $(this).closest("form").serializeArray();
+				requestShop('/lanzar-tpv.html',postData,callbackConfirmar,callbackConfirmar,'post');		    
+				return false;
+			});
+			
+			$("#atras").click(function(){
+				window.location.href="/cesta.html";
+				return false;
+			});
+						
+			/** respuesta a la peticion de compra */
+			function callbackConfirmar(json){
+				stopWait();
+				if (json.codigo!=0) //algun error				
+					showAlert('Error',json.objeto.motivo);
+				else
+					$(json.objeto.form).appendTo("body").submit();			
+			}
+			
+		});
+    </script>
+    
+</body>
+</html>

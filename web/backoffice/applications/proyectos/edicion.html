@@ -1,0 +1,109 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */	
+	$kernel  =  $this->oDataTemplate->getKeyData('kernel');
+	$datos   =  $this->oDataTemplate->getKeyData('proyectos');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<head>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var FORM_STYLE 		= 'custom-theme';
+			var PAGE_NAME		= 'edit';
+			var IMPORT			= "pmask,blockui,tabs,dobleos,formats";
+			var MODULE_NAME		= "<?=strtolower($this->getOrderActionClass()->getClass())?>";
+		</script>		
+		<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.v2.js"></script>
+		<script type="text/javascript">
+			//detalles 
+			function rellena(){
+				<? 	while( $row = $this->getConnection()->getColumnas( $this->getDataTemplate()->getKeyData('detalles') ) ){ ?>
+						addNewArticulo({"id":"<?=$row[id_articulo]?>","cantidad":"<?=$row[cantidad]?>","codigo":"<?=$row[codigo]?>","articulo":"<?=addslashes($row[articulo])?>","precio":"<?=$row[precio]?>","importe":"<?=$row[importe]?>"});
+				<? } ?>
+			}
+		</script>		
+</head>
+	
+<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">Proyecto  &nbsp;&nbsp;Nº:&nbsp;<?=$datos[fproyecto]?>&nbsp;&nbsp;&nbsp;&nbsp;Fecha:&nbsp;<?=$datos[falta]?>&nbsp;&nbsp;&nbsp;&nbsp;Estado:&nbsp;<span id="indicadorEstado"><?=$datos[estado]?></span></div>
+	</div>
+
+	<div class="boxMenuButtons">
+		<div class="boxMenuButton" id="mnuLink">
+			<span class="boxMenuImage"><img title="Crea un acceso directo en el escritorio de la vista actual" src="<?=OS_WEB_PATH?>/applications/_commons/_images/shortcut.png" /></span>
+			<span class="boxMenuTitle">Link</span>
+		</div>
+		<div class="boxMenuButton" id="mnuPrint">
+			<span class="boxMenuImage"><img title="Imprimir estos datos" src="<?=OS_WEB_PATH?>/applications/_commons/_images/print.png" /></span>
+			<span class="boxMenuTitle">PDF</span>
+		</div>
+	</div>
+	
+	
+	<form name="fapplication" id="fapplication">
+		
+		<div id="tabs" style="display:none">
+			<ul>
+			<li><a href="#tabs-1">Proyecto</a></li>
+			<li><a href="#tabs-2">Pedido</a></li>
+			<li><a href="#tabs-3">Observaciones</a></li>
+			<li><a href="#tabs-4">Control</a></li>
+			</ul>
+		
+			<div id="tabs-1">
+				<p>
+					<label>Cliente:</label>
+					<label><input type="hidden" name="id_cliente" id="id_cliente" value="<?=$datos[id_cliente]?>"/><input class="roField" type="text" name="cliente" id="cliente" value="<?=$datos[cliente]?>" disabled/><button class="fields" id="btBuscadorClientes" title="Abrir una ventana para buscar el cliente de este proyecto"><img src="<?=OS_WEB_PATH?>/applications/_commons/_images/find.png" /></button></label>
+				</p>
+				<p>
+					<label>Contactos:</label>
+					<label><textarea id="contactos" name="contactos"><?=$datos[contactos]?></textarea></label>
+				</p>
+			</div>
+			
+			<div id="tabs-2">
+			</div>
+			
+			<div id="tabs-3">
+			</div>
+			
+			<div id="tabs-4">
+				<? if ($this->oUser->getRol()>2){ ?>
+					<table cellpadding="1" cellspacing="4" class="fields">
+					<tr>
+						<td width="20%">Fecha registro:</td>
+						<td><?=$datos[falta]?></td>					
+					</tr>
+					<tr>
+						<td>Fecha modificación:</td>
+						<td><?=$datos[fmodificacion]?>&nbsp;&nbsp;&nbsp;(<?=$datos[usuario]?>)</td>					
+					</tr>
+					</table>
+				<?} else echo "Información de auditoría"; ?>
+			</div>
+			
+		</div>
+		
+		<table cellpadding="0" cellspacing="5" id="buttons" >
+			<tr>
+				<td><input id="btCancelar" type="button" value="Cancelar" /></td>
+				<td><input id="btAceptar" type="button" value="Aceptar" /></td>
+			</tr>
+		</table>
+
+
+		<input type="hidden" name="proyecto" id="proyecto" value="<?=$datos[proyecto]?>"/>
+		<input type="hidden" name="do" id="do" value=""/>
+		<input type="hidden" name="details" id="details" value=""/>
+		<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>"/>		
+		<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>"/>
+		<input type="hidden" name="channel" id="channel" value="html"/>
+	</form>
+</body>
+</HTML>

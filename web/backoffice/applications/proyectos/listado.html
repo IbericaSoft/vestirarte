@@ -1,0 +1,150 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */	
+	$kernel  =  $this->oDataTemplate->getKeyData('kernel');
+	$datos   =  $this->oDataTemplate->getKeyData('proyectos');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+		<meta http-equiv="conten-type" content="text/html; charset=ISO-8859-1" />
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var FORM_STYLE 		= 'custom-theme';
+			var PAGE_NAME		= 'list';
+			var IMPORT			= "pmask,blockui,formats";
+			var MODULE_NAME		= "<?=strtolower($this->getOrderActionClass()->getClass())?>";
+		</script>		
+		<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.v2.js"></script>
+</head>
+	
+<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">Proyectos - Listado</div>
+	</div>
+
+	<div class="boxMenuButtons">
+		<div class="boxMenuButton" id="mnuNew">
+			<span class="boxMenuImage"><img title="Nueva Obra" src="<?=OS_WEB_PATH?>/applications/proyectos/images/proyectos.ico.png" /></span>
+			<span class="boxMenuTitle">Nuevo</span>
+		</div>
+		<div class="boxMenuButton" id="mnuSearch">
+			<span class="boxMenuImage"><img title="Buscar datos con los criterios indicados en filtros" src="<?=OS_WEB_PATH?>/applications/_commons/_images/search.png" /></span>
+			<span class="boxMenuTitle">Buscar</span>
+		</div>
+		<div class="boxMenuButton" id="mnuExport">
+			<span class="boxMenuImage"><img title="Exportar los datos a formato excel" src="<?=OS_WEB_PATH?>/applications/_commons/_images/excel.png" /></span>
+			<span class="boxMenuTitle">Excel</span>
+		</div>		
+		<div class="boxMenuButton" id="mnuLink">
+			<span class="boxMenuImage"><img title="Crea un acceso directo en el escritorio de la vista actual" src="<?=OS_WEB_PATH?>/applications/_commons/_images/shortcut.png" /></span>
+			<span class="boxMenuTitle">Link</span>
+		</div>
+		<div class="boxMenuButton" id="mnuPrint">
+			<span class="boxMenuImage"><img title="Imprimir estos datos" src="<?=OS_WEB_PATH?>/applications/_commons/_images/print.png" /></span>
+			<span class="boxMenuTitle">PDF</span>
+		</div>
+		<div class="boxMenuButton" id="mnuInfo">
+			<span class="boxMenuImage"><img title="Información sobre la versión de esta aplicación" src="<?=OS_WEB_PATH?>/applications/_commons/_images/information.png" /></span>
+			<span class="boxMenuTitle">Info.</span>
+		</div>
+		
+	</div>
+	
+	<div class="boxFilters" id="boxFilters">
+		<fieldset class="filter">
+		<legend class="filter">Campos filtro</legend>
+		<form name="filters" id="filters" class="" >
+		<table cellpadding="0" cellspacing="0">
+		<tr>
+			<td class="filter">Proyecto</td>
+			<td class="filter">Cliente</td>
+			<td class="filter">Estado</td>
+			<td class="filter">Completado % <img title="Filtro para buscar proyectos cuyo porcentaje completado este entre 0 y el valor indicado. Por ejemplo: 60%, mostrará los proyectos que se encuentran completados entre 0% y 60%" src="<?=OS_WEB_PATH?>/applications/_commons/_images/detalles.png" width="12"/></td>			
+			<td class="filter">Inicio entre el/y el</td>
+			<td class="filter">Termina en<img title="Mostrar los proyectos que finalicen en N semanas" src="<?=OS_WEB_PATH?>/applications/_commons/_images/detalles.png" width="12"/></td>
+			<td class="filter">Recientes</td>
+		</tr>
+		<tr>		
+			<td><input  type="text" name="_proyecto" id="_proyecto" value="<?=$_REQUEST[_proyecto]?>" class="p-mask" alt="{type:'number', decSymbol:'', decDigits:0, groupDigits:9}"/>&nbsp;</td>					
+			<td><input  type="text" name="_cliente" id="_cliente" value="<?=$_REQUEST[_cliente]?>">&nbsp;</td>
+			<td>
+				<select name="_estado" id="_estado">
+					<option value="">-Todos-</option>
+					<? 
+						foreach ( $this->getDataTemplate()->getKeyData('cache_estados') as $option){
+							$selection='';
+							if ($option==$_REQUEST[_tipo]) $selection='selected';
+							echo "<option value='$option' $selection>$option</option>";
+						}
+					?>
+				</select>&nbsp;&nbsp;
+			</td>
+			<td><input name="_porcentaje_completado" id="_porcentaje_completado" value="<?=$_REQUEST[_porcentaje_completado]?>" />&nbsp;&nbsp;</td>			
+			<td>
+				<input class="" type="text" name="_desde" id="_desde" value="<?=$_REQUEST[_desde]?>" readOnly/><img title="Seleccione una fecha del calendario. Esto le permitirá acotar su búsqueda. Si quiere eliminar la fecha, simplemente haga clic en el campo. Con la tecla 'esc' cierra el calendario" src="<?=OS_WEB_PATH?>/applications/_commons/_images/calendar.png" width="12"/>&nbsp;
+				<input class="" type="text" name="_hasta" id="_hasta" value="<?=$_REQUEST[_hasta]?>" readOnly/><img title="Igual que el anterior campo fecha" src="<?=OS_WEB_PATH?>/applications/_commons/_images/calendar.png" width="12"/>&nbsp;
+			</td>
+			<td><input name="_termina" id="_termina" value="<?=$_REQUEST[_termina]?>" readOnly/>&nbsp;&nbsp;</td>
+			<td><input name="_fmodificacion" id="_fmodificacion" value="<?=$_REQUEST[_fmodificacion]?>" />&nbsp;&nbsp;</td>
+		</tr>
+		</table>
+		</form>
+		</fieldset>
+	</div>
+	
+	<div class="boxResultList">
+		<!--RESULTADOS-->
+		<table cellpadding="0" cellspacing="0" width="100%" id="tbLista">
+			<tr>
+				<th class="colIcon" 	width="3%">&nbsp;</th>
+				<th class="colSort" 	width="8%">Proyecto</th>
+				<th class="colSort" 	width="10%">Inicio</th>
+				<th class="colSort" 	width="11%">Estado</th>
+				<th class="colSort" 	width="10%">Completado</th>
+				<th class="colSort" 	width="5%">Hitos</th>
+				<th class="colSort" 	width="10%">Consumido</th>
+				<th class="colSort" 	width="">Cliente</th>
+				<th class="colNumber" 	width="10%">Coste</th>				
+			</tr>	
+			<? 	while( $datos = $this->getConnection()->getColumnas( $this->getDataTemplate()->getKeyData('proyectos') ) ){	?>
+					<tr title="click para editar" class="rowDataOff" id="tr_rowdata_<?=$datos[proyecto]?>">
+						<td class="colIcon"><img src="<?=OS_WEB_PATH?>/applications/_commons/_images/edit.png" title="clic para ver proyecto"/></td>
+						<td class="colSort"><?=$datos[proyecto]?></td>
+						<td class="colSort"><?=$datos[finicio]?></td>
+						<td class="colSort"><?=$datos[estado]?></td>
+						<td class="colSort"><div id="progress" class="graph"><div class="project-ok" id="bar" title="" style="width:<?=$datos[porcentaje_completado]?>%"><p><?=$datos[porcentaje_completado]?>%</p></div></div></td>
+						<td class="colSort"><?="$datos[hitos_completados]/$datos[hitos]"?></td>
+						<td class="colSort"><div id="progress" class="graph" title="<?="$datos[consumido] de $datos[duracion] d&iacute;as :: del $datos[finicio] al $datos[ffin]"?>"><div class="project-stable" id="bar" porcen="<?=$datos[porcentaje_consumido]?>" style="width:<?=$datos[porcentaje_consumido]?>%"><p><?=$datos[porcentaje_consumido]?>%</p></div></div></td>
+						<td class="colSort"><?=$datos[cliente]?></td>
+						<td class="colNumber"><?=$datos[coste]?>&euro;</td>
+					</tr>
+			<? 	} ?>			
+			<tr class="rowDataOff" id="">
+				<td class="colSort" title="" colspan="10">&nbsp;</td>
+			</tr>
+		</table>
+		<!--FIN RESULTADOS-->
+	</div>	
+	
+	<!--Info paginacion-->
+	<div class="pagination">	
+		<table cellpadding="0" cellspacing="0" width="100%" id="tbCount">
+			<tr class="pagination"><td class="pagination"><?=$this->getConnection()->pintaPaginacion();?></td></tr>
+		</table>
+	</div>
+	<!--FIN Info paginacion-->
+	
+	<form name="fapplication" id="fapplication" class="" >
+	<input type="hidden" name="id" id="id" value="">
+	<input type="hidden" name="do" id="do" value="">
+	<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>">		
+	<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>">
+	<input type="hidden" name="channel" id="channel" value="html">
+	</form>
+	
+</body>
+</HTML>

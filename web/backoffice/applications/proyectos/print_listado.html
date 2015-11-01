@@ -1,0 +1,56 @@
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="dompdf.view" content="FitB" />
+	<link rel="stylesheet" type="text/css" href="{WEB_PATH}/applications/_commons/_css/listados_pdf.css" />
+	</head>
+	
+	<body>
+		
+		<div id="header"></div>
+		
+		<div id="footer">
+			
+			<div class="page-number"></div>
+		</div>
+		
+		<div class="datagrid">
+			<table>
+				<thead>
+					<tr>
+						<td colspan="8">Listado de proyectos a {hoy}</td>
+					</tr>
+				</thead>
+				<thead>
+					<tr>
+						<th width="10%">Proyecto</th>
+						<th width="12%">Inicio</th>
+						<th width="12%">Fin</th>
+						<th width="10%">Estado</th>
+						<th width="10%">Completado</th>
+						<th width="10%">Hitos</th>
+						<th width="10%">Consumido</th>						
+						<th width="">Coste</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!--LIST1
+					<tr class="{alt}">
+						<td>{proyecto}</td>
+						<td>{finicio}</td>
+						<td>{ffin}</td>
+						<td>{estado}</td>
+						<td class="right">{porcentaje_completado}</td>
+						<td class="center">{hitos_completados}/{hitos}</td>
+						<td class="right">{porcentaje_consumido}</td>						
+						<td class="right">{coste}</td>
+					</tr>
+					<tr class="{alt}">
+						<td colspan="8" style="border-bottom:1px solid #000">&nbsp;&nbsp;{cliente}</td>
+					</tr>					
+					LIST1-->					
+				</tbody>				
+			</table>
+		</div>
+	</body>
+</html>

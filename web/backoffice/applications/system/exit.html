@@ -1,0 +1,35 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */
+	$kernel =  $this->oDataTemplate->getKeyData('kernel');
+	$datos =  $this->oDataTemplate->getKeyData('session');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+	<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+	<title></title>
+	
+	<script type="text/javascript">
+		var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+		var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+	</script>
+	
+	<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/prototype.js"></script>
+	<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/shortcut.js"></script>
+	<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/dobleos/dobleosapiclient.js"></script>
+	
+	<!-- VENTANA ACTUAL -->
+	<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/system/resources/exit.js"></script>
+	<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/applications/system/resources/exit.css" />
+	
+	<body id="tip" onload="start()">
+	
+		<div id="title"><span id="verticalmiddle">¿Terminar?</span></div>
+		<br>
+		<center>
+		<input type="button" class="buttonWarn" onclick="closeme()" value="Sí"/>
+		<input type="button" class="buttonNormal" onclick="cancel()" value="No"/>
+		</center>
+
+	</body>
+</html>

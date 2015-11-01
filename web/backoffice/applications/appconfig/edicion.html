@@ -1,0 +1,104 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */	
+	$kernel  =  $this->oDataTemplate->getKeyData('kernel');
+	$datos   =  $this->oDataTemplate->getKeyData('appconfig');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<head>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+		<title><?=$kernel['title']?></title>
+		
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var PAGE_NAME		= 'edit';		
+		</script>
+		
+		<!-- DESKTOP CONTROL -->
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/prototype.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/shortcut.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/dobleos/dobleosapiclient.js"></script>
+		
+		<!-- VENTANA ACTUAL -->
+		<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/applications/_commons/<?=$kernel[theme]?>/css/application.css" />
+		<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/applications/appconfig/css/application.css" />
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/appconfig/js/application.js"></script>
+		
+		<!-- tab -->
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/tab/tab-view.js"></script>
+		<link rel="stylesheet" href="<?=OS_WEB_PATH?>/jscore/tab/css/tab-view.css" type="text/css">
+</head>
+	
+<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">Parámetros de la empresa - <?=$datos[operacion]?></div>
+	</div>
+
+	<div class="boxMenuButtons">
+
+	</div>
+	
+	
+	<form name="fapplication" id="fapplication" class="" >
+	<div class="boxResultList">
+		<div id="tabs">
+			<!-- tab1 -->
+			<div class="dhtmlgoodies_aTab">
+			<table cellpadding="0" cellspacing="5" width="100%" class="fields" >
+				<tr>
+						<td width="25%">Descripción:</td>
+						<td><input class="field disabled" type="text" name="descripcion" id="descripcion" value="<?=$datos[descripcion]?>" size="40" disabled/></td>					
+				</tr>
+				<tr>
+						<td width="25%">Clave:</td>
+						<td><input class="field disabled" type="text" name="clave" id="clave" value="<?=$datos[clave]?>" size="20" disabled/></td>					
+				</tr>
+				<tr>
+						<td width="25%">Valor:</td>
+						<td>
+							<textarea name="valor" id="valor" class="s50" style="height:200px;" cols="50"><?=$datos[valor]?></textarea>
+						</td>					
+				</tr>
+			</table>
+			</div>
+			
+			<!-- tab2 -->
+			<div class="dhtmlgoodies_aTab">
+				<? if ($this->oUser->getRol()>1){ ?>
+				<table cellpadding="1" cellspacing="4" class="fields">
+					<tr>
+						<td>Fecha modificación:</td>
+						<td><input type="text" size="16" name="fmodificacion" id="fmodificacion" value="<?=$datos[fmodificacion]?>" class="disabled"  disabled/></td>					
+					</tr>
+					<tr>
+						<td>Usuario:</td>
+						<td><input type="text" size="30" name="usuario" id="usuario" value="<?=$datos[usuario]?>" class="disabled"  disabled/></td>					
+					</tr>
+				</table>
+				<?}?>
+			</div>
+				
+		</div>
+		
+		<table cellpadding="0" cellspacing="5" id="buttons" >
+			<tr>
+				<td><input class="" id="btCancelar" type="button" value="Cancelar" /></td>
+				<td><input class="" id="btAceptar" type="button" value="Aceptar" /></td>
+			</tr>
+		</table>
+		
+	</div>
+	
+	<input type="hidden" name="id" id="id" value="<?=$datos[clave]?>"/>
+	<input type="hidden" name="do" id="do" value=""/>
+	<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>"/>		
+	<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>"/>
+	<input type="hidden" name="channel" id="channel" value="html"/>
+	</form>
+	
+</body>
+</HTML>

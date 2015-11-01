@@ -1,0 +1,50 @@
+.boxHeader{		
+	background-image: url(../images/portes.small.png);
+	background-repeat: no-repeat;
+	background-position:right center;
+	border-bottom:5px double #CCC;
+}
+
+
+
+div#tabs label {
+	display: inline-block;
+	font-weight: bold;
+	font-size: 12px;
+	padding:0px;
+	margin:0px;
+	line-height: 15px;
+	vertical-align: middle;
+	border:0px solid black;
+}
+p {
+	display: inline-table;
+	padding: 0px 0px !important;
+	margin: 3px 0px !important;
+	vertical-align: top;
+  	border:0px solid black;
+}
+#tabs p {margin-top: -5px;}
+input { color:#333; }
+input.error, select.error{	background: #FDBFBF;}
+
+.text_ID{width:25px; background:#FFFFAA !important;}
+.text_50{width:50px;}
+.text_75{width:75px;}
+.text_100{width:100px;}
+.text_150{width:150px;}
+.text_200{width:200px;}
+.text_250{width:250px;}
+.text_300{width:300px;}
+.text_350{width:350px;}
+select{padding:2px;}
+.sel_75{max-width:75px;}
+.sel_100{width:auto;max-width:100px;}
+.sel_200{width:auto;max-width:200px;}
+.sel_300{width:auto;max-width:300px;}
+.flechas{font-size:15pt;}
+
+/* .inactiva:before{ content:'\1F512'; color:#C20000; font-size:14pt;}
+.activa:before{ content:'\2710'; color:#0090D3; font-size:14pt;} */
+.filainactiva{ background:url(../../_commons/_images/lock.png) 2px center no-repeat; }
+.filaactiva{ background:url(../../_commons/_images/edit.png) 2px center no-repeat; }

@@ -1,0 +1,64 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */
+	$kernel =  $this->oDataTemplate->getKeyData('kernel');
+	$datos =  $this->oDataTemplate->getKeyData('panel_control');
+	$wallpapers =  $this->oDataTemplate->getKeyData('wallpapers');
+	$themes =  $this->oDataTemplate->getKeyData('themes');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+	<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+	<title></title>
+	
+	<script type="text/javascript">
+		var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+		var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+
+	</script>
+	
+	<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/prototype.js"></script>
+	<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/shortcut.js"></script>
+	<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/dobleos/dobleosapiclient.js"></script>
+	
+		
+	<!-- VENTANA ACTUAL -->
+		<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/applications/_commons/_css/application.css" />
+		<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/applications/panel_control/css/application.css" />
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/panel_control/js/application.js"></script>
+		
+	</head>
+	<body class="application">
+		<div id="title"><span id="verticalmiddle">Panel de control</span></div>
+		
+		<div id="menu">			
+			<a href="#" onclick="showVentana('wallpapers');return false;"><img border="0" src="<?=OS_WEB_PATH?>/applications/panel_control/images/wallpaper.png">&nbsp;Fondos escritorio</a><br/><br/>
+			<a href="#" onclick="showVentana('themes');return false;"><img border="0" src="<?=OS_WEB_PATH?>/applications/panel_control/images/theme.png">&nbsp;Temas escritorio</a><br/><br/>
+		</div>
+		
+		
+		<div id="content" class="wallpapers">
+			<? foreach ($wallpapers as $wallpaper){ ?>
+			
+			<table id="thumbnail" class="thumbnail" idalias="<?=$wallpaper[id]?>" alias="<?=$wallpaper[wallpaper]?>" aliastype="wallpaper">
+				<tr id="thumbnail"><td id="thumbnail"><?=$wallpaper[alias]?></td></tr>
+				<tr id="thumbnail"><td id="thumbnail_img"><img id="thumbnail" src="<?=OS_WEB_PATH?>/wallpapers/<?=$wallpaper[wallpaper]?>" ></td></tr>
+			</table>
+			
+			<?}?>		
+		</div>
+		
+		<div id="content" class="themes">
+			<? foreach ($themes as $theme){ ?>
+			
+			<table id="thumbnail" class="thumbnail" idalias="<?=$theme[id]?>" alias="<?=$theme[theme]?>" aliastype="theme">
+				<tr id="thumbnail"><td id="thumbnail"><?=$theme[alias]?></td></tr>
+				<tr id="thumbnail"><td id="thumbnail_img"><img id="thumbnail" src="<?=OS_WEB_PATH?>/themes/<?=$theme[theme]?>/windows/theme/thumbnail.png" /></td></tr>
+			</table>
+			
+			<?}?>
+		</div>
+		
+	</body>
+</html>

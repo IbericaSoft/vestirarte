@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+	<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+	<meta name="dompdf.view" content="FitB" />
+
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{WEB_PATH}/applications/_commons/_css/pedidos_pdf.css" />
+	</head>
+	
+	<body>
+		
+		<div id="footer"><div class="page-number"></div></div>
+		
+		<div id="header"></div>
+ 	
+		<table cellspacing="0" cellpadding="0" align="center" border="0" class="obra">
+		<tr>
+			<td height="30" width="70%" valign="top" valign="top" class="campo texto18">Proyecto: {proyecto}</td>
+			<td height="30" width="30%" valign="top" valign="top" class="campo">Fecha:{falta}</td>
+		</tr>
+		</table>
+		
+		<table cellspacing="4" cellpadding="2" align="center" border="0" class="obra">
+		<tr>
+			<td width="15%" valign="top" class="campo">Estado:</td>
+			<td width="35%" valign="top" class="valor">{estado}</td>
+			<td width="15%" valign="top" class="campo">Cliente:</td>
+			<td width="35%" valign="top" class="valor">{cliente}</td>
+		</tr>
+		<tr>
+			<td width="15%" valign="top" class="campo">Contacto:</td>
+			<td width="35%" valign="top" class="valor">{contacto}</td>
+			<td valign="top" class="campo">Teléfono:</td>
+			<td valign="top" class="valor">{telefono}</td>
+		</tr>
+		<tr>
+			<td width="15%" valign="top" class="campo">Inicio:</td>
+			<td width="35%" valign="top" class="valor">{finicio}</td>
+			<td valign="top" class="campo">Fin:</td>
+			<td valign="top" class="valor">{ffin}</td>
+		</tr>
+		<tr>
+			<td width="15%" valign="top" class="campo">Seguimiento por:</td>
+			<td width="35%" valign="top" class="valor">{responsable}</td>
+			<td valign="top" class="campo" colspan="2">&nbsp;</td>
+		</tr>
+		</table>
+			
+		<br/>
+		
+		<table cellpadding="0" cellspacing="0" align="center" border="0" class="obra">
+					<tr id="gridROW">		
+						<td class="gridCOL title center" width="70px">Cantidad</td>
+						<td class="gridCOL title center" width="80px">Codigo</td>
+						<td class="gridCOL title" 			 width="300px">Concepto</td>
+						<td class="gridCOL title number" width="80px">Precio</td>
+						<td class="gridCOL title number" width="70px">Dto%</td>
+						<td class="gridCOL title number" width="80px">Importe</td>
+					</tr>					
+					
+					<!--LIST1
+					<tr style="background:{color}">					
+						<td class="gridDATA center" valign="top">{cantidad}</td>
+						<td class="gridDATA center" valign="top">{codigo}</td>
+						<td class="gridDATA" valign="top">{articulo}</td>
+						<td class="gridDATA number" valign="top">{precio}</td>
+						<td class="gridDATA number" valign="top">{dto}</td>
+						<td class="gridDATA number gridDATAright" valign="top">{importe}</td>
+					</tr>
+					LIST1-->
+					
+					<tr id="gridROW">
+						<td class="gridCOLtotales right borderTop" colspan="5">Total {estado} (IVA no incluido):</td>
+						<td class="gridCOLtotales number borderTop" >{imponible}</td>	
+					</tr>
+					
+	</table>
+	
+	<hr/>
+	
+	<table cellspacing="4" cellpadding="2"  border="0" class="firma">
+		<tr>
+			<td width="100%" valign="top" class="campo">Conforme Fecha y Firma:</td>
+		</tr>
+		<tr>
+			<td width="100%" valign="top" class="valor" height="100px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="100%" valign="top" class="valormini">Para la aceptaci&oacute;n del proyecto es necesario firmar todas las hojas</td>
+		</tr>
+	</table>
+		
+	<hr/>
+		
+	<style>
+		P { margin:0 0;}
+		#condiciones{ font-size:11px; }
+	</style>
+	<div id="condiciones">{condiciones}</div>
+		
+	</body>
+</html>

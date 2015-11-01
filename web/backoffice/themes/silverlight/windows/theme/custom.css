@@ -1,0 +1,497 @@
+@import url(buttons.css);
+@import url(tabs.css);
+@import url(double-list-control.css);
+
+body {
+  background: #F9F8F8;
+} 
+/* ---------- search  --------- */
+
+* html table.searchArea {
+  margin-top: 15px;
+}
+
+table.searchArea {
+  margin-top: 7px;
+  border-top: 1px dashed #bbbbbb;
+}
+table.searchArea td {
+  padding-top: 10px;
+}
+table.searchAreaDetails td {
+  padding: 2px;
+}
+
+/* ---------- list  --------- */
+
+div.ipmap {
+  height: 400px;
+}
+
+div.massmaildetails {
+  height: 60px;
+}
+
+tr.subTr td {
+  border-top: 1px solid #d8d8d8;
+}
+
+.list {
+}
+
+.list .selected {
+  background-color: #ecf0fb;
+}
+
+.list th, .list td {
+}
+
+th {
+  text-align: left;
+  background: #D6DFF7;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+}
+
+th a:link, th a:visited, th a:active {
+  color: #000000;
+  text-decoration: none;
+}
+
+th a:hover {
+  text-decoration: underline;
+}
+
+.sort {
+	background-color: #ABBEEF; 
+}
+
+.list .subTable td {
+	border: 0px;
+	padding: 3px;
+}
+
+.evenrowbg {
+background-color: #F0F0F0; 
+}
+
+.oddrowbg {
+	background-color: #ffffff;
+}
+.current {
+	background-color: #F8D134;
+	cursor: pointer;
+}
+/* ---------- form  --------- */
+
+.footnote {
+   padding-top: 2px;
+	text-align: left;
+	color: #666666;
+}
+
+legend {
+  color: #000000;
+  font-weight: bold;
+  background-color: #f9f8f8;
+}
+
+fieldset {
+  border: none;
+  border-top: 1px solid #D0D0D0;
+}
+
+.formFields td {
+  text-align: left;
+}
+
+.name,
+.nameError {
+/*  font-weight: bold; */
+  color: #444444;
+}
+
+.error {
+  background: #ffd9d9;
+}
+
+.error .name {
+  color: #cc0000;
+  background: transparent;
+}
+
+.error .hint {
+  color: #333333;
+}
+
+.required {
+  color: #cc0000;
+}
+
+.formFields td.unlimited {
+  border-left: none;
+}
+
+.formFields td.limit {
+  border-right: none;
+}
+
+.hint {
+  color: #555555;
+}
+
+.formButtons {
+	padding-top: 5px;
+}
+
+.formArea .buttons {
+  border-top: 1px solid #D0D0D0;
+  padding-top: 10px;
+}
+
+fieldset .formArea .buttons,
+fieldset .buttons {
+  border-top: 0px;
+  padding-top: 0px;
+}
+
+/* ---------- misc elements --------- */
+
+.pathbar {
+  background: #ffffff;
+  color: #444444;
+}
+
+.pathbar a:link,
+.pathbar a:visited {
+  color: #444444;
+}
+
+.screenTitle {
+  background: #ffffff;
+}
+
+.screenTitle td {
+  font-size: 18px;
+  font-family: "Franklin Gothic Medium", Verdana, Geneva, Arial, Helvetica, sans-serif;
+  color: #000000;
+}
+
+.screenTitle .name,
+.screenTitle b {
+  font-weight: normal; 
+  color: #0D1DE0; 
+}
+
+.specific {
+  font-weight: bold;
+}
+
+.reportIndex a:link,
+.reportIndex a:visited {
+  color: #333333;
+}
+
+.reportSection {
+  border-top: 1px solid #cccccc;
+/*  background: #ffffff; */
+}
+
+
+.subdomain a {
+  background-image: url('../../images/btn_show-subdomains_bg.gif');
+  background-repeat: no-repeat;
+  display: -moz-inline-box;
+  display: inline-block;
+  min-height: 16px;
+  padding-left: 20px;
+}
+* html .subdomain a {
+  height: 16px;
+}
+.domainalias a {
+  background-image: url('../../images/nav_domains.gif');
+  background-repeat: no-repeat;
+  display: -moz-inline-box;
+  display: inline-block;
+  min-height: 16px;
+  padding-left: 20px;
+}
+* html .domainalias a {
+  height: 16px;
+}
+
+td.subTd a:link,
+td.subTd a:visited,
+a.subdomain:link,
+a.subdomain:visited,
+a.domainalias:link,
+a.domainalias:visited,
+a.mailalias:link,
+a.mailalias:visited {
+color: #555555; 
+}
+
+.notdelitems {
+	color: #444444;
+}
+
+code {
+	font-family: Courier, mono;
+	font-size: 10px;
+	color: #444444;
+}
+
+.code {
+	font-family: Courier, mono;
+	font-size: 10px;
+}
+
+hr {
+  color: #cccccc;
+  background-color: #cccccc;
+  height: 1px;
+}
+
+/* ---------- gauge elements --------- */
+
+td.barOverFilled {
+  background: url(../../icons/gauge/fill-over.gif);
+}
+
+td.barFilled {
+  background: url(../../icons/gauge/fill.gif);
+}
+
+td.barEmpty {
+  background: url(../../icons/gauge/empty.gif);
+}
+
+
+/* ---------- common buttons --------- */
+
+.commonButton button,
+.commonButton {
+  font-family: Tahoma, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  color: #000000;
+  background-color: transparent;
+}
+
+.commonButton button {
+  background-image: url(../../images/btn_bg.gif);
+  border: 0 solid white;
+  background-repeat: no-repeat;
+}
+
+.commonButton button[disabled] {
+  background-image: url(../../images/btn_bg-disabled.gif); 
+  color: #999999;
+}  
+
+/* ---------- big icon buttons  --------- */
+.toolsArea .commonButton {
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  padding: 0 1px;
+  min-height: 32px;
+  cursor: pointer;
+  text-align: center;
+  display: -moz-inline-box;
+  display: inline-block;
+  -moz-box-flex: 400;
+  background-image: url(../../images/btn_default-button_bg.gif);
+  vertical-align: top;
+  margin-bottom: 12px;
+}
+
+.formArea .toolsArea .commonButton span,
+.toolsArea .commonButton span {
+  display: block;
+  text-align: center;
+  width: 83px;
+  padding-top: 34px;
+  vertical-align: top;
+}
+.screenButtons {
+  word-spacing: -1em;
+}
+
+.screenButtons .commonButton {
+  word-spacing: normal;
+}
+
+.toolsArea span.commonButton {
+  cursor: default;
+  color: #999999;
+  text-decoration: none;
+  margin-right: -3px;
+}
+
+.toolsArea button {
+  display: none;
+}
+
+.toolsArea .screenButtons .commonButton span {
+  background: none;
+}
+
+/* ---------- small icon buttons  --------- */
+
+.controlVisibilityToolbar .misc .commonButton,
+.listArea .buttons .commonButton,
+.dBoxFooterLayout .buttons .commonButton,
+.reportTools .commonButton,
+.uplevel .commonButton {
+  background-image: none;
+  height: 16px;
+  display: inline;
+  display: -moz-inline-box;
+}
+
+.dBox .commonButton button,
+.controlVisibilityToolbar .misc .commonButton button,
+.listArea .buttons .commonButton button,
+.dBoxFooterLayout .buttons .commonButton button,
+.reportTools .commonButton button,
+.uplevel .commonButton button {
+	display: none;
+}
+
+.dBox .commonButton span,
+.controlVisibilityToolbar .misc .commonButton span,
+.listArea .buttons .commonButton span,
+.dBoxFooterLayout .buttons .commonButton span,
+.reportTools .commonButton span,
+.uplevel .commonButton span {
+  background-repeat: no-repeat;
+  background-color: transparent;
+  padding-left: 20px;
+  height: 16px;
+  text-decoration: underline;
+  cursor: pointer;
+display: inline-block;
+  white-space: nowrap;
+}
+
+/* buttons as buttons */
+.formArea .commonButton span,
+.formButtons .commonButton span,
+.paging .commonButton span {
+  display: none;
+}
+
+.formButtons button,
+.formArea button,
+.paging .commonButton button {
+  width: 91px;
+  height: 21px;
+  text-align: center;
+}
+
+/* popup menu */
+
+div.popupMenuOpener {
+	position: relative;
+}
+div.popupMenu {
+	display: block;
+	position: absolute; 
+	text-align: left;
+	margin-top: 0px; 
+	right: -2px; 
+	border-width: 2px 2px 1px 2px;
+	border-style: solid;
+	border-color: #a4aab5;
+	padding: 0px;
+	background-color: #f8f8fa;
+	z-index: 99;
+	cursor: pointer;
+	width: 160px;
+}
+div.popupMenu div.item,
+div.popupMenu div.itemHover {
+	width: 100%;
+	border: 0px;
+	border-bottom: 1px solid #d1d7e2;
+	padding: 7px 0px;
+}
+div.popupMenu div.itemHover {
+	background-color: #ececf2;
+}
+
+div.popupMenu div.item div.itemTitle,
+div.popupMenu div.itemHover div.itemTitle {
+	color: #284e8a;
+	font-weight: bold;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+div.popupMenu div.item div.itemDescription,
+div.popupMenu div.itemHover div.itemDescription {
+	margin-top: 2px;
+	color: #666666;
+	line-height: 12px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+
+/* ---------- messages  --------- */
+.msgInfo {
+  margin: 10px 0 0 0;
+  border: 2px solid;
+  background: #ffffff;
+  padding: 10px 32px;
+  background-repeat:  no-repeat;
+  background-position:  10px 11px;
+  border-color: #009933;
+  background-image: url(../../icons/ok.gif);  
+}
+
+.msgInfo .title {
+        color: #009933;
+        font-weight: bold;
+}
+
+.msgWarning {
+  margin: 10px 0 0 0;
+  border: 2px solid;
+  background: #ffffff;
+  padding: 10px 32px;
+  background-repeat:  no-repeat;
+  background-position: 10px 11px;
+  border-color: #CC9901;
+  background-image: url(../../icons/att.gif);
+}
+
+.msgWarning .title {
+        color: #CC9901;
+        font-weight: bold;
+}
+
+.msgError {
+  margin: 10px 0 0 0;
+  border: 2px solid;
+  background: #ffffff;
+  padding: 10px 32px;
+  background-repeat:  no-repeat;
+  background-position:  10px 11px;
+  border-color: #cc0000;
+  background-image: url(../../icons/off.gif);
+}
+
+.msgError .title {
+  color: #cc0000;
+  font-weight: bold;
+}
+
+.codeComment {
+  border: 1px solid #999999;
+  background-color: #ffffff;
+  padding: 8px;
+  font-family: monospace;
+  font-size: 12px;
+}
+

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <?echo $this->executeBlock('DATA')?>
+    <?echo $this->executeBlock('HEAD')?>
+</head>
+<body>
+
+	<div id="contenido">
+            <div id="wrapper">
+
+				<!-- menu PÁGINA -->
+            	<?require("menu_header.html")?>
+    
+				<div id="main">
+					<?require("menu_movil.html")?>
+    				<form action="/datos-envio-confirmar.html" method="post">
+					<div class="formulario-alta-usuario">
+           				
+           				<div>
+           					<span style="font-size:20px">¿Dónde&nbsp;enviamos&nbsp;el&nbsp;pedido?:</span>
+	                       	<div><span>nombre completo</span><input type="text" name="nombre" id="nombre" value="<?=self::$shop->cliente->nombre?>"></div>
+	            			<div><span>email</span><input type="text" name="email" id="email" value="<?=self::$shop->cliente->email?>"></div>
+	            			<div><span>teléfono</span><input type="text" name="telefono" id="telefono" value="<?=self::$shop->cliente->telefono?>"></div>
+	            			<div><span>dirección</span><input type="text" name="direccion" id="direccion" value="<?=self::$shop->cliente->direccion?>"></div>
+	            			<div><span>población</span><input type="text" name="poblacion" id="poblacion" value="<?=self::$shop->cliente->poblacion?>"></div>
+	            			<div><span>provincia/zona</span>
+	            				<select id="provincia" name="provincia" size="1">
+	            					<option value="">Selecciona</option>
+	            				</select> 
+							</div>
+	            			<div><span>Código Postal</span><input type="text" name="cpostal" id="cpostal" value="<?=self::$shop->cliente->cpostal?>"></div>
+	            			<div><span>país</span>
+	            				<select id="pais" name="pais" size="1">
+	            					<option value="">Selecciona</option>
+	            					<?foreach(self::$shop->portes->paises as $item){
+										$selected = ($item[id]==self::$shop->cliente->pais)?'selected':'';
+	            						echo "<option value='$item[id]' $selected>$item[pais]</option>\n";
+	            					}?>
+	            				</select> 
+	            			</div>
+            			</div>
+           				<div>
+	           				<span style="font-size:20px">Datos&nbsp;para&nbsp;la&nbsp;factura:</span>
+	           				<div><span>dni o nif</span><input type="text" name="nifcif" id="nifcif" value="<?=self::$shop->cliente->nifcif?>"></div>
+	           				<div><span>nombre o empresa</span><input type="text" name="razon" id="razon" value="<?=self::$shop->cliente->razon?>"></div>
+	           				<div><span>dirección</span><input type="text" name="direccion_facturacion" id="direccion_facturacion" value="<?=self::$shop->cliente->direccion_facturacion?>"></div>
+	           				<div><span>población</span><input type="text" name="poblacion_facturacion" id="poblacion_facturacion" value="<?=self::$shop->cliente->poblacion_facturacion?>"></div>
+	           				<div>
+	           					<span>provincia/zona</span>
+	           					<select id="provincia_facturacion" name="provincia_facturacion" size="1" data="">
+	           					
+	           					</select>
+	           				</div>           					
+	           				<div><span>Código Postal</span><input type="text" name="cpostal_facturacion" id="cpostal_facturacion" value="<?=self::$shop->cliente->cpostal_facturacion?>"></div>
+	           				<div>
+	           					<span>pais</span>
+	           					<select id="pais_facturacion" name="pais_facturacion" size="1" data="">
+	           						<option value="">Selecciona</option>
+	           						<?foreach(self::$shop->portes->paises as $item){
+										$selected = ($item[id]==self::$shop->cliente->pais_facturacion)?'selected':'';
+	            						echo "<option value='$item[id]' $selected>$item[pais]</option>\n";
+	            					}?>
+	           					</select>
+	           				</div>
+           				</div>
+           				<div>
+	           				<span style="font-size:20px">Personalización:</span>
+	           				<div><span>Nombre de la persona a regalar</span><input type="text" name="persona" id="persona" value="<?=self::$shop->cliente->persona?>"></div>
+	           			</div>
+           				<button id="continuar">CONTINUAR</button>
+           				
+      				</div>
+      				</form>
+				</div>
+				
+				<div id="espacio"></div>
+				
+            	<!-- FOOTER -->
+				<?require("footer.html")?>
+        	</div>
+      </div>
+        
+    <script>
+		$(document).ready(function(){
+			$("#nombre").focus();
+			$("#continuar").click(function(){
+				$("form").submit();
+			});
+			//control de errores
+			<? 
+				if (self::getData("errores")!=null){
+					$first = self::getData("errores");
+					echo "$('#".$first[0]['key']."').focus();\n";
+					foreach(self::getData("errores") as $err){
+						echo "$('#$err[key]').after('<span>$err[motivo]</span>');\n";	
+					}
+				}
+			?>
+			
+			//localizacion envio
+			var provincias = <?=json_encode(self::$shop->portes->provincias)?>;
+			function refreshProvincias(source,target){
+				$(source).change(function(){
+					$(target).empty();
+					$(target).append('<option value="">--Seleccionar--</option>');
+					$(provincias).each(function(i,item){
+						if ( item.id_pais==$(source).val() )
+							$(target).append( $('<option value='+item.id+'>'+item.provincia+'</option>') );
+					});
+				});
+			}
+			refreshProvincias($("#pais"),$("#provincia"));
+			$("#pais").trigger("change");
+			$("#provincia").val(<?=self::$shop->cliente->provincia?>);
+			
+			//localizacion facturacion
+			refreshProvincias($("#pais_facturacion"),$("#provincia_facturacion"));
+			$("#pais_facturacion").trigger("change");
+			$("#provincia_facturacion").val(<?=self::$shop->cliente->provincia_facturacion?>);
+			
+			//ayuda al completado de datos
+			$("#nombre").blur(function(){
+				if ( $("#razon").val()=="" ) $("#razon").val( $(this).val() );
+				if ( $("#persona").val()=="" ) $("#razon").val( $(this).val() );
+			});
+			$("#direccion").blur(function(){
+				if ( $("#direccion_facturacion").val()=="" ) $("#direccion_facturacion").val( $(this).val() );
+			});
+			$("#poblacion").blur(function(){
+				if ( $("#poblacion_facturacion").val()=="" ) $("#poblacion_facturacion").val( $(this).val() );
+			});
+			$("#provincia").blur(function(){
+				$("#provincia_facturacion").val( $(this).val() );
+			});
+			$("#cpostal").blur(function(){
+				if ( $("#cpostal_facturacion").val()=="" ) $("#cpostal_facturacion").val( $(this).val() );
+			});
+			$("#pais").blur(function(){
+				$("#pais_facturacion").val( $(this).val() );
+			});
+		});
+    </script>
+    
+</body>
+</html>

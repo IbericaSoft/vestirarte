@@ -1,0 +1,98 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */	
+	$kernel  =  $this->oDataTemplate->getKeyData('kernel');
+	$datos   =  $this->oDataTemplate->getKeyData('iva');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<head>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var FORM_STYLE 		= 'custom-theme';
+			var PAGE_NAME		= 'edit';
+			var IMPORT			= "dobleos,blockui,tabs,numeric";
+			var MODULE_NAME		= "<?=$kernel['class']?>";
+		</script>		
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.v2.js"></script>
+</head>
+	
+<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">IVA - <?=$datos[operacion]?></div>
+	</div>
+
+	<form name="fapplication" id="fapplication" class="" >
+	
+		<div id="tabs" style="display:none">
+			<ul>
+			<li><a href="#tabs-1">Ficha</a></li>
+			<li><a href="#tabs-2">Control</a></li>
+			</ul>
+			
+			<div id="tabs-1">
+				<p>
+					<label>Descripción:</label>
+					<label><input class="roField" type="text" name="descripcion" id="descripcion" value="<?=$datos[descripcion]?>" size="30"/></label>
+				</p>
+				<p>
+					<label>IVA:</label>
+					<label><input class="roField currency" type="text" name="iva" id="iva" value="<?=$datos[iva]?>" size="5"/></label>
+				</p>
+				<p>
+					<label>Estado:</label>
+					<label>
+						<select name="estado" id="estado" class="roField">
+							<? 
+								foreach(array("ON,Activo") as $options){
+									list($option,$description) = explode(",",$options);
+									$selection='';
+									if ($option==$datos[estado]) $selection='selected';
+										echo "<option value='$option' $selection>$description</option>";
+								}
+							?>
+						</select>
+					</label>					
+				</p>
+			</div>
+			
+			<div id="tabs-2">
+				<? if ($this->oUser->getRol()>2){ ?>
+					<table cellpadding="1" cellspacing="4" class="fields">
+					<tr>
+						<td width="29%">Fecha registro:</td>
+						<td><?=$datos[falta]?></td>					
+					</tr>
+					<tr>
+						<td>Fecha modificación:</td>
+						<td><?=$datos[fmodificacion]?>&nbsp;&nbsp;&nbsp;(<?=$datos[usuario]?>)</td>					
+					</tr>
+					</table>
+				<?} else echo "Información de auditoría"; ?>
+			</div>
+		</div>
+			
+		
+		<table cellpadding="0" cellspacing="5" id="buttons" >
+			<tr>
+				<td><input class="warn" id="btEliminar" type="button" value="Eliminar" /></td>
+				<td><input class="" id="btCancelar" type="button" value="Cancelar" /></td>
+				<td><input class="" id="btAceptar" type="button" value="Aceptar" /></td>
+			</tr>
+		</table>
+					
+		<input type="hidden" name="id" id="id" value="<?=$datos[id]?>"/>
+		<input type="hidden" name="do" id="do" value=""/>
+		<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>"/>		
+		<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>"/>
+		<input type="hidden" name="channel" id="channel" value="html"/>
+	</form>
+	
+</body>
+</HTML>
+			
+			

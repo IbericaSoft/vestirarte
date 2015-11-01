@@ -1,0 +1,131 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */	
+	$kernel  =  $this->oDataTemplate->getKeyData('kernel');
+	$datos   =  $this->oDataTemplate->getKeyData('migracion');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<head>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var FORM_STYLE 		= 'custom-theme';
+			var PAGE_NAME		= 'edit';
+			var IMPORT			= "blockui,dobleos,tabs,numeric,upload";
+			var MODULE_NAME		= "<?=$kernel['class']?>";
+		</script>		
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.v2.js"></script>
+</head>
+	
+<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">Migración - <?=$datos[fecha]?></div>
+	</div>
+
+	<div class="boxMenuButtons">
+		<div class="boxMenuButton" id="mnuLink">
+			<span class="boxMenuImage"><img title="Crea un acceso directo en el escritorio de la vista actual" src="<?=OS_WEB_PATH?>/applications/_commons/_images/shortcut.png" /></span>
+			<span class="boxMenuTitle">Link</span>
+		</div>
+	</div>
+	
+	
+	<form name="fapplication" id="fapplication" class="" >
+	
+		<div id="tabs" style="display:none">
+			<ul>
+			<li><a href="#tabs-1">Ficha</a></li>
+			<li><a href="#tabs-2">XML</a></li>
+			<li><a href="#tabs-3">LOG</a></li>
+			</ul>
+	
+			<div id="tabs-1">
+				<p>
+					<label>Fecha:</label>
+					<label><?=$datos[fecha]?></label>					
+				</p>
+								
+				<p>
+					<label>Operación:</label>
+					<label><?=$datos[operacion]?></label>					
+				</p>
+				
+				<p>
+					<label>Módulo:</label>
+					<label><?=$datos[modulo]?></label>					
+				</p>
+				
+				<p>
+					<label>Resultado:</label>
+					<label><?=$datos[resultado]?></label>
+				</p>
+				
+				<p>
+					<label>Fin:</label>
+					<label><?=$datos[ffin]?></label>					
+				</p>
+				
+				<p>
+					<label>Autor:</label>
+					<label><?=$datos[usuario]?></label>					
+				</p>				
+			</div>
+		
+			<div id="tabs-2">
+				<p>
+					<label>XML original:</label>
+					<label><?=$datos[fichero]?></label>								
+				</p>
+				<p>
+				<input class="" id="btDownloadXML" type="button" value="Descargar una copia"/>
+				</p>
+<!-- 				<p>
+					<label>Contenido:</label>
+					<label><textarea class="contenido" readOnly><?=$datos[xml]?></textarea></label>					
+				</p> -->			
+			</div>
+		
+			<div id="tabs-3">
+				<p>
+					<label>Fichero interno:</label>
+					<label><?=$datos[info]?></label>					
+				</p>
+				<p>
+				<input class="" id="btDownloadLOG" type="button" value="Descargar una copia"/>
+				</p>
+<!--				<p>
+					<label>Contenido:</label>
+					<label>
+						<? if ($datos[resultado]=='ERROR'){?>
+						<textarea class="contenido" readOnly><?=$datos[info]?></textarea>
+						<? }else{ ?>
+						<textarea class="contenido" readOnly><?=$datos[log]?></textarea>
+						<?}?>
+					</label>					
+				</p>-->
+			</div>
+		</div>
+	
+		<table cellpadding="0" cellspacing="5" id="buttons" >
+			<tr>
+					<td><input class="" id="btCancelar" type="button" value="Volver"/></td>
+			</tr>
+		</table>
+		
+		<input type="hidden" name="id" id="id" value="<?=$datos[id]?>"/>
+		<input type="hidden" name="do" id="do" value=""/>
+		<input type="hidden" name="log" id="log" value="migration/import/<?=$datos[info]?>" alt="nombre del fichero .log para pedir su descarga"/>
+		<input type="hidden" name="xml" id="xml" value="migration/import/<?=$datos[fichero]?>" alt="nombre del fichero .xml para pedir su descarga"/>
+		<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>"/>		
+		<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>"/>
+		<input type="hidden" name="channel" id="channel" value="html"/>
+	</form>
+	
+</body>
+</HTML>
+			
+			

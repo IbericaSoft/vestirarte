@@ -1,0 +1,216 @@
+
+
+									<td class="fields" style="font-size:11px">Contacto/Teléfono:&nbsp;</td>
+									<td class="fields"><input type="text" name="contacto" id="contacto" value="<?=$datos[contacto]?>" size="20"/>/<input type="text" size="15" name="telefono" id="telefono" value="<?=$datos["telefono"]?>"/></td>																																								
+								</tr>
+								<tr class="fields">																		
+									<td class="fields" style="font-size:11px">Seguimiento:</td>
+									<td class="fields"><input type="hidden" name="id_responsable" id="id_responsable" value="<?=$datos[id_responsable]?>"/><input type="text" size="20" name="responsable" id="responsable" value="<?=$datos["responsable"]?>" class="disabled" disabled/>&nbsp;&nbsp;</td>
+									<td class="fields"><button class="fields" id="btBuscadorGestor"><img src="<?=OS_WEB_PATH?>/applications/_commons/_images/lapiz.gif"></button></td>
+									<td class="fields" colspan="6" style="font-size:11px">Fechas aprox.:<input class="field" type="text" name="finicio" id="finicio" value="<?=$datos[finicio]?>" size="9" readOnly/>/<input class="field" type="text" name="ffin" id="ffin" value="<?=$datos[ffin]?>" size="9" readOnly/>&nbsp;<button class="fields" id="btFechasObra"><img src="<?=OS_WEB_PATH?>/applications/_commons/_images/lapiz.gif"></button></td>									
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div id="divgrib_header">
+								<table id="tableheadergrid" cellpadding="0" cellspacing="0" border="0">
+									<tr>
+										<td class="gridColTitle" width="30">&nbsp;</td>
+										<td class="gridColTitle" width="60">Cantidad</td>
+										<td class="gridColTitle" width="100">Código</td>
+										<td class="gridColTitle" width="450">Artículo/Servicio</td>										
+										<td class="gridColTitle" width="75">Precio &euro;</td>
+										<td class="gridColTitle" width="60">Dto. %</td>
+										<td class="gridColTitle" width="75">Importe &euro;</td>
+									</tr>
+								</table>
+							</div>
+							
+							<div id="divgrib_body" class="divgrib_body">
+								<table id="tablegrid" cellpadding="0" cellspacing="0" border="0">
+								<!--  DATOS  -->	
+								</table>
+							</div>
+							
+							<div id="divgrid_footer" class="divgrid_footer">
+								<table id="tablefootergrid" cellpadding="0" cellspacing="0" border="0">
+									<tr>
+										<td class="gridColTitle" width="70%">&nbsp;</td>
+										<td class="gridColTitle" width="5%">Elementos:</td>
+										<td class="gridColTitle" width="20%" id="elementos">0</td>
+										
+										
+									</tr>
+								
+									<tr>
+										<td class="gridColTitle" id="buttons"><input class="addButtonGrid" id="btBuscadorArticulos" type="button" value="Añadir..." /></td>
+										<td class="gridColTitleSuper" >TOTAL</td>
+										<td class="gridColTitleSuper" id="total">0.00&euro;</td>
+									</tr>
+								</table>
+							</div>
+							
+						</td>
+					</tr>
+			  	</table>
+			</div>
+			
+			<!-- tab -->
+			<div class="dhtmlgoodies_aTab">
+				<table cellpadding="1" cellspacing="4" class="fields">
+		    		<tr>
+						<td>Hitorico:</td>					
+					</tr>
+					<tr>
+						<td>
+							<?
+							//editor personalizado HTML //depende de editor/filemanager/connectors/php 
+						$oFCKeditor = new FCKeditor('historico') ;
+						$oFCKeditor->BasePath	= OS_WEB_PATH."/kernel/fckeditor/fckeditor/";
+						$oFCKeditor->Width = '750px';
+						$oFCKeditor->Height = '350px';
+						$oFCKeditor->ToolbarSet = "Basic";//fckconfig.js
+						$oFCKeditor->Config['DefaultLanguage']='es';
+						$oFCKeditor->Config['AutoDetectLanguage'] = false;
+						$oFCKeditor->Value = $datos[historico] ;
+						$oFCKeditor->Create();
+						?>
+						</td>
+					</tr>
+				</table>
+			</div>
+			
+			<!-- tab2 -->
+			<div class="dhtmlgoodies_aTab">			
+				<table cellpadding="1" cellspacing="1" class="fields">
+		    		<tr>
+						<th class="colSort" 	 width="10%">Fecha</th>
+						<th class="colSort" 	 width="35%">Recibí de/Pago a</th>
+						<th class="colSort" 	 width="30%">Concepto</th>				
+						<th class="colSort" 	 width="10%">Forma</th>
+						<th class="colNumber"    width="15%">Importe</th>	
+					</tr>
+		    		<? 	while( $caja = $this->getConnection()->getColumnas( $this->getDataTemplate()->getKeyData('caja') ) ){	
+		    			$total += $caja[importe]; 
+		    		?>
+					<tr title="" class="" id="">
+						<td class="colSort"><?=$caja[fecha]?></td>
+						<td class="colSort"><?=$caja[origen]?></td>
+						<td class="colSort"><?=$caja[concepto]?></td>
+						<td class="colSort"><?=$caja[fpago]?></td>
+						<td class="colNumber"><?=number_format($caja[importe],2,',','.')?></td>
+					</tr>
+					<? 	} ?>
+					<tr class="rowDataOff" id="">
+						<th class="colSort" title="" colspan="4">&nbsp;<?=($datos[forzar_saldado]=='S')?'Importe pendiente esta forzado':''?></th>
+						<th class="colNumber" title="" colspan="1">Total: <?=number_format($total,2,',','.')?></th>
+					</tr>
+				</table>
+			</div>
+			
+			<!-- tab3 -->
+			<div class="dhtmlgoodies_aTab">			
+				<table cellpadding="1" cellspacing="1" class="fields">
+		    		<tr>
+						<th class="colSort" 	 width="15%">Factura</th>	
+						<th class="colSort" 	 width="15%">Fecha</th>
+						<th class="colNumber"    width="15%">Importe</th>	
+					</tr>
+		    		<? 	$total=0; while( $facturacion = $this->getConnection()->getColumnas( $this->getDataTemplate()->getKeyData('facturacion') ) ){	
+		    			$total += $facturacion[total]; 
+		    		?>
+					<tr title="" class="" id="">
+						<td class="colSort"><?=$facturacion[factura]?></td>
+						<td class="colSort"><?=$facturacion[fecha]?></td>
+						<td class="colNumber"><?=number_format($facturacion[total],2,',','.')?></td>
+					</tr>
+					<? 	} ?>
+					<tr class="rowDataOff" id="">
+						<th class="colSort" title="" colspan="2">&nbsp;</th>
+						<th class="colNumber" title="" colspan="1">Total: <?=number_format($total,2,',','.')?></th>
+					</tr>
+				</table>
+			</div>
+			
+			<!-- tab4 -->
+			<div class="dhtmlgoodies_aTab">
+				<table cellpadding="1" cellspacing="4" class="fields">
+		    		<tr>
+						<td>Condiciones Generales:</td>					
+					</tr>
+					<tr>
+						<td>
+							<?
+							//editor personalizado HTML //depende de editor/filemanager/connectors/php 
+							$oFCKeditor = new FCKeditor('condiciones') ;
+							$oFCKeditor->BasePath	= OS_WEB_PATH."/kernel/fckeditor/fckeditor/";
+							$oFCKeditor->Width = '750px';
+							$oFCKeditor->Height = '350px';
+							$oFCKeditor->ToolbarSet = "Basic";//fckconfig.js
+							$oFCKeditor->Config['DefaultLanguage']='es';
+							$oFCKeditor->Config['AutoDetectLanguage'] = false;
+							$oFCKeditor->Value = $datos[condiciones] ;
+							$oFCKeditor->Create();
+							?>
+						</td>
+					</tr>
+				</table>
+			</div>
+			
+			<!-- tab5 -->
+			<div class="dhtmlgoodies_aTab">
+				<? if ($this->oUser->getRol()>1){ ?>
+				<table cellpadding="1" cellspacing="4" class="fields">
+		    		<tr>
+						<td>Fecha alta:</td>
+						<td><input type="text" size="16" name="falta" id="falta" value="<?=$datos[falta]?>" class="disabled" disabled/></td>					
+					</tr>
+					<tr>
+						<td>Fecha modificación:</td>
+						<td><input type="text" size="16" name="fmodificacion" id="fmodificacion" value="<?=$datos[fmodificacion]?>" class="disabled"  disabled/></td>					
+					</tr>
+					<tr>
+						<td>Usuario:</td>
+						<td><input type="text" size="30" name="usuario" id="usuario" value="<?=($datos[usuario]!="0")?$datos[usuario]:'no auditado'?>" class="disabled"  disabled/></td>					
+					</tr>					
+				</table>
+				<?} else echo "Información reservada"; ?>
+			</div>
+			
+		</div>
+		
+		<table cellpadding="0" cellspacing="5" id="buttons" >
+			<tr>
+				<td><input class="warn" id="btAbono" type="button" value="Hacer abono" /></td>
+				<td><input class="field" id="btCaja" type="button" value="Ir a caja" /></td>
+				<td><input class="warn" id="btPendiente" type="button" value="Importe pendiente" /></td>
+				<td><input class="event" id="btFinalizar" type="button" value="Finalizar" /></td>
+				<td><input class="warn" id="btEliminar" type="button" value="Eliminar" /></td>
+				<td><input class="field" id="btCancelar" type="button" value="Cancelar" /></td>
+				<td><input class="field" id="btAceptar" type="button" value="Aceptar" /></td>				
+			</tr>
+		</table>
+		
+		
+		
+	</div>
+	
+	
+	<input type="hidden" name="obra" id="obra" value="<?=$datos[obra]?>" disabled="disabled" tag="campo informativo para JS, sin valor"/>
+	<input type="hidden" name="pendiente" id="pendiente" value="<?=$datos[pendiente]?>" disabled="disabled" tag="campo informativo para JS, sin valor"/>
+	<input type="hidden" name="itotal" id="itotal" value="0" disabled="disabled" tag="campo informativo para JS, sin valor"/>
+	
+	<input type="hidden" name="estado" id="estado" value="<?=$datos[estado]?>"/>
+	<input type="hidden" name="items" id="items" value="0"/>
+	<input type="hidden" name="id" id="id" value="<?=$datos[id]?>"/>
+	<input type="hidden" name="do" id="do" value=""/>
+	<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>"/>		
+	<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>"/>
+	<input type="hidden" name="channel" id="channel" value="html"/>
+	</form>
+</body>
+</HTML>
+			
+			

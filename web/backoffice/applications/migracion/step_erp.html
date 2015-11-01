@@ -1,0 +1,57 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */	
+	$kernel  =  $this->oDataTemplate->getKeyData('kernel');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<head>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var FORM_STYLE 		= 'custom-theme';
+			var PAGE_NAME		= 'step';
+			var IMPORT			= "blockui,dobleos,uploads";
+			var MODULE_NAME		= "<?=$kernel['class']?>";
+		</script>		
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.v2.js"></script>
+</head>
+	
+<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">Migración - Importar XML desde ERP</div>
+	</div>
+
+	
+	<form id="fapplication">
+		<div class="boxResultList">
+			<div class="fileupload" folder="<?=$this->oDataTemplate->getKeyData('folder_migration')?>migration/import/" folder-icon="/backoffice/ficheros/" type="xml">
+					<div id="upload-title"><input id="file" type="file" name="files[]" /><input type="hidden" id="fichero" name="fichero" value=""/><span>Fichero...</span></div>
+					<div id="upload-body">&nbsp;</div>
+					<div id="upload-info">&nbsp;</div>
+			</div>
+		</div>
+	
+		<table cellpadding="0" cellspacing="5" id="buttons" >
+			<tr>
+				<td><input class="" id="btCancelar" type="button" value="Cancelar"/></td>
+				<td><input class="" id="btFordward" type="button" value="Siguiente"/></td>
+			</tr>
+		</table>
+		
+		
+		<input type="hidden" name="do" id="do" value=""/>
+		<input type="hidden" name="migration" id="migration" value="MODULE"/>
+		<input type="hidden" name="choose" id="choose" value=""/>
+		<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>"/>		
+		<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>"/>
+		<input type="hidden" name="channel" id="channel" value="html"/>
+	</form>
+	
+</body>
+</HTML>
+			
+			

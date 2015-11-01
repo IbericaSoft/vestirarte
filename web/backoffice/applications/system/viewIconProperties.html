@@ -1,0 +1,35 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */
+	$kernel =  $this->oDataTemplate->getKeyData('kernel');
+	$datos =  $this->oDataTemplate->getKeyData('info');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+	<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+	<title>Help</title>
+	
+	<script type="text/javascript">
+		var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+		var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+		var ICON			= '<?=$_REQUEST[icon_id]?>';
+	</script>
+	
+	<!-- DESKTOP CONTROL -->
+	<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/prototype.js"></script>
+	<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/shortcut.js"></script>
+	<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/dobleos/dobleosapiclient.js"></script>
+	
+	<!-- VENTANA ACTUAL -->
+	<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/system/resources/viewIconProperties.js"></script>
+	<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/applications/system/resources/viewIconProperties.css" />
+	
+	
+	<body id="tip" onload="start()">
+		<div id="title"><span id="verticalmiddle">Propiedades</span></div>
+		<div id="text1" class="text"></div>
+		<div id="text2" class="text"></div>
+		<div id="text3" class="text"></div>
+		<div id="text4" class="text"></div>
+	</body>
+</html>

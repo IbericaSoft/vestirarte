@@ -1,0 +1,96 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */	
+	$kernel  =  $this->oDataTemplate->getKeyData('kernel');
+	$datos   =  $this->oDataTemplate->getKeyData('proyectos');
+	$messages=  $this->oDataTemplate->getKeyData('messages');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<head>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+		<title><?=$kernel['title']?></title>
+		
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var PAGE_NAME		= 'list';
+			var CALLBACK		= '<?=$_REQUEST['callBack']?>';
+			var PARENT			= '<?=$_REQUEST['parent']?>';
+		</script>
+		
+		<!-- DESKTOP CONTROL -->
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/prototype.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/shortcut.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/dobleos/dobleosapiclient.js"></script>
+		
+		<!-- VENTANA ACTUAL -->
+		<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/applications/_commons/<?=$kernel[theme]?>/css/application.css" />
+		<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/applications/proyectos/css/application.css" />
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/proyectos/js/popupListado.js"></script>
+		
+	</head>
+	
+<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">Buscador Proyectos</div>
+	</div>
+
+	<div class="boxFilters" id="boxFilters">
+		<fieldset class="filter">
+		<legend class="filter">Campos filtro</legend>
+		<form name="filters" id="filters" class="" >
+		<table cellpadding="0" cellspacing="0" height="55px" width="100%">
+		<tr>
+			<td class="filter">Proyecto</td>
+			<td class="filter">Cliente</td>
+			
+			<td colspan="2" rowspan="2" >
+				<div class="boxMenuButton" id="mnuSearch">
+					<span class="boxMenuImage"><img title="Buscar datos con los criterios indicados en filtros" src="<?=OS_WEB_PATH?>/applications/_commons/_images/search.png" /></span>
+					<span class="boxMenuTitle">Buscar</span>
+				</div>
+			</td>				
+		</tr>
+		<tr>
+			<td><input class="field" type="text" name="_obra" id="_obra" size="8" value="<?=$_REQUEST[_obra]?>" /></td>		
+			<td><input class="field" type="text" name="_cliente" id="_cliente" size="20" value="<?=$_REQUEST[_cliente]?>" /></td>					
+
+		</tr>
+		</table>
+		</form>
+		</fieldset>
+	</div>
+	
+	<div class="boxResultList">
+		
+		<!--RESULTADOS-->
+		<table cellpadding="0" cellspacing="0" width="100%" id="tbLista">
+			<tr>
+				<th class="colSort" 	width="20%">Estado</th>
+				<th class="colSort" 	width="20%">Proyecto</th>
+				<th class="colSort" 	width="">Cliente</th>
+			</tr>
+			
+			<tr class="rowDataOff" id="">
+				<td class="colSort" title="" colspan="10">&nbsp;</td>
+			</tr>
+		</table>
+		<!--FIN RESULTADOS-->
+		
+	</div>	
+	
+	
+	<form name="fapplication" id="fapplication" class="" >
+	<input type="hidden" name="_filtro_especial" id="_filtro_especial" value="<?=$_REQUEST[_filtro_especial]?>"/>
+	<input type="hidden" name="id" id="id" value="">
+	<input type="hidden" name="do" id="do" value="">
+	<input type="hidden" name="sessionclass" id="sessionclass" value="">		
+	<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>">
+	<input type="hidden" name="channel" id="channel" value="json">
+	</form>
+	
+</body>
+</HTML>

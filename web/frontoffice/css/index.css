@@ -1,0 +1,1077 @@
+@font-face {
+    font-family: 'bebas_neuebold';
+    src: url('../fonts/bebas/BebasNeue Bold-webfont.eot');
+    src: url('../fonts/bebas/BebasNeue Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/bebas/BebasNeue Bold-webfont.woff2') format('woff2'),
+         url('../fonts/bebas/BebasNeue Bold-webfont.woff') format('woff'),
+         url('../fonts/bebas/BebasNeue Bold-webfont.ttf') format('truetype'),
+         url('../fonts/bebas/BebasNeue Bold-webfont.svg#bebas_neuebold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'bebas_neuebook';
+    src: url('../fonts/bebas/BebasNeue Book-webfont.eot');
+    src: url('../fonts/bebas/BebasNeue Book-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/bebas/BebasNeue Book-webfont.woff2') format('woff2'),
+         url('../fonts/bebas/BebasNeue Book-webfont.woff') format('woff'),
+         url('../fonts/bebas/BebasNeue Book-webfont.ttf') format('truetype'),
+         url('../fonts/bebas/BebasNeue Book-webfont.svg#bebas_neuebook') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'bebas_neuelight';
+    src: url('../fonts/bebas/BebasNeue Light-webfont.eot');
+    src: url('../fonts/bebas/BebasNeue Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/bebas/BebasNeue Light-webfont.woff2') format('woff2'),
+         url('../fonts/bebas/BebasNeue Light-webfont.woff') format('woff'),
+         url('../fonts/bebas/BebasNeue Light-webfont.ttf') format('truetype'),
+         url('../fonts/bebas/BebasNeue Light-webfont.svg#bebas_neuelight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'bebas_neue_regularregular';
+    src: url('../fonts/bebas/BebasNeue Regular-webfont.eot');
+    src: url('../fonts/bebas/BebasNeue Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/bebas/BebasNeue Regular-webfont.woff2') format('woff2'),
+         url('../fonts/bebas/BebasNeue Regular-webfont.woff') format('woff'),
+         url('../fonts/bebas/BebasNeue Regular-webfont.ttf') format('truetype'),
+         url('../fonts/bebas/BebasNeue Regular-webfont.svg#bebas_neue_regularregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+/*ESTILOS PRINCINPALES*/
+
+body,html{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/fondo.jpg');
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.home #wrapper #slider {
+    display: block;
+    height: 100%;
+    margin: 0;
+    width: auto;
+}
+
+/*#logo img {
+    background-color: white;
+    box-shadow: -1px 2px 19px 1px rgba(0, 0, 0, 0.38);
+    margin-left: 0;
+    padding: 6px;
+    position: absolute;
+    top: 90px;
+    width: 170px;
+    z-index: 4;
+} */
+
+
+
+.home #main {
+    height: 100%;
+}
+.home #contenido {
+    height: 100% !important;
+}
+.home #contenido #wrapper{
+    height: 100%;
+}
+
+
+/*--------------------------------ESTILOS DE TODO EL CONTENIDO DEL HEADER-------------------------------*/
+
+.home header{
+    position: absolute;
+    z-index: 4;
+    top: 0;
+}
+header {
+    background-color: black;
+    display: block;
+    padding: 20px 0;
+    width: 100%;
+    border-bottom: 3px solid white;
+}
+
+header #percha {
+    text-align: right;
+}
+
+header #percha img {
+    *height:32px;
+    *width:32px;
+    padding:0px;
+    margin:0px;
+}
+
+/** custom */
+#percha span {
+    margin: 0 15px 0 0;
+    padding: 0;
+    text-align: right;
+}
+#percha span:last-child{
+	padding-right:30px;
+}
+#percha a{ padding:0px 5px;}
+/** fin */
+
+header ul {
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+header #menu {
+    display: block;
+    float: left;
+    margin-left: 90px;
+    margin-top: 7px;
+}
+header ul li {
+    display: inline-block;
+    font-size: 20px;
+    margin-right: 20px;
+    text-decoration: none;
+}
+header ul .active{border-bottom: solid 2px white;}
+header ul li a{
+    text-decoration: none;
+    color: white;
+    font-family: 'bebas_neue_regularregular', sans-serif;
+    font-weight: 100;
+}
+
+header span {
+    color: white;
+    display: inline-block;
+    margin-left: 15px;
+    margin-right: 47px;
+    font-family: 'bebas_neue_regularregular', sans-serif;
+    font-weight: 100;
+}
+
+#logo_head > a > img {
+    float: left;
+    margin-left: 30px;
+    padding-top: 5px;
+    width: 120px;
+}
+/*--------------------------------ESTILOS DE TODO EL CONTENIDO DEL FOOTER-------------------------------*/
+
+
+.home footer{
+    position: absolute;
+    z-index: 4;
+}
+footer {
+    background-color: black;
+    border-top: 3px solid white;
+    bottom: 0;
+    display: block;
+    position: absolute;
+    width: 100%;
+    z-index: 3;
+}
+footer ul {
+    display: block;
+    float: left;
+    list-style: outside none none;
+    margin: 6px 0 0;
+    padding: 17px 0;
+    text-align: center;
+    width: auto;
+}
+footer li {
+    display: inline-block;
+    margin: 0 19px;
+}
+footer ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 100;
+    font-family: 'bebas_neue_regularregular', sans-serif;
+
+}
+
+
+/*--------------------------------ESTILOS DEL #main EN GENERAL-------------------------------*/
+
+
+
+/*--------------------------------ESTILOS DEL SLIDER-------------------------------*/
+
+
+#slider #info {
+    background-color: white;
+    border-top: 5px solid black;
+    display: block;
+    float: left;
+    padding: 8px 10px 7px;
+    width: 100%;
+    padding-left: 15px;
+}
+
+#slider span {
+    border-right: 2px solid black;
+    margin-right: 15px;
+    padding-right: 15px;
+    font-family: 'bebas_neue_regularregular', sans-serif;
+
+}
+
+
+#slider button {
+    background-color: black;
+    border: medium none;
+    border-radius: 0 !important;
+    color: white;
+    cursor: pointer;
+    font-family: 'bebas_neue_regularregular',sans-serif;
+    font-size: 15px;
+    padding: 9px;
+}
+
+/** custom */
+.buttonDel, .buttonPlus, .buttonSub {
+    background-color: black;
+    border: medium none;
+    border-radius: 4px !important;
+    color: white;
+    cursor: pointer;
+    font-family: 'bebas_neue_regularregular',sans-serif;
+    font-size: 12pt;
+    padding: 2px 8px !important;
+}
+.buttonPlus, .buttonSub{
+	font-size:30px !important;
+}
+/** fin */
+
+.informacion {
+    display: block;
+    float: left;
+    margin-top: 9px;
+}
+
+
+/*--------------------------------ESTILOS DEL MENÚ LATERAL EN LAS SECCIONES-------------------------------*/
+
+.titulo > img {
+    display: block;
+    float: right;
+    margin-top: 3px;
+    transition: all 0.5s ease 0s;
+    width: 10px;
+}
+#menu_secundario {
+    float: left !important;
+    height: 100px;
+    margin-left: 14px;
+    margin-top: 0px;
+    overflow: hidden;
+    position: absolute;
+    transition: all 0.5s ease 0s;
+    width: 260px;
+    *width: 181px;
+    top: 100px;
+}
+
+#menu_secundario:hover {
+    height: 500px;
+    transition: 0.5s;
+
+}
+
+
+
+.padre {
+    background-color: white;
+    display: block;
+    margin-bottom: 6px;
+    padding: 14px 15px 15px;
+    text-align: right;
+    transition: 0.5s;
+}
+
+.padre:hover{
+    padding: 14px 31px 15px;
+    transition: 0.5s;
+}
+
+#menu_secundario:hover .lista_elementos{
+    top: 67px;
+    transition: 0.5s;
+}
+
+
+#menu_secundario h4 {
+    background-color: black;
+    border: 2px solid white;
+    color: white;
+    font-family: "bebas_neue_regularregular",sans-serif;
+    font-size: 21px;
+    font-weight: 100;
+    margin: 0 0 7px;
+    padding: 16px;
+    position: absolute;
+    width: 86%;
+    z-index: 4;
+}
+.lista_elementos {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: -297px;
+    transition: all 0.5s ease 0s;
+    width: 100%;
+    z-index: 0;
+}
+
+#menu_secundario:hover h4 img{
+    transform: rotate(90deg);
+    transition: 0.5s;
+}
+
+#menu_secundario a{
+    font-family: 'bebas_neue_regularregular', sans-serif;
+    font-weight: 100;
+    text-decoration: none;
+    color: black;
+}
+/*--------------------------------ESTILOS DE LAS GALERIAS DE PRODUCTOS-------------------------------*/
+
+
+
+
+#galeria_productos {
+    display: block;
+    float: right;
+    margin-right: 8%;
+    width: 68%;
+    overflow: inherit;
+}
+#galeria_productos #producto {
+    display: inline-block;
+    width: 33%;
+    position: relative;
+}
+#galeria_productos #producto img {
+    display: block;
+    height: 100% !important;
+    width: 100%;
+}
+
+#galeria_productos #producto > div {
+    background-color: white;
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+#galeria_productos #info #nombre {
+    font-family: "bebas_neue_regularregular",sans-serif;
+    font-size: 20px;
+    font-weight: 100;
+    margin-top: 40%;
+    text-align: center;
+}
+/** custom */
+#info:hover{
+    cursor: pointer;
+	
+}
+
+#nombre > span {
+    border-bottom: 2px solid black;
+}
+
+#galeria_productos #info{
+    transition:  0.5s;
+    opacity: 0;
+
+}
+
+#galeria_productos #info:hover{
+    transition:  0.5s;
+    opacity: 1;
+
+}
+
+
+#galeria_productos button {
+    background-color: black;
+    border: medium none;
+    border-radius: 0 !important;
+    color: white;
+    cursor: pointer;
+    display: block;
+    font-family: 'bebas_neue_regularregular',sans-serif;
+    font-size: 15px;
+    margin: 12px auto auto;
+    padding: 4px;
+}
+/** custom */
+a.button, a.button:focus {
+    background-color: black;
+    border: medium none;
+    border-radius: 0 !important;
+    color: white;
+    cursor: pointer;
+    display: block;
+    font-family: 'bebas_neue_regularregular',sans-serif;
+    font-size: 15px;
+    margin: auto auto;
+    padding: 4px;
+    text-align: center;
+    text-decoration: none;
+}
+
+#galeria_productos h1 {
+    border-bottom: medium solid;
+    color: white;
+    text-align: center;
+    font-family: 'bebas_neue_regularregular',sans-serif;
+    font-weight: 100;
+    font-size: 40px;
+
+    margin: 8px 0 26px;
+}
+
+
+#formulario_prenda span {
+    color: white;
+    margin-right: 10px;
+    font-family: 'bebas_neue_regularregular',sans-serif;
+    font-weight: 100;
+}
+
+#formulario_prenda {
+    display: block;
+    float: left;
+    margin-bottom: 30px;
+    width: 100%;
+}
+.styled-select select {
+    background: none repeat scroll 0 0 white;
+    border: 0 none;
+    border-radius: 0;
+    display: block;
+    font-size: 10px;
+    height: 24px;
+    line-height: 1;
+    padding: 5px;
+    width: 119px;
+    -webkit-appearance: none;
+    font-family: 'bebas_neue_regularregular',sans-serif;
+    font-weight: 100;
+}
+#formulario_prenda > div {
+    display: block;
+    float: left;
+    margin-right: 30px;
+    margin-top: 4px;
+}
+#formulario_prenda span {
+    color: white;
+    display: block;
+    float: left;
+    font-family: 'bebas_neue_regularregular',sans-serif;
+    font-weight: 100;
+    margin-right: 10px;
+}
+
+#formulario_prenda button {
+    background-color: white;
+    border: medium none;
+    border-radius: 0 !important;
+    color: black;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-family: 'bebas_neue_regularregular',sans-serif;
+    font-size: 15px;
+    margin: 0;
+    padding: 4px;
+}
+
+.styled-select {
+    display: block;
+    float: left;
+}
+
+.styled-select {
+
+    overflow: hidden;
+    background: url('../images/flecha.jpg') no-repeat right #ddd;
+
+}
+
+
+
+#galeria_prendas {
+    width: 79%;
+    display: block;
+    float: left;
+}
+
+
+
+#campo_prenda {
+    margin-bottom: 32px;
+}
+
+#lista_tipos_prendas {
+    background-color: white;
+    display: block;
+    float: left;
+    margin-right: 1%;
+    padding: 0 3% 2%;
+    transition: all 0.5s ease 0s;
+}
+
+
+#lista_tipos_prendas h4 {
+    border-bottom: 2px solid black;
+    font-family: "bebas_neue_regularregular";
+    font-size: 28px;
+    margin: 0 0 8px;
+    padding-left: 0;
+}
+
+#lista_tipos_prendas ul {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0 7%;
+}
+
+#lista_tipos_prendas ul li {
+    font-family: 'bebas_neuelight';
+    margin-bottom: 5px;
+
+}
+
+#lista_tipos_prendas ul li a{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    font-weight: lighter;
+}
+/** custom */
+.tipo_actual{font-family: 'bebas_neuebold';}
+#lista_tipos_prendas ul li a:focus{
+    font-family: 'bebas_neuebold'; 
+}
+#lista_tipos_prendas > div {
+    margin-top: 25px;
+}
+
+#mostrar_prendas{
+    display: block;
+    background-color: black;
+    color: white;
+    font-size: 21px;
+}
+
+/*ESTILOS DEL LIGHTBOX AL MOSTRAR PRENDA*/
+
+.featherlight {
+
+    z-index: 5!important;
+}
+
+.featherlight .featherlight-##main {
+
+    margin-right: auto !important;
+    margin-left: auto!important;
+    min-width: 83% !important;
+    max-height: 95% !important;
+    height: 100%;
+    background: none repeat scroll 0 0 transparent !important;
+    margin-top: 5%;
+}
+
+.lightbox.featherlight-inner{
+
+    width: 100% !important;
+    height: 100%;
+}
+
+
+#contenedor_prendas {
+    display: none;
+}
+
+
+
+/*ESTILOS DE MENU EN MOVILES*/
+
+
+#menu_moviles {
+    background-color: rgba(0, 0, 0, 1);
+    display: block;
+    height: 84%;
+    left: -310px;
+    overflow: scroll;
+    position: absolute;
+    top: 67px;
+    transition: all 0.5s ease 0s;
+    width: 220px;
+    z-index: 4;
+    -webkit-box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
+-moz-box-shadow:    7px 7px 5px 0px rgba(0, 0, 0, 0.75);
+box-shadow:         7px 7px 5px 0px rgba(0, 0, 0, 0.75);
+}
+#menu_moviles li {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 15px;
+    padding-top: 14px;
+    position: relative;
+}
+
+#activa_hijo:hover{
+    padding-bottom: 0;
+}
+
+#activa_hijo:hover #hijo{
+    margin-top: 15px;
+}
+#menu_moviles  ul {
+
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+
+}
+#menu_moviles ul li a {
+    color: white;
+    text-decoration: none;
+    padding-left: 19px;
+    font-family: 'bebas_neuebook';
+        font-size: 20px;
+}
+
+.hijo {
+    margin-top: 10px;
+    padding: 0 !important;
+    display: none;
+}
+
+
+
+
+.parent #activa_hijo{
+    background-color: black !important;
+    border-bottom: 2px solid white;
+
+}
+
+.parent #activa_hijo:hover #hijo{
+    display: block;
+}
+
+.hijo li{
+    background-color: white;
+    border-top: 1px solid black;
+}
+
+.hijo li a{
+    color: black !important;
+}
+
+
+#first-sidebar > div {
+    float: left;
+    margin-left: 27px;
+}
+#logo {
+    float: right !important;
+    margin: 10px;
+}
+
+/** custom */
+#logo span {
+    font-family: 'bebas_neue_regularregular',sans-serif;
+    font-size: 9pt;
+    font-style: italic;
+    color: #ccc;
+    float: left;
+    *margin:20px;
+    padding:10px;
+}
+
+#logo > img {
+    display: block;
+    float: right;
+    padding: 0px;
+    width: 62px;
+}
+
+img#logogif{ border:0px solid white; border-radius:5px; }
+
+.texto-plano {
+    background-color: rgba(0, 0, 0, 0.57);
+    color: white;
+    display: block;
+    margin: 10px auto 120px;
+    max-height: 600px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 20px;
+    width: 75%;
+}
+
+.texto-plano p, .texto-plano li  { /** li */
+    font-family: "Roboto",sans-serif;
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 19px;
+}
+
+.texto-plano h1 {
+    border-bottom: medium solid white;
+    font-family: "bebas_neuebook";
+    padding-bottom: 5px;
+}
+
+/** custom */
+.texto-plano h2 {
+    font-family: "bebas_neuebook";
+    padding-bottom: 5px;
+    font-weight: 200;
+}
+
+.texto-plano a { color: white; }
+
+.cesta-compra {
+    margin: 40px auto 100px;
+    width: 60%;
+}
+
+
+table .cabecera{
+    margin-bottom: 10px !important
+}
+
+.cabecera td {
+    background-color: black;
+    color: white;
+    height: 20px !important;
+}
+
+
+
+td {
+    background-color: white;
+    display: table-cell;
+    font-family: "bebas_neue_regularregular";
+    height: 100%;
+    padding: 1%;
+    position: relative;
+    text-align: center;
+}
+
+tr {
+    width: 100%;
+}
+tbody {
+    width: 100%;
+}
+table {
+    width: 100%;
+}
+
+.cesta-compra img {
+    float: left;
+    width: 50%;
+}
+
+
+.cesta-compra button {
+    background-color: white;
+    border: medium none;
+    border-radius: 0 !important;
+    color: black;
+    cursor: pointer;
+    display: inline;
+    font-family: "bebas_neue_regularregular",sans-serif;
+    font-size: 25px;
+    margin: 12px 5px;/**custom*/
+    padding: 4px 20px;
+}
+/**custom*/
+#container-center{
+	text-align: center;
+    width:100%;	
+}
+
+table p {
+    display: block;
+    float: right;
+    margin-top: 16%;
+    width: 50%;
+}
+.total {
+    background-color: white;
+    margin-top: 30px;
+    padding: 28px 40px 15px 15px;
+    text-align: right;
+}
+.total p {
+    font-family: "bebas_neue_regularregular",sans-serif;
+    font-size: 20px;
+    margin: 0;
+}
+.total span {
+    font-family: "bebas_neue_regularregular",sans-serif;
+    font-size: 19px;
+}
+
+
+#total-iva p {
+    font-size: 34px;
+}
+#total-iva span {
+    font-size: 26px;
+}
+
+.formulario-alta-usuario {
+    background-color: rgba(225, 225, 225, 0.4);
+    margin: 10px auto auto;
+    padding: 1%;
+    width: 50%;
+}
+.formulario-alta-usuario span {
+    color: white;
+    display: inline-block;
+    font-family: "bebas_neue_regularregular",sans-serif;
+    font-size: 18px;
+    margin-right: 12px;
+    text-align: right;
+    width: 170px;
+}
+input {
+    *display: block;
+    margin-top: 0;
+    vertical-align: top;
+    width: 230px;
+}
+/**custom */
+input,select,textarea{
+    border-radius:5px;
+    padding:2px 5px;
+}
+input[type="radio"]{width: 10px;}
+.formulario-alta-usuario > div,
+.formulario-alta-usuario > div > div {
+    border-bottom: 1px solid #dedede;
+    margin: auto;
+    padding-bottom: 10px;
+    padding-top: 13px;
+    vertical-align: middle;
+    width: 490px;
+}
+/** custom */
+.formulario-alta-usuario > div > div:last-child {
+	border-bottom: 0px solid #dedede;
+}
+
+select {
+    width: 234px;
+}
+.formulario-alta-usuario button {
+    background-color: white;
+    border: medium none;
+    border-radius: 0 !important;
+    color: black;
+    cursor: pointer;
+    display: block;
+    font-family: "bebas_neue_regularregular",sans-serif;
+    font-size: 23px;
+    margin: 12px auto auto;
+    padding: 4px;
+}
+/** custom */
+.formulario-alta-usuario span:nth-child(3){
+	color: #FFE000;
+	font-size: 14px;
+	width: 100%;
+	text-align: center;
+}
+
+/** custom */
+.waitBox{
+    border:1px solid black !important;
+    background-color: #FFF !important;
+    color: #000 !important;
+    cursor: default !important;
+    *width: 50% !important;
+    padding: 100px 0px !important;
+    
+    font-family: "bebas_neue_regularregular",sans-serif;
+    font-size: 19px;
+}
+
+/** custom */
+.data-featherlight{ cursor:pointer !important; }
+.txt11{ font-size:11pt !important; display:block;}    
+div#espacio{ height:200px; }
+
+/*------------------------------------------------------- COMPLETAR CESTA DE LA COMPRA*/
+
+.cesta-compra {
+    margin: 27px auto 100px !important;
+    width: 70%;
+}
+
+#metodo-pago {
+    background-color: white;
+    margin: 21px auto 0;
+    width: 60%;
+}
+
+#facturacion {
+    background-color: white;
+    margin: 30px auto 0;
+    width: 60%;
+}
+
+#facturacion > div {
+    display: inline-block;
+    padding: 2%;
+    *width: 45%;
+}
+
+#direccion-facturacion > div, #direccion-envio > div {
+    font-family: "bebas_neuebook";
+    font-size: 18px;
+}
+
+#tlef{color: grey;}
+
+#facturacion > div > span {
+    display: block;
+    font-family: "bebas_neue_regularregular",sans-serif;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+#facturacion > span {
+    background-color: black;
+    color: white;
+    display: block;
+    font-family: "bebas_neue_regularregular",sans-serif;
+    font-size: 25px;
+    padding-bottom: 17px;
+    padding-top: 17px;
+    text-align: center;
+}
+
+#metodo-pago .total {
+    display: inline-block;
+    margin-top: 0;
+    width: 30%;
+}
+
+#seleccion-metodo > span{
+    font-family: "bebas_neue_regularregular",sans-serif;
+    font-size: 20px;
+    margin: 0;
+    display: block;
+    margin-bottom: 15px;
+    text-decoration: underline;
+}
+#seleccion-metodo {
+    display: inline-block;
+    float: left;
+    margin-left: 33px;
+    margin-top: 30px;
+    width: 50%;
+}
+#seleccion-metodo div {
+    border: 2px solid #e8e8e8;
+    display: inline-block;
+    float: left;
+    height: 40px;
+    margin-right: 30px;
+    padding: 5px;
+    width: 60px;
+}
+#seleccion-metodo div img {
+    vertical-align: inherit;
+    width: 100%;
+}
+
+#metodo-pago > span {
+    background-color: black;
+    color: white;
+    display: block;
+    font-family: "bebas_neue_regularregular",sans-serif;
+    font-size: 25px;
+    padding-bottom: 17px;
+    padding-top: 17px;
+    text-align: center;
+}
+
+.slider_no_home {
+    margin-bottom: 92px;
+}
+/*AJUSTES DE LA CESTA DE LA COMPRA DE 21 DE JUNIO*/
+
+.font-big {
+    position: absolute;
+    width: 30px !important;
+}
+.buttonPlus.font-big {
+    right: 9%;
+    top: 48%;
+}
+.buttonSub {
+    left: 9%;
+    top: 48%;
+}
+
+
+/*LOGO COPYRIGHT*/
+
+.logo-copyright {
+    margin-left: 6px !important;
+    padding-top: 0 !important;
+    width: 18px !important;
+}
+
+footer #logo a {
+    display: block;
+    float: left;
+    margin-right: 6px;
+    margin-top: 4px;
+}

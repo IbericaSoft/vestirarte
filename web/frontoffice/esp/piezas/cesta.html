@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <?echo $this->executeBlock('DATA')?>
+    <?echo $this->executeBlock('HEAD')?>
+</head>
+<body>
+
+	<div id="contenido">
+            <div id="wrapper">
+
+				<!-- menu PÁGINA -->
+            	<?require("menu_header.html")?>
+    
+				<div id="main">
+					<?require("menu_movil.html")?>
+				
+					<div class="cesta-compra">      
+						<table>
+				      		<tr class="cabecera">
+				            <td width="30%">ARTÍCULO</td>
+				            <td width="10%">TALLA</td>
+				            <td width="10%">UNIDADES</td>
+				            <td width="20%">PRECIO/UNIDAD</td>
+				            <td width="20%">PRECIO TOTAL</td>
+				      		</tr>
+							<? $json=self::getData("json");foreach ( $json->lista_articulos as $datos) { ?>
+				      		<tr>
+			            	<td>
+			            		<div class="data-featherlight" href="/ficha/<?=utf_server($datos->articulo)?>.html">
+			            			<img src="{web}/images/<?=utf_server($datos->foto)?>"><p><?=utf_server($datos->articulo)?>
+			            			<br><br>&nbsp;<a class="buttonDel" data="<?="$datos->id:$datos->unidades"?>">Eliminar</a></p>
+			            		</div>
+			            	</td>
+			            	<td><?=$datos->talla?></td> 
+			            	<td>
+			            		<table >
+			            		<tr><td><a class="buttonPlus" data="<?=$datos->id?>">+</a></td></tr>
+			            		<tr><td><?=$datos->unidades?></td></tr>
+			            		<tr><td><a class="buttonSub" data="<?=$datos->id?>">-</a></td></tr>
+			            		</table>			            		
+			            	</td>
+			            	<td><?=($datos->oferta>0)?$datos->oferta_iva_formato:$datos->precio_iva_formato?></td>
+			            	<td><?=$datos->subtotal_iva_formato?></td>
+				      		</tr>
+				      		<? } ?>
+						</table>
+				       
+				       	<div class="total" style="background:#f8f8f8;">
+				            <div id="total-pedido" style="background:#fff;"><p>subtotal</p><span><?=$json->importe_articulos_con_iva?></span></div>
+				            <div id="portes" style="background:#fff;margin-top:15px;"><p>PORTES</p><span><?=$json->importe_portes_con_iva?></span></div>
+				            <div id="total-iva" style="background:#fff;margin-top:30px; border-top: solid black 3px; padding-top: 13px;"><p>TOTAL PEDIDO</p><span><?=$json->total_cesta_con_iva?></span><span class="txt11">Todos los precios con iva</p></div>
+				      	</div>
+	      				
+	      				<div id="container-center"><button id="envio">DATOS ENVÍO</button><button id="comprar">CONTINUAR</button></div>
+	      			</div>
+				</div>
+				
+            	<!-- FOOTER -->
+				<?require("footer.html")?>
+        	</div>
+      </div>
+      
+    <!--EFECTO DEL LIGHTBOX PARA MOSTRAR LAS PRENDAS-->
+    <link rel="stylesheet" type="text/css" href="{web}/js/featherlight-master/featherlight.min.css"/>
+    <script type="text/javascript" src="{web}/js/featherlight-master/featherlight.min.js"></script>
+    <script src="{web}/js/jquery.blockUI.js"></script>
+	        
+    <script>
+	    function cerrarFicha(){
+	    	var current = $.featherlight.current();
+	    	current.close();
+	    }
+	    
+	    function updateCesta(json){				
+			location.href="/cesta.html";
+		}
+	    
+		$(document).ready(function(){
+			$('.data-featherlight').click(function(){
+				  $.featherlight( $('<iframe class="lightbox" src="' + $(this).attr('href') + '"/>') );
+			});
+				
+			$(".buttonDel").click(function(){
+				wait("Actualizando...");
+				var item = $(this).attr("data").split(":");
+				requestShop('/menoscesta.html',{'variedad':item[0],'unidades':item[1]},updateCesta,updateCesta);	
+			});
+			
+			$(".buttonPlus").click(function(){
+				wait("Actualizando...");
+				var item = $(this).attr("data");
+				requestShop('/mascesta.html',{'variedad':item,'unidades':1},updateCesta,updateCesta);
+			});
+			
+			$(".buttonSub").click(function(){
+				wait("Actualizando...");
+				var item = $(this).attr("data");
+				requestShop('/menoscesta.html',{'variedad':item,'unidades':1},updateCesta,updateCesta);
+			});
+			
+			$("#envio").click(function(){
+				document.location.href="/datos-envio.html";
+			});	
+			$("#comprar").click(function(){
+				document.location.href="<?=self::$shop->cliente->nombre&&self::$shop->cesta->hayCesta()?"/resumen.html":"/datos-envio.html"?>"
+			});
+			
+		});
+    </script>
+    
+</body>
+</html>

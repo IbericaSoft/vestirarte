@@ -1,0 +1,54 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */	
+	$kernel  =  $this->oDataTemplate->getKeyData('kernel');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<head>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var FORM_STYLE 		= 'custom-theme';
+			var PAGE_NAME		= 'step';
+			var IMPORT			= "blockui,dobleos";
+			var MODULE_NAME		= "<?=$kernel['class']?>";
+		</script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.v2.js"></script>
+</head>
+	
+<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">Migración - Seleccionar módulo a exportar</div>
+	</div>
+	
+	<form id="fapplication">
+		<div class="boxResultList">
+			<div id="choose">
+			    <input type="radio" id="format1" name="choose" value="ARTICULOS" checked="checked"><label class="radio" for="format1">ARTICULOS<br><img src="<?=OS_WEB_PATH?>/applications/articulos/images/articulos.png" title="Actualizar los datos de artículos"/></label>
+			    <!-- <input type="radio" id="format2" name="choose" value="PORTES" ><label class="radio" for="format2"><img src="<?=OS_WEB_PATH?>/applications/portes/images/portes.png" title="Actualizar los datos de portes"/><br>PORTES<br></label>
+			    <input type="radio" id="format3" name="choose" value="PROVEEDORES"><label class="radio" for="format3">PROVEEDORES<br><img src="<?=OS_WEB_PATH?>/applications/proveedoresweb/images/proveedores.png" title="Actualizar los datos de proveedores"/></label> -->
+			</div>			
+		</div>
+	
+		<table cellpadding="0" cellspacing="5" id="buttons" >
+		<tr>
+			<td><input class="" id="btCancelar" type="button" value="Cancelar"/></td>
+			<td><input class="" id="btFordward" type="button" value="Finalizar"/></td>
+		</tr>
+		</table>
+		
+		<input type="hidden" name="do" id="do" value=""/>
+		<input type="hidden" name="migration" id="migration" value="RUN"/>
+		<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>"/>		
+		<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>"/>
+		<input type="hidden" name="channel" id="channel" value="html"/>
+	</form>
+	
+</body>
+</HTML>
+			
+			

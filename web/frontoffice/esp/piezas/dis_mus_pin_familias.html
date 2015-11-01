@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">            
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?echo $this->executeBlock('DATA')?>
+    <?echo $this->executeBlock('HEAD')?>
+    <style>
+    body,html{
+    	<? 	if ( self::$shop->categoria_actual=="diseñadores" ){
+    			echo "background-image: url('{web}/images/fondo-diseñadores.jpg') !important;";
+    		}elseif ( self::$shop->categoria_actual=="museos" ){
+    			echo "background-image: url('{web}/images/fondo-museos.jpg') !important;";
+    		}elseif ( self::$shop->categoria_actual=="pintoresca" ){
+    			echo "background-image: url('{web}/images/fondo-pintoresca.jpg') !important;";
+    		}else{
+    			echo "background-image: url('{web}/images/fondo.jpg') !important;";
+    		}		
+    	?>	
+    }
+    </style>
+</head>
+<body>
+	<div id="contenido">
+		<div id="wrapper">
+
+       		<!-- menu PÁGINA -->
+            <?require("menu_header.html")?>
+
+			<div id="main">
+
+				<!-- MENÚ EN LOS DISPOSITIVOS MÓVILES -->
+				<div id="menu_moviles">
+	                <ul class="parent" id="parent">
+	                      <li id="activa_hijo"><a href="index.html">INICIO</a>
+	                </li>
+					<li id="activa_hijo"><a href="disenadores.html">DISEÑADORES</a>
+                        <ul class="hijo" id="hijo">
+                        	<? 	foreach ( self::getData("familias") as $datos) { 
+									if ( strtolower($datos["categoria"])!=("diseñadores") ) continue; ?>	
+	                        		<li><a href="diseñadores/<?=url_friendly($datos[familia])?>.html"><?=$datos["familia"]?></a></li>
+	                        <? } ?>
+                        </ul>
+					</li>
+                    <li id="activa_hijo"><a href="museos.html">MUSEOS</a>
+                        <ul class="hijo" id="hijo">
+                        	<? 	foreach ( self::getData("familias") as $datos) { 
+									if ( strtolower($datos["categoria"])!="museos" ) continue; ?>	
+	                        		<li><a href="museos/<?=url_friendly($datos[familia])?>.html"><?=$datos["familia"]?></a></li>
+	                        <? } ?>
+                        </ul>
+                  	</li>
+                  	<li id="activa_hijo"><a href="pintoresca.html">PINTORESCA</a>
+                       	<ul class="hijo" id="hijo">
+                        	<? 	foreach ( self::getData("familias") as $datos) { 
+									if ( strtolower($datos["categoria"])!="pintoresca" ) continue; ?>	
+	                        		<li><a href="pintoresca/<?=url_friendly($datos[familia])?>.html"><?=$datos["familia"]?></a></li>
+	                        <? } ?>
+                  		</ul>
+            		</li>
+      				</ul>
+      				
+				</div>
+
+      			<!-- MENU EN EL QUE SE MUESTRAN LAS FAMILIAS -->
+     			<div id="first-sidebar"> 
+      				
+     				<div id="menu_secundario">
+			    		<h4 class="titulo"><?=strtoupper(self::$shop->categoria_actual)?> <img src="{web}/images/triangulo.png" alt=""> </h4>
+			    		<ul class="lista_elementos">
+			           		<? 	foreach ( self::getData("familias") as $datos) { 
+									if ( strtolower($datos["categoria"])!=strtolower(self::$shop->categoria_actual) ) continue; ?>
+			           				<li class="padre"><a href="/<?=url_friendly(self::$shop->categoria_actual)?>/<?=url_friendly($datos[familia])?>.html"><?=strtoupper($datos[familia])?></a></li>
+							<? } ?>
+			    		</ul>
+					</div>
+				</div>
+
+      			<!-- SLIDER DE LAS PÁGINAS DISTINTAS DE LA HOME -->
+				<div id="slider" class="slider_no_home">
+       				<ul class="rslides">
+              			<? foreach ( self::getData("articulos") as $datos) { ?>
+		              			<li>
+		              				<img src="{web}/images/<?=$datos[foto_1]?>" alt="">
+		              				<div id="info">
+			                            <div class="informacion">
+			                                   <span class="nombre_diseñador"><?=$datos[familia]?></span>
+			                                   <span class="nombre_prenda"><?=$datos[subfamilia]?></span>
+			                                   <? 
+			$oferta = round(((($datos[iva]/100)+1)*$datos[oferta]),2);
+			$precio = round(((($datos[iva]/100)+1)*$datos[precio]),2);
+			if ( $datos[oferta]>0 ){
+				
+				echo "<span id='precio_rebajado'>$oferta&euro;</span><span id='mensaje'>(Rebajado)</span>";
+			}else{	
+				echo "<span>$precio&euro;</span>";
+			}
+			?>
+			                                   <!-- <span class="precio"><?=$datos[precio]?>&euro;</span> -->
+			                            </div>
+		                            	<button class="comprar" href="#" data-featherlight="#enlace_<?=$datos[id]?>">COMPRAR</button>
+		                     		</div>
+		                     	</li>
+                     	<? } ?>
+              		</ul>
+       			</div>
+			
+			</div>
+			
+			<div id="contenedor_prendas">
+			<? 	foreach ( self::getData("articulos") as $datos) { ?>
+                <iframe id="enlace_<?=$datos[id]?>" src="/ficha/<?=$datos[articulo]?>.html" frameborder="0" class="lightbox"></iframe>
+            <?}?>
+			</div>	
+			
+      		<!-- FOOTER DE LA PÁGINA -->
+			<?require("footer.html")?>
+		</div>
+	</div>
+	
+	<script>
+		$(document).ready(function(){
+			//sliders
+			$(".rslides").responsiveSlides({
+			      auto: true,             // Boolean: Animate automatically, true or false
+			      speed: 300,            // Integer: Speed of the transition, in milliseconds
+			      timeout: 4000,          // Integer: Time between slide transitions, in milliseconds
+			      pager: true,           // Boolean: Show pager, true or false
+			      nav: false,             // Boolean: Show navigation, true or false
+			      random: false,          // Boolean: Randomize the order of the slides, true or false
+			      pause: true,           // Boolean: Pause on hover, true or false
+			      pauseControls: true,    // Boolean: Pause when hovering controls, true or false
+			      prevText: "<<",   // String: Text for the "previous" button
+			      nextText: ">>",       // String: Text for the "next" button
+			      maxwidth: "",           // Integer: Max-width of the slideshow, in pixels
+			      navContainer: "",       // Selector: Where controls should be appended to, default is after the 'ul'
+			      manualControls: "",     // Selector: Declare custom pager navigation
+			      namespace: "rslides",   // String: Change the default namespace used
+			      before: function(){},   // Function: Before callback
+			      after: function(){}     // Function: After callback
+			});
+			
+		});
+		
+	    function cerrarFicha(){
+	    	//da error y no se xq
+	    	//var current = $.featherlight.current();
+	    	//current.close();
+	    }
+	    
+	    function updateCesta(json){
+	    	var current = $.featherlight.current();
+	    	current.close();
+	    	
+			$("#infocesta").html(json.total_articulos+" ARTÍCULOS<br>"+json.total_cesta_con_iva);
+			$("#percha a:last-child").effect( "pulsate" );
+			
+			
+		}
+	</script>
+	
+	<!--                     EFECTO DEL LIGHTBOX PARA MOSTRAR LAS PRENDAS-->
+    <script type="text/javascript" src="{web}/js/featherlight-master/featherlight.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{web}/js/featherlight-master/featherlight.min.css">
+    
+</body>
+</html>

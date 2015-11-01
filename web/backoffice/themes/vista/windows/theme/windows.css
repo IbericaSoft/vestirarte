@@ -1,0 +1,259 @@
+.overlay___invisible__ {
+  background-color: #666;
+	filter:alpha(opacity=0);
+	-moz-opacity: 0;
+	opacity: 0;
+}
+
+.top_draggable, .bottom_draggable {
+	cursor:move;
+}
+
+.status_bar {
+	font-size:12px;
+}
+.status_bar input{
+	font-size:12px;
+}
+
+.wired_frame {
+	display:block;
+	position:absolute;
+	border:1px #000 dashed;
+}
+
+/**
+ *  THEME vista
+*/
+
+.overlay_vista {
+	background-color:#FFF;
+	filter:alpha(opacity=60);
+	-moz-opacity:0.6;
+	opacity:0.6;
+}
+
+.vista_wired_frame {
+	background:#FFF;
+	filter:alpha(opacity=60);
+	-moz-opacity:0.6;
+	opacity:0.6;	
+}
+
+.vista_nw {
+	background:transparent url(lighting/top-left-grey.png) no-repeat 0 0;			
+	width:9px;
+	height:28px;
+}
+
+.vista_n {
+	background:transparent url(lighting/top-middle-grey.png) repeat-x 0 0;			
+	height:28px;
+}
+
+.vista_ne {
+	background:transparent url(lighting/top-right-grey.png) no-repeat 0 0;			
+	width:15px;	  
+	height:28px;
+}
+
+.vista_w {
+	background:transparent url(lighting/left-grey.png) repeat-y top left;			
+	width:9px;
+}
+
+.vista_e {
+	background:transparent url(lighting/right-grey.png) repeat-y top right;			
+	width:15px;	  
+}
+
+.vista_sw {
+	background:transparent url(lighting/bottom-left-grey.png) no-repeat 0 0;			
+	width:9px;
+	height:15px;
+}
+
+.vista_s {
+	background:transparent url(lighting/bottom-middle-grey.png) repeat-x 0 0;			
+	height:15px;
+}
+
+.vista_se, .vista_sizer  {
+	background:transparent url(lighting/bottom-right-grey.png) no-repeat 0 0;			
+	width:15px;
+	height:15px;
+}
+
+.vista_sizer {
+	cursor:se-resize;	
+}
+
+.vista_close {
+	width:28px;
+	height:15px;
+	background:transparent url(lighting/button-close.png) no-repeat 0 0;			
+	position:absolute;
+	top:11px;
+	right:10px;
+	cursor:pointer;
+	z-index:1000;
+}
+
+.vista_maximize {
+	width:28px;
+	height:15px;
+	background:transparent url(lighting/button-max.png) no-repeat 0 0;			
+	position:absolute;
+	top:11px;
+	right:40px;
+	cursor:pointer;
+	z-index:1000;
+}
+
+.vista_minimize {
+	width:28px;
+	height:15px;
+	background:transparent url(lighting/button-min.png) no-repeat 0 0;			
+	position:absolute;
+	top:11px;
+	right:70px;
+	cursor:pointer;
+	z-index:1000;
+}
+
+.vista_title {
+	float:left;
+	height:14px;
+	font-size:14px;
+	font-weight:bold;
+	font-family:Verdana, Arial, sans-serif;
+	text-align:center;
+	margin-top:2px;
+	width:100%;
+	color:#17385B;
+}
+
+.vista_content {
+	overflow:auto;
+	color:#000;
+	font-family:Verdana, Arial, sans-serif;
+	font-size:12px;
+	background:#BFDBFF;
+}
+
+/* For alert/confirm dialog */
+.vista_window {
+	border:1px solid #F00;	
+	background:#FFF;
+	padding:20px;
+	margin-left:auto;
+	margin-right:auto;
+	width:400px;
+}
+
+.vista_message {
+  	font-size:12px;
+	text-align:center;
+	width:100%;
+	padding-bottom:10px;
+}
+
+.vista_buttons {
+	text-align:center;
+	width:100%;
+}
+
+.vista_buttons input {
+	border:1px solid #999;
+	border-top-color:#CCC;
+	border-left-color:#CCC;
+	padding:2px;
+	background-color:#FFF;
+	color:#333;
+	background-image:url(lighting/background_buttons.gif);
+	background-repeat:repeat-x;
+	font-family:Verdana, Arial, sans-serif;
+	font-size:10px;
+	font-weight:bold;
+	text-align:center;
+}
+
+.vista_progress {
+	float:left;
+	margin:auto;
+	text-align:center;
+	width:100%;
+	height:16px;
+	background:transparent url(lighting/spinner.gif) no-repeat center center
+}
+
+/* FOR IE */
+* html .vista_nw {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//top-left-grey.png", sizingMethod="crop");
+}
+
+* html .vista_n {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//top-middle-grey.png", sizingMethod="scale");
+}
+
+* html .vista_ne {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//top-right-grey.png", sizingMethod="crop");
+}
+
+* html .vista_w {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//left-grey.png", sizingMethod="scale");
+}
+
+* html .vista_e {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//right-grey.png", sizingMethod="scale");
+}
+
+* html .vista_sw {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//bottom-left-grey.png", sizingMethod="crop");
+}
+
+* html .vista_s {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//bottom-middle-grey.png", sizingMethod="scale");
+}
+
+* html .vista_se, * html .vista_sizer {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//bottom-right-grey.png", sizingMethod="crop");
+}
+
+* html .vista_close {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//button-close-grey.png", sizingMethod="crop");
+}
+
+* html .vista_minimize {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//button-minimize-grey.png", sizingMethod="crop");
+}
+
+* html .vista_maximize {
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="themes/silverlight/windows/theme/lighting//button-maximize-grey.png", sizingMethod="crop");
+}
+
+* html .vista_content {
+	background:#B8D7FF;
+}

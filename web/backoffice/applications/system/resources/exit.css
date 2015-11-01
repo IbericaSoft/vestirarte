@@ -1,0 +1,47 @@
+body {
+	margin: 0px 0px;
+	padding: 0px 0px;
+	font-family: verdana, arial, helvetica, sans-serif;
+	color: #ccc;
+	background-color: #fff;
+	text-align: left;
+	font-size: 12px;
+}
+
+#title{
+	background-color: #404040;
+	color: #fff;
+	height: 50;
+	font-weight: bold;
+	background-image: url(images/cerrar.png);
+	background-repeat: no-repeat;
+	background-position:right center;
+	padding-left: 10px;
+}
+
+#verticalmiddle{
+	position:relative; 
+	top:45%;
+}
+
+#text {
+	padding: 10px 10px;
+	color:#999;
+	line-height:12px;	
+}
+
+.buttonWarn {
+	background: red;
+	color: #FFF;
+	font-weight: bold;
+	border: 1px solid black;
+	width: 45px;
+}
+
+.buttonNormal {
+	background: #51ADE7;
+	color: #FFF;
+	font-weight: bold;
+	border: 1px solid black;
+	width: 45px;
+}

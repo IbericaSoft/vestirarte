@@ -1,0 +1,154 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */	
+	$kernel  =  $this->oDataTemplate->getKeyData('kernel');
+	$datos   =  $this->oDataTemplate->getKeyData('tareas');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<head>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var FORM_STYLE 		= 'custom-theme';
+			var PAGE_NAME		= 'edit';
+			var IMPORT			= "dobleos,blockui,tabs";
+			var MODULE_NAME		= "<?=$kernel['class']?>";
+		</script>		
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.v2.js"></script>
+</head>
+	
+<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">Tareas - <?=$datos[operacion]?></div>
+	</div>
+
+	<div class="boxMenuButtons">
+		<div class="boxMenuButton" id="mnuLink">
+			<span class="boxMenuImage"><img title="Crea un acceso directo en el escritorio de la vista actual" src="<?=OS_WEB_PATH?>/applications/_commons/_images/shortcut.png" /></span>
+			<span class="boxMenuTitle">Link</span>
+		</div>
+	</div>
+	
+	
+	<form name="fapplication" id="fapplication" class="" >
+		
+		<div id="tabs" style="display:none">
+			<ul>
+			<li><a href="#tabs-1">Ficha</a></li>
+			</ul>
+			
+			<div id="tabs-1">
+				<p>
+					<label>Destinatario:</label>
+					<label><select class="roField" name="id_usuario_target" id="id_usuario_target">
+						<option value="">--Seleccionar--</option>
+							<? 
+								$items = json_decode($this->oDataTemplate->getKeyData('admin_cache'));
+								foreach($items as $item){
+									$selection='';
+									if ($item->id==$datos[id_usuario_target]) 
+										$selection='selected';					
+									echo "<option value='$item->id' $selection>".utf8_decode($item->nombre)."</option>\n";
+								} 
+							?>
+					</select>
+				</label>
+				</p>
+				<p>
+					<label>Descripción:</label>
+					<label><input class="roField" type="text" name="descripcion" id="descripcion" value="<?=$datos[descripcion]?>" size="40" maxlength="50"/></label>
+				</p>
+				<p>					
+					<label>Prioridad:</label>
+					<label><select class="field" name="prioridad" id="prioridad">
+								<option value="">--Seleccionar--</option>
+								<? 
+										foreach(array("NORMAL,Normal","ALTA,Alta","URGENTE,Máxima") as $options){
+											list($option,$description) = explode(",",$options);
+											$selection='';
+											if ($option==$datos[prioridad]) $selection='selected';
+											echo "<option value='$option' $selection>$description</option>";
+										} 
+								?>
+						</select>
+					</label>
+				</p>
+				<p>
+					<label>Fecha límite:</label>
+					<label><input class="" type="text" name="fecha_limite" id="fecha_limite" value="<?=$datos[fecha_limite]?>" readOnly/><img title="" src="<?=OS_WEB_PATH?>/applications/_commons/_images/calendar.png" width="12"/></label>
+				</p>
+				<p>
+					<label>Estado:</label>
+					<label><select name="estado" id="estado">
+									<option value="">--Seleccionar--</option>
+									<? 
+										foreach(array("ACT,Activa") as $options){
+											list($option,$description) = explode(",",$options);
+											$selection='';
+											if ($option==$datos[estado]) $selection='selected';
+											echo "<option value='$option' $selection>$description</option>";
+										} 
+									?>
+							</select>
+					</label>
+				</p>
+				<br/>&nbsp;
+				<p>
+					<label>Tarea:</label>
+					<label>
+						<?
+						//editor personalizado HTML //depende de editor/filemanager/connectors/php 
+						$oFCKeditor = new FCKeditor('tarea') ;
+						$oFCKeditor->BasePath	= OS_WEB_PATH."/kernel/fckeditor/fckeditor/";
+						$oFCKeditor->Width = '600px';
+						$oFCKeditor->Height = '150px';
+						$oFCKeditor->ToolbarSet = "Basic";//fckconfig.js
+						$oFCKeditor->Config['DefaultLanguage']='es';
+						$oFCKeditor->Config['AutoDetectLanguage'] = false;
+						$oFCKeditor->Value = $datos[tarea] ;
+						$oFCKeditor->Create();
+						?>
+					</label>
+				</p>
+				
+				<? if ( $datos[estado]=='FIN' ) { ?>
+				<p>
+					<label>Fecha fin:</label>
+					<label><input class="field" type="text" value="<?=$datos[fecha_fin]?>" readOnly/></label>
+				</p>					
+				<p>
+					<label>Comentarios al cierre:</label>
+					<label><textarea rows="3" cols="50"><?=$datos[comentarios]?></textarea></label>
+				</p>
+				<? } ?>
+			</div>
+		</div>
+	
+		<table cellpadding="0" cellspacing="5" id="buttons" >
+					<tr>
+						<td>
+							<input class="field" id="btCancelar" type="button" value="Cancelar" >
+						</td>
+						<td>
+							<? if ( $datos['estado']=='ACT' ) { ?>
+								<input class="field" id="btAceptar" type="button" value="Aceptar" >
+							<? } ?>
+						</td>
+					</tr>
+		</table>
+		
+	<input type="hidden" name="id" id="id" value="<?=$datos[id]?>"/>
+	<input type="hidden" name="do" id="do" value=""/>
+	<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>"/>		
+	<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>"/>
+	<input type="hidden" name="channel" id="channel" value="html"/>
+	</form>
+	
+</body>
+</HTML>
+			
+			

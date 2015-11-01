@@ -1,0 +1,37 @@
+<?
+	/** esta plantilla funcionara con los kernel aqui recogidos */
+	$kernel =  $this->oDataTemplate->getKeyData('kernel');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+	<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+	<title><?=$kernel['title']?></title>
+		
+		<!-- DESKTOP STYLES -->			
+		<link rel="shortcut icon" href="<?=OS_WEB_PATH?>/applications/_commons/_images/favicon.ico"  />
+		
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var _DEBUG			= <?=$kernel['debug']?>;
+			var DESKTOP_WALLPAPER= '<?=OS_WEB_PATH?>/wallpapers/<?=$kernel['wallpaper']?>';
+			var _SYSVERSION		= '<?=$kernel['system_version']?>';
+		</script>
+		
+		<!-- DESKTOP CONTROL -->
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/prototype.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/scriptaculous/scriptaculous.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/dobleos/dobleosapi.js"></script>
+		
+		<!-- VENTANA ACTUAL -->
+		<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/applications/wellcome/resources/wellcome.css" />
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/wellcome/resources/wellcome.js"></script>
+			
+	</head>
+	<body id="desktop" onload="start()">
+		<!-- escritorio -->
+		<div id="desktop"><img id="desktop" class="desktop" src=""/></div>
+	</body>
+</html>

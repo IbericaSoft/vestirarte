@@ -1,0 +1,54 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */	
+	$kernel  =  $this->oDataTemplate->getKeyData('kernel');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<head>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var FORM_STYLE 		= 'custom-theme';
+			var PAGE_NAME		= 'step';
+			var IMPORT			= "blockui,dobleos";
+			var MODULE_NAME		= "<?=$kernel['class']?>";
+		</script>		
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.v2.js"></script>
+</head>
+	
+<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">Migración - Seleccionar Operación</div>
+	</div>
+
+	
+	<form id="fapplication">
+		<div class="boxResultList">
+			<div id="choose">
+			    <input type="radio" id="format1" name="choose" value="ERP" checked="checked"><label class="radio" for="format1">Importar XML<br>desde ERP<br><img src="<?=OS_WEB_PATH?>/applications/migracion/images/import.png" title="Importar XML de datos desde el ERP hacia el Backoffice"/></label>
+			    <input type="radio" id="format2" name="choose" value="BACKOFFICE" ><label class="radio" for="format2"><img src="<?=OS_WEB_PATH?>/applications/migracion/images//export.png" title="Gerar XML desde el Backoffice para pasarlo al ERP"/><br>Exportar XML<br>desde Backoffice<br></label>		
+			</div>
+		</div>
+	
+		<table cellpadding="0" cellspacing="5" id="buttons" >
+		<tr>
+			<td><input class="" id="btCancelar" type="button" value="Cancelar"/></td>
+			<td><input class="" id="btFordward" type="button" value="Siguiente"/></td>
+		</tr>
+		</table>
+		
+		<input type="hidden" name="migration" id="migration" value="SELECT_OPERATION"/>
+		<input type="hidden" name="do" id="do" value=""/>
+		<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>"/>		
+		<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>"/>
+		<input type="hidden" name="channel" id="channel" value="html"/>
+	</form>
+	
+</body>
+</HTML>
+			
+			

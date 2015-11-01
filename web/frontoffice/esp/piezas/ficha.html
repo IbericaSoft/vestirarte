@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <?echo $this->executeBlock('DATA')?>
+    <?echo $this->executeBlock('HEAD')?>
+    <? $articulo = self::getData("articulo") ?>    
+		<style>
+		#iunidades{font-size:12px; font-weight:bold; margin:0px !important; padding:0px !important;}
+	</style>
+</head>
+<body>	
+	<div id="container">
+		
+		<div id="imagenes_prenda">
+			<div id="slider" class="slider_no_home">	       		
+	       		<ul class="rslides">
+	             		 <li><img src="{web}/images/<?=$articulo[foto_1]?>" alt=""/></li>
+	                     <?
+	                     	if ( $articulo[foto_2] )
+                     			echo "<li><img src='{web}/images/$articulo[foto_2]' alt=''/></li>";
+							if ( $articulo[foto_3] )
+                     			echo "<li><img src='{web}/images/$articulo[foto_3]' alt=''/></li>";
+                     	?>
+	              </ul>
+	              <div class="nav" id="nav"></div>
+       		</div>
+		</div>
+		
+		<div id="info_prenda">
+			<h1><?=utf_server($articulo[articulo])?></h1>
+			<h3><?=utf_server($articulo[familia])?></h3>
+			<img src="{web}/images/<?=$articulo[foto_4]?>" alt=""/>
+			<h3><?=utf_server($articulo[subfamilia])?></h3>
+			<p><?=utf_server($articulo[descripcion])?></p>
+			<? 
+			$oferta = round(((($articulo[iva]/100)+1)*$articulo[oferta]),2);
+			$precio = round(((($articulo[iva]/100)+1)*$articulo[precio]),2);
+			if ( $articulo[oferta]>0 ){
+				
+				echo "<span id='precio_base'>$precio&euro;</span><span id='precio_rebajado'>$oferta&euro;</span><span id='mensaje'>(Rebajado)</span>";
+			}else{	
+				echo "<span>$precio&euro;</span>";
+			}
+			?>
+			      
+            <div id="talla">
+            	<span>TALLAS</span>
+                    <div id="radioset">
+                      	<? 
+                      		foreach ( self::getData("variedades") as $var)
+								echo "<input type='radio' id='radio$var[id]' name='talla' value='$var[id]' checked><label for='radio$var[id]'>$var[talla]</label>";
+						?>  
+					</div>
+            </div>
+            <br/>
+            <div id="unidades">
+            	<span>UNIDADES</span>
+            	<input id="iunidades" value="1" readonly/>
+            </div>
+            <br/>
+            <p>
+            	<input type="button" class="black-button" id="add" value="AÑADIR A LA PERCHA"/>
+            </p>
+		</div>	
+	
+	</div>	
+
+	<script src="{web}/js/jquery-ui.min.js"></script>
+	<script src="{web}/js/responsiveslides.min.js"></script>
+	<script src="{web}/js/shop.js"></script>
+	
+	<script>
+		$(document).ready(function(){		
+			$("#iunidades").spinner({min: 1, max: 99});
+			$("#radioset").buttonset();
+			/** boton anadir a la cesta */
+			$("#add").click(function(e){
+				e.preventDefault();
+				/** fantastico ejemplo http://codepen.io/ElmahdiMahmoud/pen/tEeDn */
+		        var cart = window.parent.$('#percha img');
+			    var imgtodrag = $(".rslides li img:first");
+			    if (imgtodrag) {
+			            var imgclone = imgtodrag.clone().offset({top: imgtodrag.offset().top,left: imgtodrag.offset().left})
+			               .css({
+			               'opacity': '0.5',
+			                   'position': 'absolute',
+			                   'height': '150px',
+			                   'width': '150px',
+			                   'z-index': '100'
+			            })
+			              .appendTo($('body'))
+			              .animate({
+			                'top': cart.offset().top + 10,
+			                    'left': cart.offset().left + 10,
+			                    'width': 75,
+			                    'height': 75
+			            }, 1000, 'easeInOutExpo');
+			            
+			            setTimeout(function () {
+			                cart.effect("shake", {
+			                    times: 2
+			                }, 200, function(){masCesta()});
+			            }, 1500);
+
+			            imgclone.animate({
+			                'width': 0,
+			                    'height': 0
+			            }, function () {
+			                $(this).detach()
+			            });
+				}
+			    return false;
+			});
+			var fixCesta = false; //masCesta se invoca 2 veces, no se muy bien xq. incluso he cambiado el tipo <button> por <input type="butto"> y nada.
+			function masCesta(){
+				if ( fixCesta ) return;
+				fixCesta = true;
+				window.parent.cerrarFicha();
+				var unidades = $("#iunidades").spinner("value");
+				var variedad = $("input[name=talla]:checked").val();
+				requestShop('/mascesta.html',{'unidades':unidades,'variedad':variedad},window.parent.updateCesta,window.parent.updateCesta);				
+			}
+			
+			//sliders
+			$(".rslides").responsiveSlides({
+			      auto: true,             // Boolean: Animate automatically, true or false
+			      speed: 300,            // Integer: Speed of the transition, in milliseconds
+			      timeout: 4000,          // Integer: Time between slide transitions, in milliseconds
+			      pager: true,           // Boolean: Show pager, true or false
+			      nav: false,             // Boolean: Show navigation, true or false
+			      random: false,          // Boolean: Randomize the order of the slides, true or false
+			      pause: true,           // Boolean: Pause on hover, true or false
+			      pauseControls: true,    // Boolean: Pause when hovering controls, true or false
+			      prevText: "<<",   // String: Text for the "previous" button
+			      nextText: ">>",       // String: Text for the "next" button
+			      maxwidth: "",           // Integer: Max-width of the slideshow, in pixels
+			      navContainer: "",       // Selector: Where controls should be appended to, default is after the 'ul'
+			      manualControls: "",     // Selector: Declare custom pager navigation
+			      namespace: "rslides",   // String: Change the default namespace used
+			      before: function(){},   // Function: Before callback
+			      after: function(){}     // Function: After callback
+			});
+		});
+	</script>
+</body>
+</html>

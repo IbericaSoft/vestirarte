@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<style type="text/css">
+html, body {
+	font-family: Arial, Helvetica, sans-serif;
+	margin:10;
+	color: white;
+}
+body {
+	margin:20px;
+}
+h2 {
+	margin:0;
+	font-size:26px;
+	font-weight:normal;
+	color:#008fd0;
+}
+h3 {
+	margin:10 0px 0px 0px;
+	font-size:20px;
+	line-height:5px;
+	font-weight:normal;
+	color:silver;
+}
+h4{color:#008fd0;line-height:5px;}
+.wrapper {
+	width:100%;
+	position:relative;
+	margin: 0 auto;
+	background: #1F1F1F;
+	height:auto;
+	box-shadow: 0 0 5px grey;
+}
+.logo {
+	margin: 20px;
+}
+a {
+	text-decoration:none;
+}
+a:hover {
+	text-decoration:underline;
+}
+.silver {
+	color: silver;
+}
+.bloque {
+	font-size: 14px;
+	margin:0 20px 20px;
+	
+}
+.bwhite { background: transparent !important; }
+p {margin:10px 0; line-height:20px;}
+table{
+    margin:10px auto;
+}
+.w75 {width:75% !important;}
+
+thead td {
+    background-color: black;
+    color: white;
+    height: 20px !important;
+    text-align: center;
+    font-weight: bold;
+}
+
+tbody td {
+    background-color: white;
+    display: table-cell;
+    height: 100%;
+    padding: 1%;
+    position: relative;
+    text-align: center;
+    color:black;
+}
+
+tr {
+    width: 100%;
+}
+tbody {
+    width: 100%;
+}
+table {
+    width: 90%;
+    text-transform: uppercase;
+}
+.center_text {text-align:center;}
+.left_text{text-align:left !important;}
+.right_text{text-align:right !important;}
+.footer {border-top: 1px solid white;   font-size: 12px;   padding: 20px;}
+hr {
+  page-break-after: always;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+small{font-size:10px;}
+</style>
+</head>
+<body>
+<div id="confirma" class="wrapper">
+
+	<img class="logo" src="https://www.vestirarte.com/frontoffice/images/logo-vestirarte-blanco.jpg"/>
+
+	<div class="bloque">
+    	<h3>Pedido n&uacute;mero: {PEDIDO}</h3>
+    </div>
+	
+    <div class="bloque bwhite">
+    	<table class="w75" cellpading="0" cellspacing="0">
+			<thead>
+				<tr>
+					<td colspan="3">Datos del pedido</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>				
+					<td width="33%" class="left_text"><strong>Direcci&oacute;n de env&iacute;o</strong><br/>{ENVIO}</td>
+					<td width="33%" class="left_text"><strong>Direcci&oacute;n de facturaci&oacute;n</strong><br/>{FACTURACION}</td>
+					<td width="33%" class="left_text"><strong>Nombre persona a regalar</strong><br/>{REGALO}</td>
+				</tr>
+			</tbody>		
+		</table>
+    	
+		<table>
+			<thead>
+				<tr>
+					<td width="">&nbsp;</td>
+					<td width="">Art&iacute;culo</td>
+					<td width="">Talla</td>
+					<td width="">Unidades</td>
+					<td width="">Precio/Unidad</td>
+					<td width="">Total</td>
+				</tr>
+			</thead>
+			<tbody>
+				<!--LIST1
+				<tr>
+					<td><img src="{foto}" style="max-width:150px;max-height:100px"/></td>
+					<td>{articulo}</td>
+					<td>{talla}</td>
+					<td>{unidades}</td>
+					<td>{precio}</td>
+					<td>{subtotal}</td>
+				</tr>
+				LIST1-->
+			</tbody>		
+		</table>
+		
+		<table cellpading="0" cellspacing="0">
+			<tbody>
+				<tr>				
+					<td width="50%" class="left_text"><strong>Observaciones a la entrega</strong><br/>{OBSERVACIONES}</td>
+					<td width="50%" class="right_text"><strong>Total</strong><br/>{TOTAL}<br/><small>todos los precios con iva</small></td>
+				</tr>
+			</tbody>		
+		</table>
+	</div>
+    
+    <div class="footer">
+		<p class="silver">Informaci&oacute;n desde la web {HOST}<br>Power by IbericaSoft systems 2015</p>
+    </div>
+</div>
+</body>
+</html>

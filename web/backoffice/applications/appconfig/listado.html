@@ -1,0 +1,88 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */
+	$datos  =  $this->oDataTemplate->getKeyData('appconfig');
+	$kernel =  $this->oDataTemplate->getKeyData('kernel');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<head>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+		<title><?=$kernel['title']?></title>
+		
+		<script type="text/javascript">
+			var WEB_PATH = '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var PAGE_NAME		= 'list';
+			var MSG_INFO		= '<?=$messages[msg]?>';
+		</script>
+		
+		<!-- DESKTOP CONTROL -->
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/prototype.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/shortcut.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/dobleos/dobleosapiclient.js"></script>
+		
+		<!-- VENTANA ACTUAL -->
+		<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/applications/_commons/<?=$kernel[theme]?>/css/application.css" />
+		<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/applications/appconfig/css/application.css" />
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/appconfig/js/application.js"></script>
+</head>
+	
+<body class="application">
+
+	<div class="boxHeader">
+		<div class="title">Parámetros de la empresa - Listado</div>
+	</div>
+
+
+	
+	
+	<div class="boxResultList">
+		
+		<!--RESULTADOS-->
+		<table cellpadding="0" cellspacing="0" width="100%" id="tbLista">
+			<tr>
+				<th class="colIcon" 	width="2%">&nbsp;</th>
+				<th class="colIcon" 	width="2%">&nbsp;</th>
+				<th class="colSort" 	width="50%">Descripción</th>
+				<th class="colSort" 	width="">Valor</th>
+				
+			</tr>
+			<? 	while( $datos = $this->getConnection()->getColumnas( $this->getDataTemplate()->getKeyData('appconfig') ) ){	?>
+					<tr title="click para editar" class="rowDataOff" id="tr_rowdata_<?=$datos[clave]?>">
+						<td class="colIcon" title="">&nbsp;</td>
+						<td class="colIcon"><img src="<?=OS_WEB_PATH?>/applications/_commons/_images/edit.png" alt="Editar"/></td>
+						<td class="colSort"><?=$datos[descripcion]?></td>		
+						<td class="colSort"><?=htmlentities($datos[valor])?></td>
+					</tr>
+			<? 	} ?> 
+			<tr class="rowDataOff" id="">
+				<td class="colSort" title="" colspan="10">&nbsp;</td>
+			</tr>
+		</table>
+		<!--FIN RESULTADOS-->
+		
+		
+		
+	</div>
+		
+	<!--Info paginacion-->
+	<div class="pagination">	
+		<table cellpadding="0" cellspacing="0" width="100%" id="tbCount">
+			<tr class="pagination"><td class="pagination"><?=$this->getConnection()->pintaPaginacion();?></td></tr>
+		</table>
+	</div>
+	<!--FIN Info paginacion-->
+	
+	<form name="fapplication" id="fapplication" class="" >
+	<input type="hidden" name="id" id="id" value="">
+	<input type="hidden" name="do" id="do" value="">
+	<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>">		
+	<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>">
+	<input type="hidden" name="channel" id="channel" value="html">
+	</form>	
+
+	
+</body>
+</HTML>

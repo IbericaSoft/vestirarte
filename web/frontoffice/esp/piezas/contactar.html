@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <?echo $this->executeBlock('DATA')?>
+    <?echo $this->executeBlock('HEAD')?>
+    <style>
+    textarea{
+    	width:50%;
+    	height:80px;
+    }
+    </style>
+</head>
+<body>
+
+	<div id="contenido">
+            <div id="wrapper">
+
+				<!-- menu PÁGINA -->
+            	<?require("menu_header.html")?>
+    
+				<div id="main">
+					<?require("menu_movil.html")?>
+    				<form action="/contactar-envio.html" method="post">
+					<div class="formulario-alta-usuario">
+           				
+           				<div>
+           					<span style="font-size:20px">Contactar:</span>
+	                       	<div><span>Su nombre</span><input type="text" name="nombre" id="nombre" value="<?=self::$shop->cliente->nombre?>"></div>
+	            			<div><span>email o teléfono</span><input type="text" name="email" id="email" value="<?=self::$shop->cliente->email?>"></div>
+	            			<div><span>a la atención del departamento</span>
+	            				<select id="dpto" name="dpto" size="1">
+	            					<option value="">Contactar con ...</option>
+	            					<option value="atencion">Atencion al cliente</option>
+	            					<option value="incidencias">Incidencias en la tienda</option>	            					
+	            				</select> 
+							</div>
+	            			<div><span>Exponga su consulta</span><textarea name="consulta" id="consulta"></textarea></div>
+	            			<div><span>Seguridad: <img style="padding-top:10px" src="<?=self::$shop->captcha_image?>"/></span><input  id="captcha" type="text" name="captcha" style="width:50px;margin-top:10px;font-size:18px" /><br></div>	            			
+            			</div>
+           				<button id="enviar">enviar</button>
+           				
+      				</div>
+      				</form>
+				</div>
+				
+				<div id="espacio"></div>
+				
+            	<!-- FOOTER -->
+				<?require("footer.html")?>
+        	</div>
+      </div>
+        
+    <script>
+		$(document).ready(function(){
+			$("#nombre").focus();
+			
+			$("#enviar").click(function(e){
+				e.preventDefault();
+				//return;
+				$("form").submit();
+			});
+			
+			//control de errores
+			<? 
+				if (self::getData("errores")!=null){
+					$first = self::getData("errores");
+					echo "$('#".$first[0]['key']."').focus();\n";
+					foreach(self::getData("errores") as $err){
+						echo "$('#$err[key]').after('<span>$err[motivo]</span>');\n";	
+					}
+				}
+			?>
+		});
+    </script>
+    
+    
+</body>
+</html>

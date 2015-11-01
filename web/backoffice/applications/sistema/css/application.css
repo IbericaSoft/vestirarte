@@ -1,0 +1,9 @@
+.boxHeader{
+	background-color: #404040;
+	width: 100%;
+	height: 40px;		
+	background-image: url(../images/system.png);
+	background-repeat: no-repeat;
+	background-position:right center;
+	border-bottom:5px double #CCC;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <?echo $this->executeBlock('DATA')?>
+    <?echo $this->executeBlock('HEAD')?>
+</head>
+<body>
+
+		<div id="contenido">
+            <div id="wrapper">
+
+				<!-- menu PÃ�GINA -->
+            	<?require("menu_header.html")?>
+    
+				<div id="main">
+					<?require("menu_movil.html")?>
+      				<div class="cesta-compra">
+	      				<table>
+				      			<tr class="">
+				      			<td><h1>Información</h1></td>
+				      			</tr>
+			      		</table>      
+	
+				       	<div class="total">
+				            <p><?=self::$shop->mensaje_texto_paginas_redireccionadas?></p>
+				      	</div>      
+	      				<button id="vale">VALE</button>
+	      			</div>
+				</div>
+            	<!-- FOOTER -->
+				<?require("footer.html")?>
+        	</div>
+      	</div>
+      
+      	<script>
+		$(document).ready(function(){
+			$("#vale").click(function(){
+				document.location.href="<?=self::$shop->link_redirecciones?>";
+			});
+		});
+    	</script>
+    
+</body>
+</html>

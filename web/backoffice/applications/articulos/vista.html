@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript">
+		var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+		var PWEB_PATH 		= '<?=PUBLIC_WEB_PATH?>';
+		var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+		var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+		var MODULE_NAME		= "<?=strtolower($this->getOrderActionClass()->getClass())?>";
+	</script>
+	<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.v3.js"></script>
+</head>	
+<body class="application view">
+	
+	<form>
+		<div class="boxHeader">
+			<div class="title" title="<?=$module->version_detail?>">Artículo - <?=$datos[operacion]?><span class="version"><?=$module->version_info?></span></div>			
+			<div class="botones">
+				<div class="menuBotones" id="btExport"><img title="Exportar los datos a formato excel" src="<?=OS_WEB_PATH?>/applications/_commons/_images/excel.png" /></div>
+				<div class="menuBotones" id="btPrint"><img title="Imprimir estos datos" src="<?=OS_WEB_PATH?>/applications/_commons/_images/pdf32.png" /></div>
+				<div class="menuBotones" id="btLink"><img title="Acceso directo en el escritorio" src="<?=OS_WEB_PATH?>/applications/_commons/_images/link32.png" /></div>
+			</div>
+		</div>
+		
+		<div class="contenido">	
+			<div id="tabs">
+				<ul>
+				<li><a href="#tabs-1">Ficha</a></li>
+				<li><a href="#tabs-2">Características</a></li>
+				<li><a href="#tabs-3">Fotos</a></li>
+				<li><a href="#tabs-4">Variedades</a></li>
+				<li><a href="#tabs-6">Control</a></li>
+				</ul>
+	
+				<div id="tabs-1">
+				<p>
+					<label>Artículo:</label>
+					<label class="data ml"><?=$datos[articulo]?></label>					
+				</p>
+				<p>
+					<label>SubFamlia:</label>
+					<label class="data ml"><?=$datos[subfamilia]?></label>
+				</p>
+				<br/>
+				<p>
+					<label>IVA:</label>
+					<label class="data ml"><?=$datos[fiva]?> %</label>
+				</p>				
+				<p>
+					<label>Autor:</label>
+					<label class="data ml"><?=$datos[autor]?></label>
+				</p>
+				<p>
+					<label>Código:</label>
+					<label class="data ml"><?=$datos[codigo]?></label>					
+				</p>
+				<p>
+					<label>Código proveedor:</label>
+					<label class="data ml"><?=$datos[codigo_proveedor]?>&nbsp;</label>					
+				</p>
+				<br/>
+				<p>
+					<label>Peso:</label>
+					<label class="data ml"><?=$datos[fpeso]?> Kgs.</label>					
+				</p>
+				<p>
+					<label>Precio:</label>
+					<label class="data ml"><?=$datos[fprecio]?> &euro;</label>					
+				</p>
+				<p>
+					<label>Oferta:</label>
+					<label class="data ml"><?=$datos[foferta]?> &euro;</label>					
+				</p>
+				<br>
+				<p>
+					<label>Artículo vendible:</label>
+					<label class="data ml"><?=$datos[vendible]?></label>
+				</p>
+				<p>
+					<label>Enlace externo:</label>
+					<label class="data ml"><?=$datos[enlace]?>&nbsp;</label>					
+				</p>
+				<br/>
+				<p>
+					<label>Estado:</label>
+					<label class="data ml"><?=$datos[festado]?></label>					
+				</p>				
+		</div>
+		
+		<div id="tabs-2">
+			<p>
+				<label>Descripción y Motivo :</label><br>
+			</p>
+			<br/>
+			<label class="data ml"><?=$datos[descripcion]?></label>			
+		</div>
+		
+		<div id="tabs-3">
+			<p>
+				<label>Foto 1:</label>						
+				<br><img class="thum-big" src="<?=PUBLIC_WEB_PATH?>/images/<?=$datos[foto_1]?>" />
+				<br><label class="data tx-pq"><?=$datos[foto_1]?></label>
+			</p>
+			<?if ($datos[foto_2]){?>
+			<p>
+				<label>Foto 2:</label>						
+				<br><img class="thum-big" src="<?=PUBLIC_WEB_PATH?>/images/<?=$datos[foto_2]?>" />
+				<br><label class="data tx-pq"><?=$datos[foto_2]?></label>
+			</p>
+			<?}?>
+			<?if ($datos[foto_3]){?>
+			<p>
+				<label>Foto 3:</label>						
+				<br><img class="thum-big" src="<?=PUBLIC_WEB_PATH?>/images/<?=$datos[foto_3]?>" />
+				<br><label class="data tx-pq"><?=$datos[foto_3]?></label>
+			</p>
+			<?}?>
+			<?if ($datos[foto_4]){?>
+			<p>
+				<label>Foto 4:</label>						
+				<br><img class="thum-big" src="<?=PUBLIC_WEB_PATH?>/images/<?=$datos[foto_4]?>" />
+				<br><label class="data tx-pq"><?=$datos[foto_4]?></label>
+			</p>
+			<?}?>
+		</div>
+		
+		<div id="tabs-4">
+			<div class="CSSTableGenerator" >
+                <table id="tblVariedades">
+                    <tr>
+                        <td width="25%">Talla</td>
+                        <td width="25%">Código</td>
+                        <td width="25%">Stock</td>
+                        <td width="25%">Estado</td>
+                    </tr>
+                    <? 	
+                    	$items = json_decode( $module->variedades );
+						foreach($items as $item){	
+					?> 
+                    	<tr class="variedades" alt="<?=$item->id?>">
+                    		<td><?=$item->talla?></td>
+                    		<td><?=$item->codigo?></td>
+                    		<td><?=$item->stock?></td>
+                    		<td><?=$item->estado?></td>
+                    	</tr>
+                    <?  } ?>
+                </table>                
+               </div>
+               <br><br>               
+		</div>
+		
+						
+		
+		<div id="tabs-6">
+			<? if ($this->oUser->getRol()>1){ ?>
+			<p>
+				<label>Fecha modificación:</label>
+				<label class="data"><?=$datos[ffmodificacion]?></label>			
+			</p>
+			<br>
+			<p>
+				<label>Usuario:</label>
+				<label><?=($datos[usuario]!="0")?$datos[usuario]:'no auditado'?></label>
+			</p>
+			<?} else echo "<label>Información reservada</label>";?>
+		</div>
+	</div>
+	
+	</div>
+	
+	<div id="botonera">
+		<button id="btDelete" class="ui-danger"><img src="<?=OS_WEB_PATH?>/applications/_commons/_images/delete16.png"/> Eliminar</button>
+		<button id="btModify" class="ui-warning"><img src="<?=OS_WEB_PATH?>/applications/_commons/_images/modify16.png"/> Modificar</button>				
+		<button id="btCancel"><img src="<?=OS_WEB_PATH?>/applications/_commons/_images/back16.png"/> Cancelar</button>
+	</div>
+
+	<input type="hidden" name="id" id="id" value="<?=$datos[id]?>"/>
+	<input type="hidden" name="do" id="do" value=""/>
+	<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>"/>		
+	<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>"/>
+	<input type="hidden" name="channel" id="channel" value="html"/>
+	</form>
+	
+</body>
+</HTML>
+			
+			

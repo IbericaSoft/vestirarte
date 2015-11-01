@@ -1,0 +1,32 @@
+<!--                             MENÚ EN LOS DISPOSITIVOS MÓVILES                                -->
+				<div id="menu_moviles">
+	                <ul class="parent" id="parent">
+	                      <li id="activa_hijo"><a href="/">INICIO</a>
+	                      <ul class="hijo" id="hijo"></ul>
+	                </li>
+					<li id="activa_hijo"><a href="diseñadores.html">DISEÑADORES</a>
+                        <ul class="hijo" id="hijo">
+                        	<? 	foreach ( self::getData("familias") as $datos) { 
+									if ( strtolower($datos["categoria"])!="diseñadores" ) continue; ?>	
+	                        		<li><a href="diseñadores/<?=$datos["familia"]?>.html"><?=$datos["familia"]?></a></li>
+	                        <? } ?>
+                        </ul>
+					</li>
+                    <li id="activa_hijo"><a href="museos.html">MUSEOS</a>
+                        <ul class="hijo" id="hijo">
+                        	<? 	foreach ( self::getData("familias") as $datos) { 
+									if ( strtolower($datos["categoria"])!="museos" ) continue; ?>	
+	                        		<li><a href="museos/<?=$datos["familia"]?>.html"><?=$datos["familia"]?></a></li>
+	                        <? } ?>
+                        </ul>
+                  	</li>
+                  	<li id="activa_hijo"><a href="pintoresca.html">PINTORESCA</a>
+                       	<ul class="hijo" id="hijo">
+                        	<? 	foreach ( self::getData("familias") as $datos) { 
+									if ( strtolower($datos["categoria"])!="pintoresca" ) continue; ?>	
+	                        		<li><a href="pintoresca/<?=$datos["familia"]?>.html"><?=$datos["familia"]?></a></li>
+	                        <? } ?>
+                  		</ul>
+            		</li>
+      				</ul>
+</div>

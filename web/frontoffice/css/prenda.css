@@ -1,0 +1,213 @@
+
+@font-face {
+    font-family: "bebas_neue_regularregular";
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/bebas/bebasneue_regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/bebas/bebasneue_regular-webfont.woff2") format("woff2"), url("../fonts/bebas/bebasneue_regular-webfont.woff") format("woff"), url("../fonts/bebas/bebasneue_regular-webfont.ttf") format("truetype"), url("../fonts/bebas/bebasneue_regular-webfont.svg#bebas_neue_regularregular") format("svg");
+}
+@font-face {
+    font-family: "bebas_neuebold";
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/bebas/BebasNeue Bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/bebas/BebasNeue Bold-webfont.woff2") format("woff2"), url("../fonts/bebas/BebasNeue Bold-webfont.woff") format("woff"), url("../fonts/bebas/BebasNeue Bold-webfont.ttf") format("truetype"), url("../fonts/bebas/BebasNeue Bold-webfont.svg#bebas_neuebold") format("svg");
+}
+@font-face {
+    font-family: "bebas_neuebook";
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/bebas/BebasNeue Book-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/bebas/BebasNeue Book-webfont.woff2") format("woff2"), url("../fonts/bebas/BebasNeue Book-webfont.woff") format("woff"), url("../fonts/bebas/BebasNeue Book-webfont.ttf") format("truetype"), url("../fonts/bebas/BebasNeue Book-webfont.svg#bebas_neuebook") format("svg");
+}
+@font-face {
+    font-family: "bebas_neuelight";
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/bebas/BebasNeue Light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/bebas/BebasNeue Light-webfont.woff2") format("woff2"), url("../fonts/bebas/BebasNeue Light-webfont.woff") format("woff"), url("../fonts/bebas/BebasNeue Light-webfont.ttf") format("truetype"), url("../fonts/bebas/BebasNeue Light-webfont.svg#bebas_neuelight") format("svg");
+}
+@font-face {
+    font-family: "bebas_neue_regularregular";
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/bebas/BebasNeue Regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/bebas/BebasNeue Regular-webfont.woff2") format("woff2"), url("../fonts/bebas/BebasNeue Regular-webfont.woff") format("woff"), url("../fonts/bebas/BebasNeue Regular-webfont.ttf") format("truetype"), url("../fonts/bebas/BebasNeue Regular-webfont.svg#bebas_neue_regularregular") format("svg");
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+/** custom */
+body,html{
+    width: auto;
+    height: 100%;
+    *background-image: url('../images/fondo.jpg');
+    background: #fff;
+    *overflow: hidden;
+}
+img {
+    display: block;
+}
+#container {
+    width: 100%;
+}
+#imagenes_prenda {
+    background-color: white;
+    float: left;
+    padding: 1%;
+    width: 68%;
+    *height:100%;
+    *min-height:100% !important;
+}
+
+#info_prenda {
+    background-color: white;
+    display: block;
+    float: right;
+    padding: 1% 3%;
+    width: 23%;
+}
+.color {
+    cursor: pointer;
+    display: inline-block;
+    height: 30px !important;
+    width: 63px;
+}
+
+.color:focus{
+    border: 3px solid black !important;
+}
+h1, h3 {
+    font-family: "bebas_neue_regularregular";
+}
+h3 {
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 20px;
+}
+p {
+    font-family: "Roboto",sans-serif;
+    font-size: 13px;
+    font-weight: 100;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: justify;
+}
+.color_prenda {
+    margin-top: 16px;
+}
+#info_prenda h1 {
+    border-bottom: 2px solid black;
+    line-height: 34px;
+    margin-bottom: 10px;
+}
+.color_prenda > span {
+    font-family: "bebas_neue_regularregular";
+    font-size: 25px;
+    line-height: 33px;
+    padding-left: 12px;
+    vertical-align: top;
+}
+#info_prenda > span {
+    font-family: "bebas_neue_regularregular";
+    font-size: 31px;
+}
+#genero > span {
+    background-color: black;
+    color: white;
+    display: block;
+    float: left;
+    margin-right: 12px;
+    padding: 10px;
+}
+.styled-select {
+    display: block;
+    padding: 10px;
+}
+select {
+    padding-top: 1px;
+    width: 120px;
+}
+#unidades > span, #talla > span {
+    background-color: white;
+    border: 2px solid black;
+    color: black;
+    display: block;
+    float: left;
+    font-family: "bebas_neue_regularregular";
+    font-size: 18px;
+    margin-right: 9px;
+    padding: 8px 30px;
+    text-align: center;
+    width: 35px;
+}
+#talla {
+    margin-top: 14px;
+}
+/* #unidades {
+    margin-top: 10px;
+}
+input {
+    margin-top: 10px;
+} */
+input.black-button, button {
+    background-color: black;
+    border: medium none;
+    border-radius: 0 !important;
+    color: white;
+    cursor: pointer !important;
+    display: block !important;
+    font-family: "bebas_neue_regularregular",sans-serif;
+    font-size: 22px !important;
+    margin: 33px auto auto !important;
+    padding: 4px !important;
+}
+
+
+.rslides li {
+    list-style: outside none none;
+    width: 100% !important;
+}
+
+.rslides li img{
+    width: 100% !important;
+}
+
+#info_prenda img {
+    border: 10px solid #dddddd;
+    margin: 18px auto;
+    width: 74% !important;
+}
+
+@media (max-width: 800px) {
+    .body_prendas{overflow: scroll !important;}
+
+    #imagenes_prenda {
+
+    width: 98%;
+}
+
+#info_prenda {
+
+    width: 94%;
+}
+}
+
+ul.rslides {
+    position: relative;
+}
+
+
+#precio_base {
+    color: #b0b0b0;
+    font-size: 20px !important;
+    text-decoration: line-through;
+    vertical-align: top;
+}
+#precio_rebajado {
+    margin-left: 17px;
+}
+
+
+span#mensaje {
+    font-size: 16px;
+    margin-left: 6px;
+    vertical-align: super;
+}
+

@@ -1,0 +1,439 @@
+/*ESTILOS RESPONSIVE*/
+
+
+/*AJUSTE DE LA GALERIA DE PRODUCTOS*/
+
+@media (max-width: 1527px) {
+
+#lista_tipos_prendas h4 {
+
+    font-size: 21px !important;
+
+}
+
+#lista_tipos_prendas ul li a {
+
+    font-size: 16px !important;
+
+}
+
+
+#galeria_productos #producto {
+    width: 32.9% !important;
+}
+}
+
+@media (min-width: 1527px) {
+
+#galeria_prendas {
+
+    width: 77%;
+}
+
+#galeria_productos #producto {
+
+    width: 32%;
+}
+}
+
+
+
+
+@media (max-width: 1261px) {
+	#galeria_prendas {
+	    width: 74% !important;
+	}
+	
+	
+	#menu_secundario {
+	    width: 181px;
+	    margin-top: 11px;
+	}
+	
+	#galeria_productos {
+	    float: right;
+	    margin-right: 1%;
+	    width: 75% !important;
+	}
+	
+	#galeria_productos #producto {
+	    width: 32.8% !important;
+	}
+	
+	#menu_secundario h4 {
+	    width: 80%;
+	}
+}
+
+@media (max-width: 916px) {
+
+    #galeria_productos {
+    float: right;
+    margin-right: 1%;
+    width: 68% !important;
+}
+
+#galeria_productos #producto {
+    width: 30.7% !important;
+}
+}
+
+
+/*AJUSTES DEL HEADER EN TAMAÑO DE MOVILES*/
+
+
+@media (min-width: 800px) {
+	#boton_movil > img {
+ display: none;
+}
+
+#menu_moviles{
+    display: none;
+}
+
+#boton_menu_prendas{
+    display: none;
+}
+}
+@media (max-width: 800px) {
+
+  #main {
+    height: 100%;
+    padding-top: 67px;
+	}
+
+	#menu{display: none !important}
+
+	#percha{
+		display: none;
+	}
+
+	
+	#logo_head > img {
+    display: block;
+    margin: auto !important;
+    padding-top: 2px;
+    width: 120px;
+    float: none !important;
+	}
+
+	#boton_movil > img {
+    left: 20px;
+    position: absolute;
+    top: 18px;
+    width: 27px;
+    display: block;
+	}
+
+
+	.home #contenido{
+	
+		height: 100%;
+		}
+	
+	.home #wrapper{
+		height: 100%;
+		}
+	.slider_home .rslides {
+	    height: 100%!important;
+	
+		}
+	
+	.slider_home{
+		height: 100%;
+		}
+	
+	.slider_home .rslides li {
+	    display: none;
+	    height: 100%;
+	    left: 0;
+	    position: absolute;
+	    top: 0;
+	    width: 100%;
+		}
+	
+	.slider_home .rslides li:first-child {
+	    display: block;
+	    float: left;
+	    position: relative;
+		}
+	
+	.slider_home .rslides img {
+	    height: 110% !important;
+	    left: -50% !important;
+	    position: absolute !important;
+	    width: auto !important;
+		}
+	
+	#menu_secundario{display: none;}
+	
+	.slider_no_home{
+	    width: 100% !important; 
+		}
+	
+	#wrapper > #logo{
+	    *display: none;
+	}
+	
+	#main #menu_moviles img{
+	    background-color: white;
+	    margin-top: 13px;
+	    right: 0;
+	    top: 0;
+	    width: 100%;
+	    z-index: 4;
+	    position: relative;
+	    padding: 0 !important;
+	
+		}
+	
+	#main > #logo img{
+	    *display: none;
+		}
+	
+	
+	#galeria_productos {
+	    display: block;
+	    margin: 0 auto auto;
+	    width: 100%;
+	}
+	
+	#galeria_prendas {
+	    width: 100% !important;
+	}
+	
+	#lista_tipos_prendas {
+	    position: absolute;
+	    right: -165px;
+	    top: 64px;
+	    z-index: 4;
+	    height: 100%;
+	-webkit-box-shadow: -11px -4px 23px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow:    -11px -4px 23px 0px rgba(0, 0, 0, 0.75);
+	box-shadow:         -11px -4px 23px 0px rgba(0, 0, 0, 0.75);
+	
+	}
+	
+	#galeria_productos h1 {
+	
+	    padding-left: 20px;
+	    text-align: center;
+	}
+	
+	footer {
+	    background-color: #000000;
+	    z-index: 5;
+	}
+	
+	
+	#boton_menu_prendas {
+	    border: 2px solid white;
+	    float: right;
+	    font-size: 18px;
+	    margin: 0;
+	    padding: 5px 9px;
+	    position: absolute;
+	    right: 30px;
+	    top: 14px;
+	    cursor: pointer;
+	}
+	
+	header{
+	    position: absolute;
+	    z-index: 5;
+	}
+	
+	
+	#galeria_productos {
+	    float: none !important;
+	    margin: auto !important;
+	    width: 93% !important;
+	}
+	
+	#galeria_productos h1 {
+	    background-color: white;
+	    color: black;
+	    margin-top: 20px;
+	    padding-bottom: 4px;
+	    padding-left: 0;
+	    padding-top: 6px;
+	
+	}
+	
+	#info_prenda {
+	    background-color: white;
+	    display: block;
+	    float: right;
+	    padding: 1% 3%;
+	    width: 94% !important;
+	}
+	
+	#imagenes_prenda {
+	    background-color: white;
+	    float: none;
+	    margin: auto auto 20px;
+	    padding: 0%;
+	    width: 68%;
+	}
+	
+	
+	#logo img {
+	*display: none;
+	 
+	}
+	
+	/** custom */
+	#logo span{
+		font-size: 8pt;
+		padding:10px 5px;
+	}
+	
+	.texto-plano{
+	    width: 80% !important;
+	    margin-top: 40px !important;
+	}
+	
+	
+	.cesta-compra {
+	    margin: 31px auto 130px;
+	    width: 90%;
+	}
+	
+	table p {
+	    font-size: 13px;
+	    width: 100%;
+	}
+	
+	.cesta-compra img {
+	    float: left;
+	    width: 100%;
+	}
+}
+
+/*responsive de la pagina de la prenda
+*/
+@media (max-width: 1243px) {
+
+	#info_prenda {
+	
+	    width: 33%;
+	}
+	
+	#imagenes_prenda {
+	    width: 58%;
+	
+	}
+	
+	#imagenes_prenda img{
+	        border:10px solid white;
+	        margin-bottom: 10px;
+	}
+
+}
+
+@media (max-width: 622px) {
+    #imagenes_prenda {
+    width: 100%;
+	}
+	
+	#imagenes_prenda img{
+	    border: none !important;
+	    margin-bottom: 0;
+	}
+}
+@media (max-height: 520px) {
+	#main #logo img{
+	width: 75%;
+	margin-left: auto;
+	margin-right: auto;
+	display: none;
+	
+	}
+	
+	
+	#menu_moviles img{
+	width: 75%;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	
+	}
+}
+
+@media (max-width: 1424px) {
+
+	    #galeria_productos {
+	
+	    width: 65%;
+	}
+	
+	#galeria_prendas {
+	    width: 75%;
+	}
+	
+	#lista_tipos_prendas ul li a {
+	    font-size: 14px !important;
+	}
+}
+
+@media (max-width: 570px) {
+
+	    #galeria_productos #info #nombre {
+	    font-family: "bebas_neue_regularregular",sans-serif;
+	    font-size: 14px;
+	    font-weight: 100;
+	    margin-top: 20%;
+	    text-align: center;
+	}
+	
+	#galeria_productos button {
+	
+	    font-size: 11px;
+	    margin: 7px auto auto;
+	
+	}
+}
+
+@media (max-width: 360px) {
+
+	#galeria_productos #info #nombre {
+	    font-family: "bebas_neue_regularregular",sans-serif;
+	    font-size: 12px;
+	    font-weight: 100;
+	    margin-top: 17%;
+	    text-align: center;
+	}
+	
+	#galeria_productos button {
+	
+	    font-size: 9px;
+	
+	}
+}
+
+@media (max-width: 430px) {
+
+	#logo_head > img {
+	    width: 80px;
+	}
+	
+	#boton_menu_prendas {
+	    font-size: 12px;
+	    right: 16px;
+	    top: 16px;
+	}
+}
+
+@media (max-width: 1655px) {
+.font-big {
+    position: absolute;
+    width: 22px !important;
+}
+}
+
+@media (max-width: 1200px) {
+.cesta-compra {
+    margin: 27px auto 100px !important;
+    width: 90%;
+}
+}

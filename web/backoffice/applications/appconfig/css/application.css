@@ -1,0 +1,6 @@
+.boxHeader{		
+	background-image: url(../images/parametros.png);
+	background-repeat: no-repeat;
+	background-position:right center;
+	border-bottom:5px double #CCC;
+}

@@ -1,0 +1,70 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */	
+	$kernel  =  $this->oDataTemplate->getKeyData('kernel');
+	$datos   =  $this->oDataTemplate->getKeyData('pedidos_app');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<head>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+		<title><?=$kernel['title']?></title>
+		
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var PAGE_NAME		= 'edit';
+		</script>
+		
+		<!-- DESKTOP CONTROL -->
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/prototype.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/scriptaculous/scriptaculous.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/shortcut.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/dobleos/dobleosapiclient.js"></script>
+		
+		<!-- VENTANA ACTUAL -->
+		<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/applications/_commons/<?=$kernel[theme]?>/css/application.css" />
+		<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/applications/proyectos/css/application.css" />
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/proyectos/js/pagosYcobros.js"></script>
+		
+</head>
+	
+<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">Proyecto  &nbsp;&nbsp;Nº:&nbsp;<?=$_REQUEST[obra]?>&nbsp;&nbsp;&nbsp;&nbsp;Estado:&nbsp;<?=$_REQUEST[estado]?></div>
+	</div>
+
+	
+	
+	
+	<form name="fapplication" id="fapplication" class="" >
+	<div class="boxResultList">
+		
+		<div class="titleB">¿Aceptamos el presupuesto?</div>
+		<br>
+		<table cellpadding="0" cellspacing="5" id="buttons" >
+			<tr>
+				<td><input class="field" id="btSIcon" type="button" value="SI y señalizamos" /></td>
+				<td><input class="field" id="btSIsin" type="button" value="SI pero sin señal" /></td>
+				<td><input class="field" id="btNO" type="button" value="De momento NO" /></td>
+				
+			</tr>
+		</table>
+		
+		
+		
+	</div>
+	
+	<input type="hidden" name="estado" id="estado" value=""/>
+	<input type="hidden" name="id" id="id" value="<?=$_REQUEST[id]?>"/>
+	<input type="hidden" name="do" id="do" value=""/>
+	<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>"/>		
+	<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>"/>
+	<input type="hidden" name="channel" id="channel" value="html"/>
+	</form>
+</body>
+</HTML>
+			
+			

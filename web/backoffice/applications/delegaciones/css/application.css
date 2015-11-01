@@ -1,0 +1,26 @@
+.boxHeader{		
+	background-image: url(../images/delegaciones.small.png);
+	background-repeat: no-repeat;
+	background-position:right center;
+	border-bottom:5px double #CCC;
+}
+div#tabs label {
+	display: inline-block;
+	font-weight: bold;
+	font-size: 12px;
+	padding:0px;
+	margin:0px;
+	line-height: 15px;
+	vertical-align: middle;
+	border:0px solid black;
+}
+p {	
+	margin:2px 0px;
+	padding:5px 0px;
+  	vertical-align: top;
+}
+
+#tabs p {margin-top: -5px;}
+input { color:#333; }
+input.error, select.error{	background: #FDBFBF;}
+textarea{width:90%;height:60px;}

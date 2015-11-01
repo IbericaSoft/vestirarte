@@ -1,0 +1,200 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */	
+	$kernel  =  $this->oDataTemplate->getKeyData('kernel');
+	$datos   =  $this->oDataTemplate->getKeyData('administradores');
+	$theme   =  $this->oDataTemplate->getKeyData('theme');
+	$wallpaper  =  $this->oDataTemplate->getKeyData('wallpaper');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+		<meta http-equiv="conten-type" content="text/html; charset=ISO-8859-1" />
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var FORM_STYLE 		= 'custom-theme';
+			var PAGE_NAME		= 'edit';
+			var IMPORT			= "blockui,tabs,dobleos";
+			var MODULE_NAME		= "<?=$kernel['class']?>";
+		</script>		
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.v2.js"></script>
+</head>
+	
+<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">Administradores del sistema - <?=$datos[operacion]?></div>
+	</div>
+
+	<div class="boxMenuButtons">
+		<div class="boxMenuButton" id="mnuLink">
+			<span class="boxMenuImage"><img title="Crea un acceso directo en el escritorio de la vista actual" src="<?=OS_WEB_PATH?>/applications/_commons/_images/shortcut.png" /></span>
+			<span class="boxMenuTitle">Link</span>
+		</div>
+	</div>
+	
+	
+	<form name="fapplication" id="fapplication" class="" >
+	
+	<div id="tabs" style="display:none">
+			<ul>
+			<li><a href="#tabs-1">Ficha</a></li>
+			<li><a href="#tabs-2">Preferencias</a></li>
+			<li><a href="#tabs-3">Iconos</a></li>
+			<li><a href="#tabs-4">Procesos</a></li>
+			</ul>
+			
+			<div id="tabs-1">
+				<p>
+					<label>Nombre completo:</label>
+					<label><input class="roField" type="text" name="nombre" id="nombre" value="<?=$datos[nombre]?>" size="40"/></label>
+				</p>
+				<br/>
+				<p>
+					<label>Usuario:</label>
+					<label><input class="roField" type="text" name="usuario" id="usuario" value="<?=$datos[usuario]?>" size="12"/></label>
+				</p>				
+				<p>
+					<label>Password:</label>
+					<label><input class="roField" type="text" name="password" id="password" value="<?=$datos[password]?>" size="12"/></label>					
+				</p>
+				<br/>
+				<p>
+					<label>E-Mail:</label>
+					<label><input class="roField" type="text" name="email" id="email" value="<?=$datos[email]?>" size="30"/></label>				
+				</p>
+				<p>
+					<label>Perfil:</label>
+					<label>
+						<select class="roField" name="id_perfil" id="id_perfil">
+							<option value="">--Seleccionar--</option>
+							<?
+								$selected = ($datos[id_perfil]==1)?'selected':'';
+								echo "<option value='1' $selected>Usuario</option>";
+
+								$selected = ($datos[id_perfil]==2)?'selected':'';
+								if ( $this->oUser->getRol() > 1 )
+									echo "<option value='2' $selected>Administrador</option>";
+
+								$selected = ($datos[id_perfil]==4)?'selected':'';
+								if ( $this->oUser->getRol() > 2 )
+									echo "<option value='4' $selected>ROOT</option>";
+
+								$selected = ($datos[id_perfil]==8)?'selected':'';
+								if ( $this->oUser->getRol() > 4 )
+									echo "<option value='8' $selected>SYSTEM</option>";
+							?>
+						</select>
+					</label>					
+				</p>
+				<p>
+					<label>Estado:</label>
+					<label>
+						<select name="estado" id="estado" class="roField">
+							<option value="">--Seleccionar--</option>
+							<? 
+								foreach(array("ACT,Habilitado","DES,Inhabilitado") as $options){
+									list($option,$description) = explode(",",$options);
+									$selection='';
+									if ($option==$datos[estado]) $selection='selected';
+										echo "<option value='$option' $selection>$description</option>";
+								} 
+							?>
+						</select>
+					</label>					
+				</p>
+			</div>
+			
+
+			<div id="tabs-2">
+					<table cellpadding="1" cellspacing="4" class="fields" >
+			    		<tr>
+							<td>
+								<div id="icons" class="items">
+									<table id="thumbnail" class="thumbnail">
+										<tr id="thumbnail"><td id="thumbnail"><?=$theme[alias]?></td></tr>
+										<tr id="thumbnail"><td id="thumbnail_img"><img id="thumbnail" src="<?=OS_WEB_PATH?>/themes/<?=$theme[theme]?>/windows/theme/thumbnail.png" /></td></tr>
+									</table>
+									
+									<table id="thumbnail" class="thumbnail">
+										<tr id="thumbnail"><td id="thumbnail"><?=$wallpaper[alias]?></td></tr>
+										<tr id="thumbnail"><td id="thumbnail_img"><img id="thumbnail" src="<?=OS_WEB_PATH?>/wallpapers/<?=$wallpaper[wallpaper]?>" /></td></tr>
+									</table>
+								</div>
+							</td>
+						</tr>
+					</table>
+			</div>
+			
+			<div id="tabs-3">
+					<table cellpadding="1" cellspacing="4" class="fields" >
+						<tr>
+							<td>
+								<div id="icons" class="items">
+									<? 	while( $datosAux = $this->getConnection()->getColumnas( $this->getDataTemplate()->getKeyData('iconos') ) ){	
+											switch( $datosAux['_do'] ){
+												case 'filter':
+													$queHace = 'Listado';break;
+												case 'doEdit':
+													$queHace = 'Edición';break;
+												default:
+													$queHace = 'Otros';
+											}
+									?>
+									
+										<table id="thumbnail" class="thumbnail">
+										<tr id="thumbnail"><td id="thumbnail"><?=$datosAux['_class']?></td></tr>
+										<tr id="thumbnail"><td id=""><img width="48" src="<?=OS_WEB_PATH?><?=$datosAux[_icon]?>" /></td></tr>
+										<tr id="thumbnail"><td id="thumbnail"><?=$queHace?></td></tr>
+										</table>
+									
+									<? } ?>		
+								</div>
+							</td>
+						</tr>
+					</table>
+			</div>
+		
+		
+		<div id="tabs-4">
+					<table cellpadding="1" cellspacing="4" class="" >
+						<tr>
+							<td>
+								<div id="icons" class="items">
+								
+									<? 	while( $datosAux = $this->getConnection()->getColumnas( $this->getDataTemplate()->getKeyData('procesos') ) ){ ?>
+										
+										<table id="thumbnail" class="fiels">
+										<tr id=""><td id="thumbnail" class="left text10">Proceso: <?=$datosAux['_class']?></td></tr>
+										<tr id=""><td id="" class="left text10">Actualizado <?=$datosAux[fecha]?></td></tr>
+										</table>
+
+									<? } ?>		
+								
+								</div>
+							</td>
+						</tr>
+					</table>
+			</div>
+		</div>
+		
+		<table cellpadding="0" cellspacing="5" id="buttons" >
+			<tr>
+				<td><input class="warn" id="btEliminar" type="button" value="Eliminar" /></td>
+				<td><input class="" id="btCancelar" type="button" value="Cancelar" /></td>
+				<td><input class="" id="btAceptar" type="button" value="Aceptar" /></td>
+			</tr>
+		</table>
+
+	
+	<input type="hidden" name="id" id="id" value="<?=$datos[id]?>">
+	<input type="hidden" name="do" id="do" value="">
+	<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>">		
+	<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>">
+	<input type="hidden" name="channel" id="channel" value="html">
+	</form>
+	
+</body>
+</HTML>

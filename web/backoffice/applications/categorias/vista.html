@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript">
+		var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+		var PWEB_PATH 		= '<?=PUBLIC_WEB_PATH?>';
+		var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+		var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+		var MODULE_NAME		= "<?=strtolower($this->getOrderActionClass()->getClass())?>";
+	</script>
+	<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.v3.js"></script>
+</head>
+<body class="application view">
+	<form>
+		<div class="boxHeader">
+			<div class="title" title="<?=$module->version_detail?>">Categorías - <?=$datos[operacion]?><span class="version"><?=$module->version_info?></span></div>			
+			<div class="botones">
+				<div class="menuBotones" id="btExport"><img title="Exportar los datos a formato excel" src="<?=OS_WEB_PATH?>/applications/_commons/_images/excel.png" /></div>
+				<div class="menuBotones" id="btPrint"><img title="Imprimir estos datos" src="<?=OS_WEB_PATH?>/applications/_commons/_images/pdf32.png" /></div>
+				<div class="menuBotones" id="btLink"><img title="Acceso directo en el escritorio" src="<?=OS_WEB_PATH?>/applications/_commons/_images/link32.png" /></div>
+			</div>
+		</div>
+	
+		<div class="contenido">	
+			<div id="tabs">
+			<ul>
+			<li><a href="#tabs-1">Ficha</a></li>
+			<li><a href="#tabs-2">Fotos</a></li>
+			<li><a href="#tabs-3">Control</a></li>
+			</ul>
+				<div id="tabs-1" class="tabs">
+					<p>
+						<label>Categoría:</label>
+						<label class="data ml"><?=$datos[categoria]?></label>
+					</p>
+					<p>
+						<label>&nbsp;Posición:</label>
+						<label class="data ml"><?=$datos[posicion]?></label>
+					</p>
+					<br>
+					<p>
+						<label>Descripción:</label>
+						<label class="data ml"><?=$datos[descripcion]?></label>
+					</p>
+					<br>
+					<p>
+						<label>&nbsp;Estado:</label>
+						<label class="data ml"><?=$datos[festado]?></label>
+					</p>
+				</div>
+				
+				<div id="tabs-2">
+					<p>
+						<label>Foto 1:</label>						
+						<br><img class="thum-big" src="<?=PUBLIC_WEB_PATH?>/images/<?=$datos[foto_1]?>" />
+						<br><label class="data tx-pq"><?=$datos[foto_1]?></label>
+					</p>
+					<?if ($datos[foto_2]){?>
+					<p>
+						<label>Foto 2:</label>						
+						<br><img class="thum-big" src="<?=PUBLIC_WEB_PATH?>/images/<?=$datos[foto_2]?>" />
+						<br><label class="data tx-pq"><?=$datos[foto_2]?></label>
+					</p>
+					<?}?>
+					<?if ($datos[foto_3]){?>
+					<p>
+						<label>Foto 3:</label>						
+						<br><img class="thum-big" src="<?=PUBLIC_WEB_PATH?>/images/<?=$datos[foto_3]?>" />
+						<br><label class="data tx-pq"><?=$datos[foto_3]?></label>
+					</p>
+					<?}?>
+				</div>
+				
+				<div id="tabs-3">
+					<? if ($this->oUser->getRol()>1){ ?>
+					<p>
+						<label>Fecha modificación:</label>
+						<label class="data"><?=$datos[ffmodificacion]?></label>			
+					</p>
+					<br>
+					<p>
+						<label>Usuario:</label>
+						<label><?=($datos[usuario]!="0")?$datos[usuario]:'no auditado'?></label>
+					</p>
+					<?} else echo "<label>Información reservada</label>";?>
+				</div>
+			
+			</div>
+			
+			<div id="botonera">
+				<button id="btDelete" class="ui-danger"><img src="<?=OS_WEB_PATH?>/applications/_commons/_images/delete16.png"/> Eliminar</button>
+				<button id="btModify" class="ui-warning"><img src="<?=OS_WEB_PATH?>/applications/_commons/_images/modify16.png"/> Modificar</button>				
+				<button id="btCancel"><img src="<?=OS_WEB_PATH?>/applications/_commons/_images/back16.png"/> Cancelar</button>
+			</div>
+		</div>	
+		
+		<input type="hidden" name="id" id="id" value="<?=$datos[id]?>"/>
+		<input type="hidden" name="do" id="do" value=""/>
+		<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>"/>		
+		<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>"/>
+		<input type="hidden" name="channel" id="channel" value="html"/>
+	</form>	
+</body>
+</HTML>			

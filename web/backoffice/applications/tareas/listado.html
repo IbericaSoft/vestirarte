@@ -1,0 +1,164 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */	
+	$kernel  =  $this->oDataTemplate->getKeyData('kernel');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<head>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var FORM_STYLE 		= 'custom-theme';
+			var PAGE_NAME		= 'list';
+			var IMPORT			= "dobleos,blockui";
+			var MODULE_NAME		= "<?=$kernel['class']?>";
+		</script>		
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.v2.js"></script>
+</head>
+	
+<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">Tareas - Listado</div>
+	</div>
+
+	<div class="boxMenuButtons">
+		<div class="boxMenuButton" id="mnuNew">
+			<span class="boxMenuImage"><img title="Nuevo registro" src="<?=OS_WEB_PATH?>/applications/tareas/images/task.btn.png" /></span>
+			<span class="boxMenuTitle">Nuevo</span>
+		</div>
+		<div class="boxMenuButton" id="mnuSearch">
+			<span class="boxMenuImage"><img title="Buscar datos con los criterios indicados en filtros" src="<?=OS_WEB_PATH?>/applications/_commons/_images/search.png" /></span>
+			<span class="boxMenuTitle">Buscar</span>
+		</div>
+		<div class="boxMenuButton" id="mnuExport">
+			<span class="boxMenuImage"><img title="Exportar los datos a formato excel" src="<?=OS_WEB_PATH?>/applications/_commons/_images/excel.png" /></span>
+			<span class="boxMenuTitle">Excel</span>
+		</div>		
+		<div class="boxMenuButton" id="mnuLink">
+			<span class="boxMenuImage"><img title="Crea un acceso directo en el escritorio de la vista actual" src="<?=OS_WEB_PATH?>/applications/_commons/_images/shortcut.png" /></span>
+			<span class="boxMenuTitle">Link</span>
+		</div>
+		<div class="boxMenuButton" id="mnuPrint">
+			<span class="boxMenuImage"><img title="Imprimir estos datos" src="<?=OS_WEB_PATH?>/applications/_commons/_images/print.png" /></span>
+			<span class="boxMenuTitle">PDF</span>
+		</div>
+
+	</div>
+	
+	<div class="boxFilters" id="boxFilters">
+		<fieldset class="filter">
+		<legend class="filter">Campos filtro</legend>
+		<form name="filters" id="filters" class="forms" >
+		<table cellpadding="0" cellspacing="0">
+		<tr>
+			<td class="filter">Destinatario</td>
+			<td class="filter">Prioridad</td>
+			<td class="filter">Estado</td>
+			<td class="filter">&nbsp;</td>
+		</tr>
+		<tr>		
+			<td>
+				<select class="field" name="_destinatario" id="_destinatario" >
+				<option value="">Todos</option>
+					<?
+						$items = json_decode($this->oDataTemplate->getKeyData('admin_cache'));
+						foreach($items as $item){
+							$selection='';
+							if ($item->id==$_REQUEST[_destinatario]) $selection='selected';					
+							echo "<option value='$item->id' $selection>".utf8_decode($item->nombre)."</option>\n";
+						}
+					?> 
+				</select>
+			</td>
+			<td>
+				<select class="field" name="_prioridad" id="_prioridad" >
+					<option value="">--Seleccionar--</option>
+					<? 
+						foreach(array("NORMAL,Normal","ALTA,Alta","URGENTE,Máxima") as $options){
+							list($option,$description) = explode(",",$options);
+							$selection='';
+							if ($option==$_REQUEST[_prioridad]) $selection='selected';
+							echo "<option value='$option' $selection>$description</option>";
+						} 
+					?>
+				</select>
+			</td>					
+			<td>
+				<select class="field" name="_estado" id="_estado" >
+					<option value="">--Seleccionar--</option>
+					<? 
+						foreach(array("ACT,Pendientes","FIN,Finalizadas") as $options){
+							list($option,$description) = explode(",",$options);
+							$selection='';
+							if ($option==$_REQUEST[_estado]) $selection='selected';
+							echo "<option value='$option' $selection>$description</option>";
+						} 
+					?>
+				</select>
+			</td>
+		</tr>
+		</table>
+		</form>
+		</fieldset>
+	</div>
+	
+	<div class="boxResultList">
+		
+		<!--RESULTADOS-->
+		<table cellpadding="0" cellspacing="0" width="100%" id="tbLista">
+			<tr>
+				<th class="colIcon" 	width="5%">&nbsp;</th>
+				<th class="colIcon" 	width="5%">&nbsp;</th>
+				<th class="colSort" 	width="20%">Destinatario</th>
+				<th class="colSort" 	width="10%">Prioridad</th>
+				<th class="colSort" 	width="30%">Descripción</th>
+				<th class="colNumber" 	width="15%">Fecha&nbsp;límite</th>
+				<th class="colNumber" 	width="15%">Fecha&nbsp;fin</th>
+			</tr>
+			<? 	while( $datos = $this->getConnection()->getColumnas( $this->getDataTemplate()->getKeyData('tareas') ) ){	?>
+					<tr title="click para editar" class="rowDataOff" id="tr_rowdata_<?=$datos[id]?>">
+						<td class="colIcon" title="Finalizada">
+							<? if ( $datos[estado]=='FIN' ) { ?>
+								<img src="<?=OS_WEB_PATH?>/applications/_commons/_images/lock.png" alt="Finalizada">
+							<? } else echo '&nbsp;'; ?>
+						</td>
+						<td class="colIcon"><img src="<?=OS_WEB_PATH?>/applications/_commons/_images/edit.png" alt="Ver"/></td>
+						<td class="colSort"><?=$datos[nombre]?></td>
+						<td class="colSort"><?=$datos[prioridad]?></td>
+						<td class="colSort"><?=$datos[descripcion]?></td>
+						<td class="colNumber"><?=$datos[fecha_limite]?></td>
+						<td class="colNumber"><?=$datos[fecha_fin]?>&nbsp;</td>
+					</tr>
+			<? 	} ?> 
+			<tr class="rowDataOff" id="">
+				<td class="colSort" title="" colspan="10">&nbsp;</td>
+			</tr>
+		</table>
+		<!--FIN RESULTADOS-->
+		
+		
+		
+	</div>	
+	
+	<!--Info paginacion-->
+	<div class="pagination">	
+		<table cellpadding="0" cellspacing="0" width="100%" id="tbCount">
+			<tr class="pagination"><td class="pagination"><?=$this->getConnection()->pintaPaginacion();?></td></tr>
+		</table>
+	</div>
+	<!--FIN Info paginacion-->
+	
+	<form name="fapplication" id="fapplication" class="" >
+	<input type="hidden" name="id" id="id" value="">
+	<input type="hidden" name="do" id="do" value="">
+	<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>">		
+	<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>">
+	<input type="hidden" name="channel" id="channel" value="html">
+	</form>
+	
+</body>
+</HTML>

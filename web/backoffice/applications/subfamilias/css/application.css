@@ -1,0 +1,10 @@
+.boxHeader{		
+	background-image: url(../images/subfamilias.small.png);
+	background-repeat: no-repeat;
+	background-position:right center;
+	border-bottom:5px double #CCC;
+}
+
+.thum{ width:50px; height-max:50px; }
+.thum-big{ max-width:200px; height-max:200px; }
+#descripcion {min-width:100%;}

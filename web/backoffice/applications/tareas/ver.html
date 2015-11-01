@@ -1,0 +1,101 @@
+<?
+	/** esta plantilla funcionara con los datos aqui recogidos */	
+	$kernel  =  $this->oDataTemplate->getKeyData('kernel');
+	$datos   =  $this->oDataTemplate->getKeyData('tareas');
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<head>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1"/>
+		<title><?=$kernel['title']?></title>
+		
+		<script type="text/javascript">
+			var WEB_PATH 		= '<?=OS_WEB_PATH?>';
+			var WINDOWS_STYLE 	= '<?=$kernel['theme']?>';
+			var WINDOWS_HANDLE 	= '<?=$kernel['handle']?>';
+			var PAGE_NAME		= 'view';
+		</script>
+		
+		<!-- DESKTOP CONTROL -->
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/prototype.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/system/shortcut.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/jscore/dobleos/dobleosapiclient.js"></script>
+		
+		<!-- VENTANA ACTUAL -->
+		<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/applications/_commons/<?=$kernel[theme]?>/css/application.css" />
+		<link rel="stylesheet" type="text/css" href="<?=OS_WEB_PATH?>/applications/tareas/css/application.css" />
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/_commons/_js/application.js"></script>
+		<script type="text/javascript" src="<?=OS_WEB_PATH?>/applications/tareas/js/application.js"></script>		
+	</head>
+	
+<body class="application">
+	
+	<div class="boxHeader">
+		<div class="title">Tareas - <?=$datos[operacion]?></div>
+	</div>
+
+	<div class="boxMenuButtons">
+		<div class="boxMenuButton" id="mnuPrint">
+			<span class="boxMenuImage"><img title="Imprimir estos datos" src="<?=OS_WEB_PATH?>/applications/_commons/_images/print.png" /></span>
+			<span class="boxMenuTitle">PDF</span>
+		</div>
+	</div>
+	
+	
+	<form name="fapplication" id="fapplication" class="" >
+	<div class="boxResultList">
+		
+		<table cellpadding="0" cellspacing="5" width="100%" class="fields" >
+			<tr>
+				<td width="25%">Destinatario:</td>
+				<td><?=$datos[nombre]?></td>
+			</tr>
+			
+			<tr>
+					<td width="25%">Descripción:</td>
+					<td><?=$datos[descripcion]?></td>					
+			</tr>
+			<tr>
+					<td width="25%">Prioridad:</td>
+					<td><?=$datos[prioridad]?></td>					
+			</tr>
+			<tr>
+					<td width="25%">Tarea:</td>
+					<td><?=$datos[tarea]?></td>					
+			</tr>
+			<tr>
+					<td width="25%">Fecha límite:</td>
+					<td><?=$datos[fecha_limite]?></td>					
+			</tr>
+			<tr>
+					<td width="25%">Fecha cierre:</td>
+					<td>Finalizada el <?=$datos[fecha_fin]?></td>					
+			</tr>
+			<tr>
+					<td width="25%">Comentarios al cierre:</td>
+					<td><?=$datos[comentarios]?></td>					
+			</tr>
+		</table>
+		
+		<table cellpadding="0" cellspacing="5" id="buttons" >
+			<tr>
+				<td>
+					<input class="field" id="btCancelar" type="button" value="Volver" >
+				</td>
+			</tr>
+		</table>
+		
+		
+		
+	</div>
+	<input type="hidden" name="id" id="id" value="<?=$datos[id]?>"/>
+	<input type="hidden" name="do" id="do" value=""/>
+	<input type="hidden" name="sessionclass" id="sessionclass" value="<?=$this->getOrderActionClass()->getClassSession()?>"/>		
+	<input type="hidden" name="class" id="class" value="<?=$this->getOrderActionClass()->getClass()?>"/>
+	<input type="hidden" name="channel" id="channel" value="html"/>
+	</form>
+	
+</body>
+</HTML>
+			
+			

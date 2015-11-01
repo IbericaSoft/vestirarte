@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <?echo $this->executeBlock('DATA')?>
+    <?echo $this->executeBlock('HEAD')?>
+</head>
+<body>
+
+		<div id="contenido">
+            <div id="wrapper">
+
+				<!-- menu PÃ�GINA -->
+            	<?require("menu_header.html")?>
+    
+				<div id="main">
+					<?require("menu_movil.html")?>
+      				<div class="cesta-compra">
+	      				<table>
+				      			<tr class="">
+				      			<td><h1><?=self::getData("tpv-titulo")?></h1></td>
+				      			</tr>
+			      		</table>      
+	
+				       	<div class="total">
+				            <p>
+				            	<?
+				            		switch ( self::getData("tpv-resultado") ){
+				            		case 'SIN-PEDIDO':?>
+				            		<!-- texto no hay pedido-estos es extraño -->
+				            		Deberíamos mostrarle el resultado de una operación contra el TPV, pero no hay ningún pedido que consultar.
+									Esto puede ser porque esta recargando la página del TPV con el botón atrás o refrescandola, o simplemente porque la pagina a caducado y ya no hay ningún pedido.
+									En cualquier caso, en su email recibirá los datos del pedido si lo hubire, en unos minutos.
+				            	<?	break;
+				            		case 'PEDIDO-ACEPTADO':?>
+				            		<!-- texto pedido aceptado -->
+				            		Su pedido <u><?=self::getData("tpv-pedido")?></u> ha sido aprobado con el código <u><?=self::getData("tpv-codigo")?></u>. Le hemos enviado un email a <u><?=self::getData("tpv-email")?></u> con los detalles del pedido.
+				            		<br>Gracias por su confianza 
+				            		
+				            	<?	break;
+				            		case 'PEDIDO-RECHAZADO':?>
+				            		<!-- texto pedido rechazado -->
+				            		Puede volver a intentarlo o probar con otra tarjeta. Su pedido esta todavía en la cesta.
+				            		
+				            	<?	break;
+				            		case '?':?>
+				            		<!-- texto el pedido no se ha movido pero tenemos datos de un pedido en la cesta -->
+				            		La entidad a cancelado la operación o simplemente, no hay operación que procesar. Es posible que esto se deba a:
+				            		<br>La tarjeta que ha utilizado no es admitida por nuestra entidad.
+				            		<br>Ve esta pagina porque ha usado los botones atras/adelante del navegador y ya no hay pedido
+				            		
+				            		
+				            		
+				            	<?  break;
+				            		}
+								?>			            
+				            </p>
+				      	</div>      
+	      				<button id="vale">VALE</button>
+	      			</div>
+				</div>
+            	<!-- FOOTER -->
+				<?require("footer.html")?>
+        	</div>
+      	</div>
+      
+      	<script>
+		$(document).ready(function(){
+			$("#vale").click(function(){
+				document.location.href="<?=self::getData("tpv-continuar")?>";
+			});
+		});
+    	</script>
+    
+</body>
+</html>

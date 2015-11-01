@@ -1,0 +1,105 @@
+body {
+	margin: 0px 0px;
+	padding: 0px 0px;
+	font-family: verdana, arial, helvetica, sans-serif;
+	color: #ccc;
+	background-color: #fff;
+	text-align: left;
+	font-size: 12px;
+	overflow: hidden;
+}
+
+#title{
+	background-color: #404040;
+	color: #fff;
+	height: 50;
+	font-weight: bold;
+	background-image: url(images/panel.png);
+	background-repeat: no-repeat;
+	background-position:right center;
+	padding-left: 10px;
+}
+
+#verticalmiddle{
+	position:relative; 
+	top:45%;
+}
+
+#menu {
+	float: left;
+	width: 25%;
+	height: 100%;
+	padding: 10 10;
+	color:#999;
+	line-height:12px;
+	border:1px solid #CCC;
+	-webkit-border-top-right-radius: 20px;
+	-webkit-border-bottom-right-radius: 20px;
+	-moz-border-radius-topright: 20px;
+	-moz-border-radius-bottomright: 20px;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+#content {
+	margin-left: 2px;
+	float: left;
+	width: 68%;
+	height: 82%;
+	padding: 10 10;
+	border:1px solid #CCC;
+	-webkit-border-top-left-radius: 20px;
+	-webkit-border-bottom-left-radius: 20px;
+	-moz-border-radius-topleft: 20px;
+	-moz-border-radius-bottomleft: 20px;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	overflow-y: scroll;
+	
+}
+
+div.wallpapers{display: none;}
+div.themes{display: none;}
+	
+
+A:link{
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 30px;
+    CURSOR: hand;
+    COLOR: #000000;
+    TEXT-DECORATION: none;
+}
+A:visited{
+    CURSOR: hand;
+    COLOR: #000000;
+    TEXT-DECORATION: none
+}
+A:hover{
+    CURSOR: hand;
+    COLOR: #000000;
+    TEXT-DECORATION: none
+}
+
+img#thumbnail{
+	width: 128px;
+	height: 100px;
+	border: 1px solid #CCC;
+}
+
+table#thumbnail {	
+	border: 1px solid #000;
+	float: left;
+	margin: 10 10;
+}
+
+td#thumbnail_img {
+	width: 60px;
+	height: 100px;
+}
+
+td#thumbnail {
+	text-align:center;
+	font-size: 12px;
+	color: #000;
+}
