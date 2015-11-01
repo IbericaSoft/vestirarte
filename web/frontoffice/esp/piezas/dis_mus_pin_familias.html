@@ -5,66 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?echo $this->executeBlock('DATA')?>
     <?echo $this->executeBlock('HEAD')?>
-    <style>
-    body,html{
-    	<? 	if ( self::$shop->categoria_actual=="diseñadores" ){
-    			echo "background-image: url('{web}/images/fondo-diseñadores.jpg') !important;";
-    		}elseif ( self::$shop->categoria_actual=="museos" ){
-    			echo "background-image: url('{web}/images/fondo-museos.jpg') !important;";
-    		}elseif ( self::$shop->categoria_actual=="pintoresca" ){
-    			echo "background-image: url('{web}/images/fondo-pintoresca.jpg') !important;";
-    		}else{
-    			echo "background-image: url('{web}/images/fondo.jpg') !important;";
-    		}		
-    	?>	
-    }
-    </style>
 </head>
-<body>
+<body class="home home-<?=self::$shop->categoria_actual?>">
 	<div id="contenido">
 		<div id="wrapper">
-
-       		<!-- menu PÁGINA -->
-            <?require("menu_header.html")?>
-
 			<div id="main">
-
-				<!-- MENÚ EN LOS DISPOSITIVOS MÓVILES -->
-				<div id="menu_moviles">
-	                <ul class="parent" id="parent">
-	                      <li id="activa_hijo"><a href="index.html">INICIO</a>
-	                </li>
-					<li id="activa_hijo"><a href="disenadores.html">DISEÑADORES</a>
-                        <ul class="hijo" id="hijo">
-                        	<? 	foreach ( self::getData("familias") as $datos) { 
-									if ( strtolower($datos["categoria"])!=("diseñadores") ) continue; ?>	
-	                        		<li><a href="diseñadores/<?=url_friendly($datos[familia])?>.html"><?=$datos["familia"]?></a></li>
-	                        <? } ?>
-                        </ul>
-					</li>
-                    <li id="activa_hijo"><a href="museos.html">MUSEOS</a>
-                        <ul class="hijo" id="hijo">
-                        	<? 	foreach ( self::getData("familias") as $datos) { 
-									if ( strtolower($datos["categoria"])!="museos" ) continue; ?>	
-	                        		<li><a href="museos/<?=url_friendly($datos[familia])?>.html"><?=$datos["familia"]?></a></li>
-	                        <? } ?>
-                        </ul>
-                  	</li>
-                  	<li id="activa_hijo"><a href="pintoresca.html">PINTORESCA</a>
-                       	<ul class="hijo" id="hijo">
-                        	<? 	foreach ( self::getData("familias") as $datos) { 
-									if ( strtolower($datos["categoria"])!="pintoresca" ) continue; ?>	
-	                        		<li><a href="pintoresca/<?=url_friendly($datos[familia])?>.html"><?=$datos["familia"]?></a></li>
-	                        <? } ?>
-                  		</ul>
-            		</li>
-      				</ul>
-      				
-				</div>
-
+				<?require("menu_header.html")?>
+      			<?//require("menu_movil.html")?>
       			<!-- MENU EN EL QUE SE MUESTRAN LAS FAMILIAS -->
      			<div id="first-sidebar"> 
-      				
      				<div id="menu_secundario">
 			    		<h4 class="titulo"><?=strtoupper(self::$shop->categoria_actual)?> <img src="{web}/images/triangulo.png" alt=""> </h4>
 			    		<ul class="lista_elementos">
@@ -87,16 +36,14 @@
 			                                   <span class="nombre_diseñador"><?=$datos[familia]?></span>
 			                                   <span class="nombre_prenda"><?=$datos[subfamilia]?></span>
 			                                   <? 
-			$oferta = round(((($datos[iva]/100)+1)*$datos[oferta]),2);
-			$precio = round(((($datos[iva]/100)+1)*$datos[precio]),2);
-			if ( $datos[oferta]>0 ){
-				
-				echo "<span id='precio_rebajado'>$oferta&euro;</span><span id='mensaje'>(Rebajado)</span>";
-			}else{	
-				echo "<span>$precio&euro;</span>";
-			}
-			?>
-			                                   <!-- <span class="precio"><?=$datos[precio]?>&euro;</span> -->
+													$oferta = round(((($datos[iva]/100)+1)*$datos[oferta]),2);
+													$precio = round(((($datos[iva]/100)+1)*$datos[precio]),2);
+													if ( $datos[oferta]>0 ){				
+														echo "<span id='precio_rebajado'>$oferta&euro;</span><span id='mensaje'>(Rebajado)</span>";
+													}else{	
+														echo "<span>$precio&euro;</span>";
+													}
+												?>
 			                            </div>
 		                            	<button class="comprar" href="#" data-featherlight="#enlace_<?=$datos[id]?>">COMPRAR</button>
 		                     		</div>
@@ -104,7 +51,8 @@
                      	<? } ?>
               		</ul>
        			</div>
-			
+				
+				<?require("footer.html")?>
 			</div>
 			
 			<div id="contenedor_prendas">
@@ -112,9 +60,6 @@
                 <iframe id="enlace_<?=$datos[id]?>" src="/ficha/<?=$datos[articulo]?>.html" frameborder="0" class="lightbox"></iframe>
             <?}?>
 			</div>	
-			
-      		<!-- FOOTER DE LA PÁGINA -->
-			<?require("footer.html")?>
 		</div>
 	</div>
 	

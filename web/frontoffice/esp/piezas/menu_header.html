@@ -1,19 +1,21 @@
 <header>
         <div id="boton_movil"><img src="{web}/images/boton_menu.png" alt=""></div>
-        <div id="logo_head"><a href="/"><img src="{web}/images/logo-vestirarte-blanco.jpg" alt=""></a><a href="#" class="copyright-vestirarte"><img class="logo-copyright"src="{web}/images/logo-copyright.png" alt=""></a></div>
+        <div id="logo_head"><a href="/"><img src="{web}/images/logo-sepn.png" alt=""></a><a href="#" class="copyright-vestirarte"><img class="logo-copyright"src="{web}/images/logo-copyright.png" alt=""></a></div>
         
         <div class="menu_main" id="menu">
               <ul>
                     <!-- <li class="<?=(self::$shop->categoria_actual=="inicio")?'active':''?>"><a href="/">INICIO</a></li> -->
-                    <li class="<?=(self::$shop->categoria_actual=="vestirarte")?'active':''?>"><a href="/vestirarte.html">VESTIRARTE</a></li>
-                    <li class="<?=(self::$shop->categoria_actual=="artenmoda")?'active':''?>"><a href="/artenmoda.html">ARTENMODA</a></li>
-                    <li class="<?=(self::$shop->categoria_actual=="pintoresca")?'active':''?>"><a href="/pintoresca.html">PINTORESCA</a></li>
+                    <li class="<?=(self::$shop->categoria_actual=="artenmoda")?'active':''?>"><a href="/artenmoda.html"><img src="{web}/images/logo-artenmoda.png" alt=""></a></li>
+                    
+                    <li class="<?=(self::$shop->categoria_actual=="vestirarte")?'active':''?>"><a href="/vestirarte.html"><img src="{web}/images/logo-vestirarte.png" alt=""></a></li>
+                    
+                    <li class="<?=(self::$shop->categoria_actual=="pintoresca")?'active':''?>"><a href="/pintoresca.html"><img src="{web}/images/logo-pintoresca-b.png" alt=""></a></li>
               </ul>
         </div>
         
         <div id="percha">
-        	<a href="/datos-envio.html" style=""><span><?=(self::$shop->cliente->nombre=="")?"Bienvenido!":self::$shop->cliente->nombre?>&nbsp;</span><img src="{web}/images/<?=(self::$shop->cliente->nombre=="")?"cara-normal-32.png":"cara-sonrisa-32.png"?>" alt="mis datos"/></a>        	
-        	<a href="/cesta.html"><img src="{web}/images/percha-32.png" alt="cesta arte y moda"/><span id="infocesta"><?=self::$shop->cesta->total_articulos()?> ARTÍCULOS<br><?=self::$shop->cesta->cesta_con_iva_formato()?></span></a>
+        	<a href="/datos-envio.html" style=""><img width="20px" src="{web}/images/<?=(self::$shop->cliente->nombre=="")?"cara-normal.png":"cara-sonrisa.png"?>" alt="mis datos"/></a>        	
+        	<a href="/cesta.html"><img width="28px" src="{web}/images/percha.png" alt="cesta arte y moda"/></a>
         </div>
         
         <span id="boton_menu_prendas">ELIGE TU PRENDA</span>
