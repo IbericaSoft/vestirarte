@@ -1,29 +1,29 @@
 <header>
-        <div id="boton_movil"><img src="{web}/images/boton_menu.png" alt=""></div>
-        <div id="logo_head"><a href="/"><img src="{web}/images/logo-sepn.png" alt=""></a><a href="#" class="copyright-vestirarte"><img class="logo-copyright"src="{web}/images/logo-copyright.png" alt=""></a></div>
+        <!-- <div id="boton_movil"><img src="{web}/images/boton_menu.png" alt=""></div>
+        <div id="logo_head"><a href="/"><img src="{web}/images/logo-sepn.png" alt=""></a><a href="#" class="copyright-vestirarte"><img class="logo-copyright"src="{web}/images/logo-copyright.png" alt=""></a></div> -->
         
-        <div class="menu_main" id="menu">
+        <div id="menu">
               <ul>
-                    <!-- <li class="<?=(self::$shop->categoria_actual=="inicio")?'active':''?>"><a href="/">INICIO</a></li> -->
                     <li class="<?=(self::$shop->categoria_actual=="artenmoda")?'active':''?>"><a href="/artenmoda.html"><img src="{web}/images/logo-artenmoda.png" alt=""></a></li>
-                    
                     <li class="<?=(self::$shop->categoria_actual=="vestirarte")?'active':''?>"><a href="/vestirarte.html"><img src="{web}/images/logo-vestirarte.png" alt=""></a></li>
-                    
                     <li class="<?=(self::$shop->categoria_actual=="pintoresca")?'active':''?>"><a href="/pintoresca.html"><img src="{web}/images/logo-pintoresca-b.png" alt=""></a></li>
               </ul>
+        </div>        
+        
+        <div id="percha">        	        
+        	<a href="/cesta.html"><img src="{web}/images/percha.png" alt="cesta de la compra"/><span id="infocesta">0,00 &euro;</span></a>
+        </div>
+        <div id="login">
+        	<a href="/datos-envio.html"><img src="{web}/images/<?=(self::$shop->cliente->nombre=="")?"cara-normal.png":"cara-sonrisa.png"?>" alt="mis datos"/><span><?=(!self::$shop->cliente->nombre)?"Hola":self::$shop->cliente->nombre?></span></a>
         </div>
         
-        <div id="percha">
-        	<a href="/datos-envio.html" style=""><img width="20px" src="{web}/images/<?=(self::$shop->cliente->nombre=="")?"cara-normal.png":"cara-sonrisa.png"?>" alt="mis datos"/></a>        	
-        	<a href="/cesta.html"><img width="28px" src="{web}/images/percha.png" alt="cesta arte y moda"/></a>
-        </div>
-        
-        <span id="boton_menu_prendas">ELIGE TU PRENDA</span>
+        <!-- <span id="boton_menu_prendas">ELIGE TU PRENDA</span> -->
         
         <script>
         $(document).ready(function(){
-        	$("#percha a").hover(function(){$(this).effect( "pulsate" );},function(){});
+        	$("#percha a, #login a").hover(function(){$(this).effect( "pulsate" );},function(){});
         	$("#logo_head a img").draggable();
         });
         </script>
 </header>
+<div class="clear"></div>

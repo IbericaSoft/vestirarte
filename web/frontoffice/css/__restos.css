@@ -2,64 +2,135 @@
 *********************# 
 	ESTRUCTURA	
 **********************/
-body,html{width: 99%;height: 100%;}
+body,html{width: 100%;height: 100%;}
 .home {background-image: url(/frontoffice/images/fondo.jpg);}
 .home-artenmoda{background-image: url(/frontoffice/images/fondo-artenmoda.jpg) !important;}
 .home-vestirarte{background-image: url(/frontoffice/images/fondo-vestirarte.jpg) !important;}
 .home-pintoresca{background-image: url(/frontoffice/images/fondo-pintoresca.jpg) !important;}
-.clear { clear:both; }
-section { border:1px solid red; width:100%; height:1600px; margin-top:50px; margin-bottom:50px;}
-aside {
-    position: fixed;
-    border-image: url("/frontoffice/images/imagen-marco.jpg") 50 50 50 50 repeat repeat;    
-    border-style: solid;
-    border-width: 50px;
-    height: calc(100% - 100px) !important;
-    width: calc(100% - 100px) !important;
-    z-index:1;    
+
+#wrapper {
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute;
 }
 
-/*********************
-*********************# 
-	HEADER	
-**********************/
-header { background: black;width:calc(100%-100px);position:relative;top:50px;height:100px;border-bottom: 3px double #695636; z-index:0; padding:0px 50px;}
-header span {color: white;font-family: 'bebas_neue_regularregular', sans-serif;font-size:22px; font-weight: 300;padding:8px; }
-header #menu { width:85%;height:100%;float:left;} 
-header #percha { width:10%;height:50px;float:right;margin-right:10px;border-left: 3px double #695636;}
-header #login { width:10%;height:50px;float:right;margin-right:10px;border-left: 3px double #695636;}
-header #percha span { float:right;text-align: left; margin-top:5px; }
-header #percha img {height:32px;width:32px;float:right; }
-header #login img {height:32px;width:32px;float:right; }
-header #login span { float: right; text-align: left;margin-top:5px; }
-header ul {display: block;list-style-type: none;margin: 0; padding: 0;}
+
+
+/*--------------------------------ESTILOS DE TODO EL CONTENIDO DEL HEADER-------------------------------*/
+
+header {
+    background-color: black;
+    display: block;
+    padding: 0px;
+    width: 100%;
+    height:70px;
+    border-bottom: 3px double #695636;
+}
+
+header #percha {
+    text-align: right;
+}
+
+header #percha img {
+    *height:32px;
+    *width:32px;
+    padding:0px;
+    margin:0px;
+}
+
+/** custom */
+#percha span {
+    margin: 0 15px 0 0;
+    padding: 0;
+    text-align: right;
+}
+#percha span:last-child{
+	padding-right:30px;
+}
+#percha a{ padding:0px 5px;}
+/** fin */
+
+header ul {
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+header #menu {
+    display: block;
+    float: left;
+    margin-left: 50px;
+    margin-top: 7px;
+}
 header #menu img { margin: 5px 0px 0px 3px; width:75px }
-header ul li { display: inline-block;font-size: 16px;margin-right: 20px;text-decoration: none;}
+header ul li {
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 20px;
+    text-decoration: none;
+}
 header ul .active{border-bottom: solid 2px white;}
-header ul li a{ text-decoration: none; color: white;font-family: 'bebas_neue_regularregular', sans-serif;font-weight: 100;}
-/*********************
-*********************# 
-	FOOTER	
-**********************/
-footer { background: black;width:calc(100%-100px);position:relative;bottom:50px;border-top: 1px solid #695636; z-index:0; padding:0px 50px;}
-footer li {float: left;list-style: outside none none;margin:6px 10px;padding: 10px 0;text-align: center;width: auto;}
-footer ul li a {color: white;text-decoration: underline;font-weight: 100;font-family: 'bebas_neue_regularregular', sans-serif;}
+header ul li a{
+    text-decoration: none;
+    color: white;
+    font-family: 'bebas_neue_regularregular', sans-serif;
+    font-weight: 100;
+}
 
-
-
-
-
-
-
-
-
-
+header span {
+    color: white;
+    display: inline-block;
+    margin-left: 15px;
+    margin-right: 47px;
+    font-family: 'bebas_neue_regularregular', sans-serif;
+    font-weight: 100;
+}
 
 #logo_head > a > img {
     float: left;
     margin: 5px 0px 0px 3px;
     width: 400px;
 }
+/*--------------------------------ESTILOS DE TODO EL CONTENIDO DEL FOOTER-------------------------------*/
+
+
+.home footer{
+    position: absolute;
+    z-index: 4;
+}
+footer {
+    background-color: black;
+    display: block;
+    border-top: 1px solid #695636;
+    bottom: 27px;
+    left:27px;
+    right:27px;
+    *position: absolute;
+}
+footer ul {
+    display: block;
+    float: left;
+    list-style: outside none none;
+    margin: 6px 0 0;
+    padding: 17px 0;
+    text-align: center;
+    width: auto;
+}
+footer li {
+    display: inline-block;
+    margin: 0 19px;
+}
+footer ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 100;
+    font-family: 'bebas_neue_regularregular', sans-serif;
+
+}
+
+
+/*--------------------------------ESTILOS DEL #main EN GENERAL-------------------------------*/
+
 
 
 /*--------------------------------ESTILOS DEL SLIDER-------------------------------*/
@@ -954,6 +1025,16 @@ footer #logo a {
     font-family: 'bebas_neuelight';
     font-size: 18px;
     text-decoration: none;
+}
+
+body {
+    border-image: url("/frontoffice/images/imagen-marco.jpg") 27 27 27 27 repeat repeat;    
+    border-style: solid;
+    border-width: 27px;
+    height: calc(100% - 55px) !important;
+    *overflow: hidden;
+    *width: calc(100% - 54px);
+    width:100%;
 }
 
 .logo-enlace .logo-pintoresca {

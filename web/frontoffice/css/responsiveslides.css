@@ -30,7 +30,7 @@
 }
 
 .slider_home .rslides {
-    height: 100%;
+    *height: 100%;
     list-style: outside none none;
     margin: auto;
     overflow: hidden;
@@ -40,9 +40,9 @@
 }
 .slider_home .rslides li {
     display: none;
-    height: 100%;
+    *height: 100%;
     left: 0;
-    position: absolute;
+    *position: absolute;
     top: 0;
     width: 100% !important;
 }
@@ -55,8 +55,8 @@
     border: 0 none;
     display: block;
     float: none;
-    height: 100% !important;
-    width: 100% !important;
+    *height: 100% !important;
+    *width: 100% !important;
     margin: auto;
 }
 
