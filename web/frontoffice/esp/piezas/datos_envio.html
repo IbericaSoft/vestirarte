@@ -4,16 +4,11 @@
     <?echo $this->executeBlock('DATA')?>
     <?echo $this->executeBlock('HEAD')?>
 </head>
-<body>
+<body class="home home-<?=self::$shop->categoria_actual?>">		
+			<?require("menu_header.html")?>
+			<section>
+			    
 
-	<div id="contenido">
-            <div id="wrapper">
-
-				<!-- menu PÁGINA -->
-            	<?require("menu_header.html")?>
-    
-				<div id="main">
-					<?require("menu_movil.html")?>
     				<form action="/datos-envio-confirmar.html" method="post">
 					<div class="formulario-alta-usuario">
            				
@@ -72,14 +67,9 @@
            				
       				</div>
       				</form>
-				</div>
-				
-				<div id="espacio"></div>
-				
-            	<!-- FOOTER -->
+				</section>
 				<?require("footer.html")?>
-        	</div>
-      </div>
+
         
     <script>
 		$(document).ready(function(){

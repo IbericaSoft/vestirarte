@@ -2,64 +2,205 @@
 *********************# 
 	ESTRUCTURA	
 **********************/
-body,html{width: 99%;height: 100%;}
+html{width: 100%;height: 100%; font-family: 'bebas_neue_regularregular', sans-serif;font-weight: 100; }
+body{ z-index:10;min-height:calc(100% - 80px);
+border-style: solid;
+border-width: 40px;
+-moz-border-image: url(/frontoffice/images/imagen-marco.jpg) 40 repeat;
+-webkit-border-image: url(/frontoffice/images/imagen-marco.jpg) 40 repeat;
+-o-border-image: url(/frontoffice/images/imagen-marco.jpg) 40 repeat;
+border-image: url(/frontoffice/images/imagen-marco.jpg) 40 repeat;
+ }
 .home {background-image: url(/frontoffice/images/fondo.jpg);}
 .home-artenmoda{background-image: url(/frontoffice/images/fondo-artenmoda.jpg) !important;}
 .home-vestirarte{background-image: url(/frontoffice/images/fondo-vestirarte.jpg) !important;}
 .home-pintoresca{background-image: url(/frontoffice/images/fondo-pintoresca.jpg) !important;}
 .clear { clear:both; }
-section { border:1px solid red; width:100%; height:1600px; margin-top:50px; margin-bottom:50px;}
-aside {
-    position: fixed;
-    border-image: url("/frontoffice/images/imagen-marco.jpg") 50 50 50 50 repeat repeat;    
-    border-style: solid;
-    border-width: 50px;
-    height: calc(100% - 100px) !important;
-    width: calc(100% - 100px) !important;
-    z-index:1;    
-}
+section{margin-top:75px;margin-bottom:100px;}
 
 /*********************
 *********************# 
 	HEADER	
 **********************/
-header { background: black;width:calc(100%-100px);position:relative;top:50px;height:100px;border-bottom: 3px double #695636; z-index:0; padding:0px 50px;}
-header span {color: white;font-family: 'bebas_neue_regularregular', sans-serif;font-size:22px; font-weight: 300;padding:8px; }
+header { background: transparent;height:85px;border-bottom: 0px double #695636;}
+header span {color: white;font-family: 'bebas_neue_regularregular', sans-serif;font-size:16px; font-weight: 100; padding:8px; }
 header #menu { width:85%;height:100%;float:left;} 
-header #percha { width:10%;height:50px;float:right;margin-right:10px;border-left: 3px double #695636;}
-header #login { width:10%;height:50px;float:right;margin-right:10px;border-left: 3px double #695636;}
-header #percha span { float:right;text-align: left; margin-top:5px; }
-header #percha img {height:32px;width:32px;float:right; }
+header #percha { width:105px;height:40px;float:right;margin:3px;background:#993470;padding:1px 5px; border-bottom:3px solid #FFF200;border-radius:50px;}
+header #login { width:105px;height:40px;float:right;margin:3px;background:#00A8EE;padding:1px 5px;border-bottom:3px solid #FFF200;border-radius:50px;}
+header #percha span { float:left;text-align: left; margin-top:-5px; }
+header #percha img {width:32px;float:right; }
 header #login img {height:32px;width:32px;float:right; }
-header #login span { float: right; text-align: left;margin-top:5px; }
-header ul {display: block;list-style-type: none;margin: 0; padding: 0;}
-header #menu img { margin: 5px 0px 0px 3px; width:75px }
-header ul li { display: inline-block;font-size: 16px;margin-right: 20px;text-decoration: none;}
-header ul .active{border-bottom: solid 2px white;}
+header #login span { float: right; text-align: left; margin-top:5px; }
+header ul {display: block; list-style-type: none;margin: 0; padding: 0;  }
+img.marca { margin: 5px 0px 0px 0px; width:100px }
+header ul li { display: inline-block;font-size: 16px;margin-left: 50px;text-decoration: none;}
+header ul .active{ border-bottom: solid 4px #FFF;}
 header ul li a{ text-decoration: none; color: white;font-family: 'bebas_neue_regularregular', sans-serif;font-weight: 100;}
+img.logo{width: auto; }
+img.logo-copyright{ position:relative;top:-20px;width:16px !important;}
 /*********************
 *********************# 
 	FOOTER	
 **********************/
-footer { background: black;width:calc(100%-100px);position:relative;bottom:50px;border-top: 1px solid #695636; z-index:0; padding:0px 50px;}
-footer li {float: left;list-style: outside none none;margin:6px 10px;padding: 10px 0;text-align: center;width: auto;}
-footer ul li a {color: white;text-decoration: underline;font-weight: 100;font-family: 'bebas_neue_regularregular', sans-serif;}
+footer { position:fixed;left:0px;bottom:0px;width:calc(100% - 80px);height:50px;background: black;  
+border-style: solid;
+border-width: 0px 40px 40px;
+-moz-border-image: url(/frontoffice/images/imagen-marco.jpg) 40 repeat;
+-webkit-border-image: url(/frontoffice/images/imagen-marco.jpg) 40 repeat;
+-o-border-image: url(/frontoffice/images/imagen-marco.jpg) 40 repeat;
+border-image: url(/frontoffice/images/imagen-marco.jpg) 40 repeat;}
+footer > div { border-top: 3px double #695636;  }
+footer ul { width:75%; float:left; }
+footer li {float: left;margin:0px 0px;padding: 5px 6px;}
+footer ul li a {color: white;text-decoration: none;}
+footer .legales{ width:70%; float:left;}
+footer .logo { float:right; }
+footer .logo span { color:white; font-size:12px; font-height:10px; float:left; padding:4px; }
+footer .logo img { max-width:52px; border-radius:5px; }
 
 
 
-
-
-
-
-
-
-
-
-#logo_head > a > img {
-    float: left;
-    margin: 5px 0px 0px 3px;
-    width: 400px;
+/*--------------------------------MONTAJE HOME CUADROS-------------------------------*/
+.enlace > img {box-shadow: -1px 4px 33px 14px rgba(0, 0, 0, 0.95);width: 100%;}
+.enlace {display: inline-block;margin: 0 2.5%;width: 25%;position: relative;}
+.enlaces-secciones {margin:100px auto;text-align: center;width: 99%;}
+.enlaces {box-shadow: none !important;left: 26%;position: absolute;top: 40%;transition: all 0.5s ease 0s;width: 46% !important;}
+.enlace-tienda {color: white;font-family: 'bebas_neuelight';font-size: 1.9em;text-decoration: none;}
+.logo-enlace .logo-pintoresca {
+    background-color: transparent;
+    border-radius: 5px;
+    box-shadow: none;
+    padding: 0 !important;
 }
+
+.logo-enlace {
+    *margin-bottom: 10px;
+    width: 100%;
+}
+/*--------------------------------LISTADO ARTICULOS-------------------------------*/
+#lista_tipos_prendas {
+    background: url(/frontoffice/images/marco_blanco.jpg) no-repeat;
+    background-size: 100% 100%;
+    padding: 10px;
+    margin:5px;
+    transition: all 0.5s ease 0s;
+    border:0px solid yellow;
+    overflow:hidden;
+    float:left;
+}
+#lista_tipos_prendas .tipos{
+	*border:1px solid yellow;
+	margin:auto;
+	width:90%;
+    height:90%;
+    padding-top:20px
+}
+#lista_tipos_prendas ul {
+    *list-style: outside none none;    
+    *margin: 0px auto;
+    
+}
+#lista_tipos_prendas ul li {
+	*padding: 0% 5%;	
+    text-align:center;
+    font-family: 'bebas_neuelight';
+    margin-bottom: 5px;
+
+}
+#lista_tipos_prendas ul li a{
+	*padding:10px 0px;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    font-weight: lighter;
+}
+#galeria_productos a.button {
+    background-color: black;
+    border: medium none;
+    border-radius: 0 !important;
+    color: white;
+    cursor: pointer;
+    display: block;
+    font-family: 'bebas_neue_regularregular',sans-serif;
+    font-size: 20px;
+    margin: 0px auto 7px auto;
+    padding: 10px 0px;
+    text-align: center;
+    text-decoration: none;
+}
+#galeria_productos {
+    width: 95%;
+    height:100%;
+    margin:auto auto;
+    *border:1px solid yellow;
+}
+#galeria_productos #producto {
+    display: inline-block;
+    width: 30%;
+    position: relative;
+}
+#galeria_productos #producto img {
+    display: block;
+    height: 100% !important;
+    width: 100% !important;
+    *min-width:250px;
+    *max-width:100%;
+    *min-height:250px;
+    max-height:300px;
+    *border:1px solid yellow;
+}
+
+#galeria_productos #producto > div {
+    background-color: white;
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+#galeria_productos #info #nombre {
+    font-family: "bebas_neue_regularregular",sans-serif;
+    font-size: 20px;
+    font-weight: 100;
+    margin-top: 40%;
+    text-align: center;
+}
+#galeria_productos #info{
+    transition:  0.5s;
+    opacity: 0;
+
+}
+#galeria_productos #info:hover{
+    transition:  0.5s;
+    opacity: 1;
+
+}
+
+#galeria_productos button {
+    background-color: black;
+    border: medium none;
+    border-radius: 0 !important;
+    color: white;
+    cursor: pointer;
+    display: block;
+    font-family: 'bebas_neue_regularregular',sans-serif;
+    font-size: 18px;
+    margin: 12px auto 12px auto;
+    padding: 20px;
+}
+.tipo_actual{ 
+	background-color: #00A8EE; 
+	color:white !important;
+    border: medium none;
+    border-radius: 0 !important;
+    cursor: pointer;
+    display: block;
+    font-family: 'bebas_neue_regularregular',sans-serif;
+}
+
+
 
 
 /*--------------------------------ESTILOS DEL SLIDER-------------------------------*/
@@ -204,44 +345,6 @@ footer ul li a {color: white;text-decoration: underline;font-weight: 100;font-fa
 }
 /*--------------------------------ESTILOS DE LAS GALERIAS DE PRODUCTOS-------------------------------*/
 
-
-
-
-#galeria_productos {
-    display: block;
-    float: right;
-    margin-right: 8%;
-    width: 68%;
-    overflow: inherit;
-}
-#galeria_productos #producto {
-    display: inline-block;
-    width: 33%;
-    position: relative;
-}
-#galeria_productos #producto img {
-    display: block;
-    height: 100% !important;
-    width: 100%;
-}
-
-#galeria_productos #producto > div {
-    background-color: white;
-    display: block;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-}
-
-#galeria_productos #info #nombre {
-    font-family: "bebas_neue_regularregular",sans-serif;
-    font-size: 20px;
-    font-weight: 100;
-    margin-top: 40%;
-    text-align: center;
-}
 /** custom */
 #info:hover{
     cursor: pointer;
@@ -252,58 +355,7 @@ footer ul li a {color: white;text-decoration: underline;font-weight: 100;font-fa
     border-bottom: 2px solid black;
 }
 
-#galeria_productos #info{
-    transition:  0.5s;
-    opacity: 0;
-
-}
-
-#galeria_productos #info:hover{
-    transition:  0.5s;
-    opacity: 1;
-
-}
-
-
-#galeria_productos button {
-    background-color: black;
-    border: medium none;
-    border-radius: 0 !important;
-    color: white;
-    cursor: pointer;
-    display: block;
-    font-family: 'bebas_neue_regularregular',sans-serif;
-    font-size: 15px;
-    margin: 12px auto auto;
-    padding: 4px;
-}
 /** custom */
-a.button, a.button:focus {
-    background-color: black;
-    border: medium none;
-    border-radius: 0 !important;
-    color: white;
-    cursor: pointer;
-    display: block;
-    font-family: 'bebas_neue_regularregular',sans-serif;
-    font-size: 15px;
-    margin: auto auto;
-    padding: 4px;
-    text-align: center;
-    text-decoration: none;
-}
-
-#galeria_productos h1 {
-    border-bottom: medium solid;
-    color: white;
-    text-align: center;
-    font-family: 'bebas_neue_regularregular',sans-serif;
-    font-weight: 100;
-    font-size: 40px;
-
-    margin: 8px 0 26px;
-}
-
 
 #formulario_prenda span {
     color: white;
@@ -376,7 +428,7 @@ a.button, a.button:focus {
 
 
 #galeria_prendas {
-    width: 79%;
+    width: 90%;
     display: block;
     float: left;
 }
@@ -387,50 +439,12 @@ a.button, a.button:focus {
     margin-bottom: 32px;
 }
 
-#lista_tipos_prendas {
-    background-color: white;
-    display: block;
-    float: left;
-    margin-right: 1%;
-    padding: 0 3% 2%;
-    transition: all 0.5s ease 0s;
-}
 
 
-#lista_tipos_prendas h4 {
-    border-bottom: 2px solid black;
-    font-family: "bebas_neue_regularregular";
-    font-size: 28px;
-    margin: 0 0 8px;
-    padding-left: 0;
-}
 
-#lista_tipos_prendas ul {
-    list-style: outside none none;
-    margin: 0;
-    padding: 0 7%;
-}
 
-#lista_tipos_prendas ul li {
-    font-family: 'bebas_neuelight';
-    margin-bottom: 5px;
 
-}
 
-#lista_tipos_prendas ul li a{
-    text-decoration: none;
-    color: black;
-    font-size: 20px;
-    font-weight: lighter;
-}
-/** custom */
-.tipo_actual{font-family: 'bebas_neuebold';}
-#lista_tipos_prendas ul li a:focus{
-    font-family: 'bebas_neuebold'; 
-}
-#lista_tipos_prendas > div {
-    margin-top: 25px;
-}
 
 #mostrar_prendas{
     display: block;
@@ -624,7 +638,7 @@ table .cabecera{
 .cabecera td {
     background-color: black;
     color: white;
-    height: 20px !important;
+    height: 20px !important;    
 }
 
 
@@ -633,10 +647,12 @@ td {
     background-color: white;
     display: table-cell;
     font-family: "bebas_neue_regularregular";
+    font-size:20px;
     height: 100%;
     padding: 1%;
     position: relative;
     text-align: center;
+    vertical-align: middle;
 }
 
 tr {
@@ -908,62 +924,7 @@ div#espacio{ height:200px; }
 }
 
 
-/*LOGO COPYRIGHT*/
 
-.logo-copyright {
-    margin-left: 6px !important;
-    padding-top: 0 !important;
-    width: 18px !important;
-}
 
-footer #logo a {
-    display: block;
-    float: left;
-    margin-right: 6px;
-    margin-top: 4px;
-}
 
-/** nueva home */
-.enlace > img {
-    box-shadow: -1px 4px 33px 14px rgba(0, 0, 0, 0.95);
-    width: 100%;
-}
-.enlace {
-    display: inline-block;
-    margin: 0 2.5%;
-    width: 25%;
-    position: relative;
-}
-.enlaces-secciones {
-    margin:100px auto;
-    text-align: center;
-    width: 100%;
-}
 
-.enlaces {
-    box-shadow: none !important;
-    left: 26%;
-    position: absolute;
-    top: 40%;
-    transition: all 0.5s ease 0s;
-    width: 46% !important;
-}
-
-.enlace-tienda {
-    color: white;
-    font-family: 'bebas_neuelight';
-    font-size: 18px;
-    text-decoration: none;
-}
-
-.logo-enlace .logo-pintoresca {
-    background-color: transparent;
-    border-radius: 5px;
-    box-shadow: none;
-    padding: 0 !important;
-}
-
-.logo-enlace {
-    *margin-bottom: 10px;
-    width: 100%;
-}

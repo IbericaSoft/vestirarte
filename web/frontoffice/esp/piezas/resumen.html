@@ -5,18 +5,11 @@
     <?echo $this->executeBlock('HEAD')?>
     <?$json=self::getData("json");?>
 </head>
-<body>
+<body class="home home-<?=self::$shop->categoria_actual?>">		
+			<?require("menu_header.html")?>
+			<section>
 
-	<div id="contenido">
-            <div id="wrapper">
-
-				<!-- menu PÁGINA -->
-            	<?require("menu_header.html")?>
-    
-				<div id="main">
 					<form>
-					<?require("menu_movil.html")?>
-					
 					
             		<div id="facturacion">
             			<span>DATOS DEL PEDIDO</span>
@@ -106,12 +99,10 @@
 	      				<br>
 	      			</div>
 					</form>
-				</div>
+				</section>
 				
-            	<!-- FOOTER -->
+            	
 				<?require("footer.html")?>
-        	</div>
-      </div>
       
     <!--EFECTO DEL LIGHTBOX PARA MOSTRAR LAS PRENDAS-->
     <link rel="stylesheet" type="text/css" href="{web}/js/featherlight-master/featherlight.min.css"/>
