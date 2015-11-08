@@ -6,8 +6,8 @@
     <?echo $this->executeBlock('DATA')?>
     <?echo $this->executeBlock('HEAD')?>
 </head>
-<body class="home home-<?=self::$shop->categoria_actual?>">
-	<div id="contenido">
+<body class="home-<?=self::$shop->categoria_actual?>">
+	
 		<div id="wrapper">
 			<div id="main">
 				<?require("menu_header.html")?>
@@ -61,7 +61,6 @@
             <?}?>
 			</div>	
 		</div>
-	</div>
 	
 	<script>
 		$(document).ready(function(){

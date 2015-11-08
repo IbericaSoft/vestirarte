@@ -4,16 +4,9 @@
     <?echo $this->executeBlock('DATA')?>
     <?echo $this->executeBlock('HEAD')?>
 </head>
-<body>
-
-	<div id="contenido">
-            <div id="wrapper">
-
-				<!-- menu PÁGINA -->
-            	<?require("menu_header.html")?>
-    
-				<div id="main">
-					<?require("menu_movil.html")?>
+<body class="home home-<?=self::$shop->categoria_actual?>">		
+			<?require("menu_header.html")?>
+			<section>
 				
 					<div class="cesta-compra">      
 						<table>
@@ -54,12 +47,10 @@
 	      				
 	      				<div id="container-center"><button id="envio">DATOS ENVÍO</button><button id="comprar">CONTINUAR</button></div>
 	      			</div>
-				</div>
 				
-            	<!-- FOOTER -->
 				<?require("footer.html")?>
-        	</div>
-      </div>
+        	</section>
+
       
     <!--EFECTO DEL LIGHTBOX PARA MOSTRAR LAS PRENDAS-->
     <link rel="stylesheet" type="text/css" href="{web}/js/featherlight-master/featherlight.min.css"/>

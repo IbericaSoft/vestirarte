@@ -3,70 +3,27 @@
 <head>
     <?echo $this->executeBlock('DATA')?>
     <?echo $this->executeBlock('HEAD')?>
-    <style>
-    body,html{
-    	<? 	if ( self::$shop->categoria_actual=="diseñadores" ){
-    			echo "background-image: url('{web}/images/fondo-diseñadores.jpg') !important;";
-    		}elseif ( self::$shop->categoria_actual=="museos" ){
-    			echo "background-image: url('{web}/images/fondo-museos.jpg') !important;";
-    		}elseif ( self::$shop->categoria_actual=="pintoresca" ){
-    			echo "background-image: url('{web}/images/fondo-pintoresca.jpg') !important;";
-    		}else{
-    			echo "background-image: url('{web}/images/fondo.jpg') !important;";
-    		}		
-    	?>	
-    }
-    </style>
 </head>
-<body>
-	<div id="contenido">
-		<div id="wrapper">
+<body class="home home-<?=self::$shop->categoria_actual?>">		
+			<?require("menu_header.html")?>
+			<section>
 
-       		<!-- menu PÁGINA -->
-            <?require("menu_header.html")?>
-            
-
-			<div id="main">
-
-				<?require("menu_movil.html")?>
-				<?
-				echo strtoupper(self::$shop->categoria_actual);
-?>
-				<!--                             MENU EN EL QUE SE MUESTRAN LOS DISE�ADORES/MUSEOS                                 -->
-     			<div id="first-sidebar"> 
-
-     				<div id="menu_secundario">
-			    		<h4 class="titulo"><?=strtoupper(self::$shop->categoria_actual)?> <img src="{web}/images/triangulo.png" alt=""></h4>
-			    		<ul class="lista_elementos">
-			           		<? 	foreach ( self::getData("familias") as $datos) { 
-									if ( strtolower($datos["categoria"])!=strtolower(self::$shop->categoria_actual) ) continue; ?>
-			           				<li class="padre"><a href="/<?=url_friendly(self::$shop->categoria_actual)?>/<?=url_friendly($datos[familia])?>.html"><?=strtoupper($datos[familia])?></a></li>
-							<? } ?>
-			    		</ul>
-					</div>
-				</div>
-				
-				<!--  -->
 				<div id="galeria_productos">
-                    <h1><?=strtoupper(self::$shop->familia_actual)?></h1>
 					<!-- TIPOS DE CORTE DE LA PRENDA -->       
 					<div id="lista_tipos_prendas">
-						<div id="tipo_corte"><h4>CORTE</h4>
+						<div class="tipos">
 							<ul>
                             	<? 	foreach ( self::getData("subfamilias") as $datos) { ?>	
-                            		<li><a class="<?=(strtolower($datos[subfamilia])==strtolower(self::$shop->subfamilia_actual))?'tipo_actual':''?>" href="/<?=(self::$shop->categoria_actual)?>/<?=(self::$shop->familia_actual)?>/<?=strtolower($datos[subfamilia])?>.html"><?=strtoupper($datos[subfamilia])?></a></li>
+                            		<li><a class="<?=(strtolower($datos[subfamilia])==strtolower(self::$shop->subfamilia_actual))?'tipo_actual':''?>" href="/<?=(self::$shop->categoria_actual)?>/<?=(self::$shop->familia_actual)?>/<?=strtolower($datos[subfamilia])?>.html"><i class="fa fa-paint-brush"></i>&nbsp;<?=strtoupper($datos[subfamilia])?></a></li>
                             	<? } ?>
                             	
                             </ul>
-                            <a class="button" href="/<?=(self::$shop->categoria_actual)?>/<?=(self::$shop->familia_actual)?>.html">Todas</a>
+                            <a class="button" href="/<?=(self::$shop->categoria_actual)?>/<?=(self::$shop->familia_actual)?>.html"><i class="fa fa-paint-brush"></i>&nbsp;Todas</a>
                          </div>
-                         
                      </div>
-					
-						
-                     <!-- GALERIA DE PRODUCTOS OFRECIDOS POR EL DISE�ADOR-->  
+											
+                     <!-- GALERIA DE PRODUCTOS OFRECIDOS POR LA MARCA-->  
                      <div id="galeria_prendas">
-                          
                           <? 	foreach ( self::getData("articulos") as $datos) { ?>
                           	<div id="producto">
                           		<img src="{web}/images/<?=$datos[foto_1]?>" alt="<?=$datos[articulo]?>"/>
@@ -76,42 +33,37 @@
                                	</div>
                            </div>
                            <? } ?>
-                           
                       </div>
+                      <div class="clear"></div>
                 </div>
-			</div>
-
-            <!-- FOOTER -->
+			
+				 <!--EFECTO DEL LIGHTBOX PARA MOSTRAR LAS PRENDAS-->
+			    <link rel="stylesheet" type="text/css" href="{web}/js/featherlight-master/featherlight.min.css"/>
+			    <script type="text/javascript" src="{web}/js/featherlight-master/featherlight.min.js"></script>   
+			    <script>
+				    function cerrarFicha(){
+				    	//var current = $.featherlight.current();
+				    	//current.close();
+				    }
+				    
+				    function updateCesta(json){
+				    	//((alert ( JSON.stringify(json) );
+				    	var current = $.featherlight.current();
+				    	current.close();
+				    	
+						$("#infocesta").html(json.total_articulos+" prendas<br>"+json.total_cesta_con_iva);
+						$("#percha a:last-child").effect( "pulsate" );
+					}
+				    
+				    $(document).ready(function(){
+						$('.data-featherlight').click(function(){
+							  $.featherlight( $('<iframe height="85%" class="lightbox" src="' + $(this).attr('href') + '"/>') );
+						});
+					
+				    });
+			    </script>   
+    
+			</section>
 			<?require("footer.html")?>
-        </div>
-    </div>
-    
-    <!--EFECTO DEL LIGHTBOX PARA MOSTRAR LAS PRENDAS-->
-    <link rel="stylesheet" type="text/css" href="{web}/js/featherlight-master/featherlight.min.css"/>
-    <script type="text/javascript" src="{web}/js/featherlight-master/featherlight.min.js"></script>   
-    <script>
-	    function cerrarFicha(){
-	    	//var current = $.featherlight.current();
-	    	//current.close();
-	    }
-	    
-	    function updateCesta(json){
-	    	//((alert ( JSON.stringify(json) );
-	    	var current = $.featherlight.current();
-	    	current.close();
-	    	
-			$("#infocesta").html(json.total_articulos+" ARTÍCULOS<br>"+json.total_cesta_con_iva);
-			$("#percha a:last-child").effect( "pulsate" );
-		}
-	    
-	    $(document).ready(function(){
-			$('.data-featherlight').click(function(){
-				  $.featherlight( $('<iframe class="lightbox" src="' + $(this).attr('href') + '"/>') );
-			});
-		
-	    });
-    </script>    
-    
-    	    
-	</body>        
+</body>        
 </html>

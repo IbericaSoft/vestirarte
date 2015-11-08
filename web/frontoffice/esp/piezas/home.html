@@ -7,20 +7,12 @@
     <?echo $this->executeBlock('HEAD')?>
 </head>
 <body class="home">
-      	<div id="contenido">
-            <div id="wrapper">
-                <div id="main">
-      				<!-- menu -->
-      				<?require("menu_header.html")?>
-      				<?//require("menu_movil.html")?>				
-			    	<div class="enlaces-secciones">                        
-                        <div class="enlace"><img src="{web}/images/marco_azul.jpg" alt=""><div class="enlaces"><a href="/artenmoda.html" class="enlace-tienda"><img class="logo-enlace" src="{web}/images/logo-artenmoda.png" alt="">moda y arte</a></div></div>
-                        <div class="enlace"><img src="{web}/images/marco_rojo.jpg" alt=""><div class="enlaces"><a href="/vestirarte.html" class="enlace-tienda"><img class="logo-enlace" src="{web}/images/logo-vestirarte.png" alt="">diseñadores y moda</a></div></div>
-                        <div class="enlace"><img src="{web}/images/marco_verde.jpg" alt=""><div class="enlaces"><a href="/pintoresca.html" class="enlace-tienda"><img class="logo-enlace logo-pintoresca" src="{web}/images/logo-pintoresca-b.png" alt="">moda y pintores</a></div></div>
-                  	</div>
-					<?require("footer.html")?>	
-				</div>
-			</div>
-		</div>			
+		<?require("menu_header.html")?>
+	    <div class="enlaces-secciones">                        
+        	<div class="enlace"><img src="{web}/images/marco_azul.jpg" alt=""><div class="enlaces"><a href="/artenmoda/moda-artenmoda.html" class="enlace-tienda"><img class="logo-enlace" src="{web}/images/logo-artenmoda.png" alt="">moda y arte</a></div></div>
+            <div class="enlace"><img src="{web}/images/marco_rojo.jpg" alt=""><div class="enlaces"><a href="/vestirarte/moda-vestirarte.html" class="enlace-tienda"><img class="logo-enlace" src="{web}/images/logo-vestirarte.png" alt="">diseñadores y moda</a></div></div>
+            <div class="enlace"><img src="{web}/images/marco_verde.jpg" alt=""><div class="enlaces"><a href="/pintoresca/moda-pintoresca.html" class="enlace-tienda"><img class="logo-enlace logo-pintoresca" src="{web}/images/logo-pintoresca-b.png" alt="">moda y pintores</a></div></div>
+		</div>
+		<?require("footer.html")?>	
 </body>
 </html>

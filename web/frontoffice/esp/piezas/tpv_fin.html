@@ -4,16 +4,11 @@
     <?echo $this->executeBlock('DATA')?>
     <?echo $this->executeBlock('HEAD')?>
 </head>
-<body>
+<body class="home">
 
-		<div id="contenido">
-            <div id="wrapper">
-
-				<!-- menu PÃ�GINA -->
-            	<?require("menu_header.html")?>
+			<?require("menu_header.html")?>
+			<section>
     
-				<div id="main">
-					<?require("menu_movil.html")?>
       				<div class="cesta-compra">
 	      				<table>
 				      			<tr class="">
@@ -57,11 +52,9 @@
 				      	</div>      
 	      				<button id="vale">VALE</button>
 	      			</div>
-				</div>
+				</section>
             	<!-- FOOTER -->
 				<?require("footer.html")?>
-        	</div>
-      	</div>
       
       	<script>
 		$(document).ready(function(){
