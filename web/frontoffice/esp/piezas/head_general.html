@@ -14,7 +14,6 @@
 <link href="{web}/js/jquery-ui.min.css" rel="stylesheet">
 <link rel="icon" type="image/jpg" href="{web}/images/favicon-va-16.jpg">
 <script src="{web}/js/jquery-1.11.1.min.js" type="text/javascript"></script>
-
 <script type="text/javascript" src="{web}/js/colorbox/jquery.colorbox-min.js"></script>
 <link href="{web}/js/colorbox/colorbox.css" rel="stylesheet"/> 
 <script>
@@ -38,6 +37,25 @@
 				var _link = "https://view.officeapps.live.com/op/embed.aspx?src=<?=HOST?>/frontoffice/legal/legal_multicolor.doc";				
 				$.colorbox({width:"85%",height:"85%",scrolling: true,iframe:true,fastIframe:false,href:_link});
 				return false;
+			});
+			
+			$('.masterTooltip').hover(function(){
+		        // Hover over code
+		        var title = $(this).attr('title');
+		        $(this).data('tipText', title).removeAttr('title');
+		        $('<p class="tooltip"></p>')
+		        .text(title)
+		        .appendTo('body')
+		        .fadeIn('slow');
+			}, function() {
+			        // Hover out code
+			        $(this).attr('title', $(this).data('tipText'));
+			        $('.tooltip').remove();
+			}).mousemove(function(e) {
+			        var mousex = e.pageX + 20; //Get X coordinates
+			        var mousey = e.pageY + 10; //Get Y coordinates
+			        $('.tooltip')
+			        .css({ top: mousey, left: mousex })
 			});
 		});
 </script>

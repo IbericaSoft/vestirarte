@@ -11,13 +11,13 @@ border-width: 40px;
 -o-border-image: url(/frontoffice/images/imagen-marco.jpg) 40 repeat;
 border-image: url(/frontoffice/images/imagen-marco.jpg) 40 repeat;
  }
-.home {background-image: url(/frontoffice/images/fondo.jpg);}
+.home {background-image: url(/frontoffice/images/fondo-50.jpg);}
 .home-artenmoda{background-image: url(/frontoffice/images/fondo-artenmoda.jpg) !important;}
 .home-vestirarte{background-image: url(/frontoffice/images/fondo-vestirarte.jpg) !important;}
 .home-pintoresca{background-image: url(/frontoffice/images/fondo-pintoresca.jpg) !important;}
 .clear { clear:both; }
 section{margin-top:75px;margin-bottom:100px;}
-
+a { cursor: url('/frontoffice/images/brush.png'), auto; }
 /*********************
 *********************# 
 	HEADER	
@@ -61,7 +61,7 @@ footer .logo img { max-width:52px; border-radius:5px; }
 
 
 /*--------------------------------MONTAJE HOME CUADROS-------------------------------*/
-.enlace > img {box-shadow: -1px 4px 33px 14px rgba(0, 0, 0, 0.95);width: 100%;}
+.enlace > img {box-shadow: -1px 4px 33px 14px rgba(0, 0, 0, 0.95);width: 90%;}
 .enlace {display: inline-block;margin: 0 2.5%;width: 25%;position: relative;}
 .enlaces-secciones {margin:100px auto;text-align: center;width: 99%;}
 .enlaces {box-shadow: none !important;left: 26%;position: absolute;top: 40%;transition: all 0.5s ease 0s;width: 46% !important;}
@@ -589,7 +589,7 @@ box-shadow:         7px 7px 5px 0px rgba(0, 0, 0, 0.75);
     width: 62px;
 }
 
-img#logogif{ border:0px solid white; border-radius:5px; }
+img#logogif{ border:0px solid white; border-radius:150px; width:80px; margin-left:50px; margin-top:5px; }
 
 .texto-plano {
     background-color: rgba(0, 0, 0, 0.57);
@@ -923,8 +923,21 @@ div#espacio{ height:200px; }
     top: 48%;
 }
 
-
-
+/** bocadillo informativo */
+.tooltip {
+	display:none;
+	position:absolute;
+	border:1px solid #333;
+	background-color:#161616;
+	border-radius:5px;
+	padding:10px;
+	color:#fff;
+	font-size:18px;
+	line-height:30px;
+	max-width: 500px;
+}
+.tooltip {
+white-space: pre-line;}
 
 
 
