@@ -82,7 +82,7 @@
 		const DEFAULT_ACTION	 	= 'home';
 		const SQL_NAVIGATOR 		= 'SELECT * FROM _navigator WHERE estado!="XXX" ORDER BY accion;';
 		const SQL_NAVITATORDETAIL 	= 'SELECT * FROM _navigator_details WHERE estado!="XXX" ORDER BY orden;';
-		const PRODUCTION_MODE		= false;
+		const PRODUCTION_MODE		= true;
 		
 		public static $shop;
 		private static $instance;
