@@ -4,53 +4,30 @@
     <?echo $this->executeBlock('DATA')?>
     <?echo $this->executeBlock('HEAD')?>
 </head>
-<body>
-
-	<div id="contenido">
-            <div id="wrapper">
-
-				<!-- menu P�GINA -->
-            	<?require("menu_header.html")?>
-    
-				<div id="main">
-					<?require("menu_movil.html")?>
+<body class="home-<?=self::$shop->categoria_actual?>">
+	
+		<div id="wrapper">
+			<div id="main">
+				<?require("menu_header.html")?>
       				<div class="texto-plano">            
 	            		
 	            		<h1>Política de Privacidad</h1>
-	            		<p>Cada vez que usa este sitio web estará bajo la aplicación de la Política de Privacidad y Cookies vigente en cada momento, debiendo revisar dicho texto para comprobar que está conforme.</p>
-
-<p>Hemos asumido el compromiso de proteger sus Datos Personales (tales como su nombre; teléfono; dirección e-mail y datos necesarios para entregar su pedido). Obtendremos los Datos Personales que nos facilite voluntariamente y los trataremos para los siguientes fines ("fines"): 
-<li>Realizar operaciones con Ud. y gestionar su pertenencia a nuestro sistema de fidelización de clientes, en su caso;</li>
-<li>Enviarle comunicaciones comerciales, siempre y cuando haya dado su consentimiento</li>
-<li>Desarrollar, mejorar, comercializar y suministrar productos y servicios para atender sus necesidades</li>
-<li>Permitirle participar en estudios de clientes o grupos de interés</li>
-<li>Tramitar cambios o devoluciones de productos.</li>
-<li>Dar respuesta a solicitudes o quejas.</li>
-</p>
-
-<p>Podremos conservar o tratar dichos Datos Personales de forma segura y con otras entidades del grupo SEPN Utilizamos la tecnología SSL (Secure Sockets Layer) para proteger su información.</p>
-
-<p>Los anteriores receptores podrán encontrarse situados dentro o fuera del Espacio Económico Europeo (EEE), incluyendo países que podrían no ofrecer un nivel de protección de datos equivalente al existente en el EEE.</p>
-
-<p>
-Hemos designado a un Responsable de los Datos Personales en nuestra sede que velará por el cumplimiento de esta Política de Privacidad y de toda la normativa de aplicación.
-</p>
-
-<p>
-SEPN con domicilio social calle cronos Nº24 Portal 1, 3º D1 28037 - Madrid, España, como responsable del fichero, se compromete a respetar la confidencialidad de su información de carácter personal y a garantizar el ejercicio de sus derechos de acceso, rectificación, cancelación y oposición, mediante carta dirigida a la dirección anteriormente indicada a la atención de "Función LOPD" o mediante el envío de un correo electrónico a atencionalcliente@vestirarte.com.
-En caso necesario, podremos solicitarle copia de su DNI, pasaporte u otro documento válido que lo identifique. 
-En el caso de que decidiese ejercer dichos derechos y que como parte de los datos personales que nos hubiera facilitado conste el correo electrónico le gradeceríamos que en la mencionada comunicación se hiciera constar específicamente esa circunstancia indicando la dirección de correo electrónico respecto de la que se ejercitan los derechos de acceso, rectificación, cancelación y oposición
-</p>
-
-<p>
-Nuestras páginas web emplean cookies para ayudarnos a mejorar la experiencia del usuario. Siempre y cuando su navegador lo permita, podrá rechazar las cookies si bien con ello tanto su utilización de nuestro Sitio Web como su capacidad para acceder a determinadas funciones del sitio y realizar operaciones podrán verse afectadas.
-</p>
+	            		<p>Cada vez que usa este sitio web estará bajo la aplicación de la Política de Privacidad y Cookies vigente en cada momento, debiendo revisar dicho texto para comprobar que está conforme.</p>						
+						<p>Hemos asumido el compromiso de proteger sus Datos Personales (tales como su nombre; teléfono; dirección e-mail y datos necesarios para entregar su pedido). Obtendremos los Datos Personales que nos facilite voluntariamente y los trataremos para los siguientes fines ("fines"): 
+						<p>Realizar operaciones con Ud. y gestionar su pertenencia a nuestro sistema de fidelización de clientes, en su caso;</p>
+						<p>Enviarle comunicaciones comerciales, siempre y cuando haya dado su consentimiento</p>
+						<p>Desarrollar, mejorar, comercializar y suministrar productos y servicios para atender sus necesidades</p>
+						<p>Permitirle participar en estudios de clientes o grupos de interés</p>
+						<p>Tramitar cambios o devoluciones de productos.</p>
+						<p>Dar respuesta a solicitudes o quejas.</p>
+						<p>Podremos conservar o tratar dichos Datos Personales de forma segura y con otras entidades del grupo SEPN Utilizamos la tecnología SSL (Secure Sockets Layer) para proteger su información. </p>
+						<p>Los anteriores receptores podrán encontrarse situados dentro o fuera del Espacio Económico Europeo (EEE), incluyendo países que podrían no ofrecer un nivel de protección de datos equivalente al existente en el EEE. </p>
+						<p>Hemos designado a un Responsable de los Datos Personales en nuestra sede que velará por el cumplimiento de esta Política de Privacidad y de toda la normativa de aplicación. </p>
+						<p>SEPN con domicilio social calle cronos Nº24 Portal 1, 3º D1 28037 - Madrid, España, como responsable del fichero, se compromete a respetar la confidencialidad de su información de carácter personal y a garantizar el ejercicio de sus derechos de acceso, rectificación, cancelación y oposición, mediante carta dirigida a la dirección anteriormente indicada a la atención de "Función LOPD" o mediante el envío de un correo electrónico a atencionalcliente@vestirarte.com. En caso necesario, podremos solicitarle copia de su DNI, pasaporte u otro documento válido que lo identifique. En el caso de que decidiese ejercer dichos derechos y que como parte de los datos personales que nos hubiera facilitado conste el correo electrónico le gradeceríamos que en la mencionada comunicación se hiciera constar específicamente esa circunstancia indicando la dirección de correo electrónico respecto de la que se ejercitan los derechos de acceso, rectificación, cancelación y oposición</p>
+						<p>Nuestras páginas web emplean cookies para ayudarnos a mejorar la experiencia del usuario. Siempre y cuando su navegador lo permita, podrá rechazar las cookies si bien con ello tanto su utilización de nuestro Sitio Web como su capacidad para acceder a determinadas funciones del sitio y realizar operaciones podrán verse afectadas. </p>
      				</div>
-				</div>
-            	<!-- FOOTER -->
 				<?require("footer.html")?>
-        	</div>
-      </div>
-      
+			</div>
+		</div>
 </body>
 </html>

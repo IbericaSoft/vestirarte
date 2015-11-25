@@ -18,7 +18,9 @@
 <link href="{web}/js/colorbox/colorbox.css" rel="stylesheet"/> 
 <script>
 		$(document).ready(function(){
-		//visor documentos
+			var whereiam='<?=self::getAction()?>';
+			
+			//visor documentos
 			$(".copyright-vestirarte").click(function(e){
 				e.preventDefault();				
 				//var _link = "https://docs.google.com/viewer?url=<?=HOST?>/frontoffice/legal/legal_vestirarte.pdf&embedded=true";
@@ -57,5 +59,37 @@
 			        $('.tooltip')
 			        .css({ top: mousey, left: mousex })
 			});
+			
+			//box logo espnsl... solo funciona en la home
+			$( "#logo-sepnsl" ).click( function() {
+				if ( whereiam!="home" ) return;
+				$( "#dialog-message-sepnsl" ).dialog({
+				      	width:'50%',
+						modal: true,
+				      	buttons: {
+				        	Cerrar: function() {
+				          	$( this ).dialog( "close" );
+				        	}
+				      	}
+				});
+				return false;
+			});
+			
+			//box logo textil
+			$( "#logo-textil" ).click( function() {
+				if ( whereiam!="home" ) return;
+				$( "#dialog-message-textil" ).dialog({
+				      	width:'50%',
+						modal: true,
+				      	buttons: {
+				        	Cerrar: function() {
+				          	$( this ).dialog( "close" );
+				        	}
+				      	}
+				});
+				return false;	
+			});
+			
+			
 		});
 </script>

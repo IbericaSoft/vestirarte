@@ -73,7 +73,8 @@ class Sermepa {
 		Navigator::$log->debug($this->_TOTAL);
 		$this->_ORDER =  ($order==null)?time():$order;//generamos un order aleatorio o nos lo pasan
 		$message = $this->_TOTAL.$this->_ORDER.$this->_FUC.$this->_CURRENCY.$this->_TRANTYPE.$this->_URL_NOTIFY.$this->_KEY_COMMERCE;
-		$this->_SIGNATURE = strtoupper(sha1($message));		
+		//$this->_SIGNATURE = strtoupper(sha1($message));		
+		$this->_SIGNATURE = strtoupper(hash('sha256',$message));
 		$html = preg_replace("/\{AMOUNT\}/", $this->_TOTAL, $html);
 		$html = preg_replace("/\{FUC\}/", $this->_FUC, $html);
 		$html = preg_replace("/\{TERMINAL\}/", $this->_TERMINAL, $html);
@@ -95,8 +96,9 @@ class Sermepa {
 	 */
 	public function isOK(){
 		if ( !$this->inicializado )
-			$this->resetSermepa();
-		$this->_SIGNATURE = strtoupper(sha1($_POST[Ds_Amount].$_POST[Ds_Order].$_POST[Ds_MerchantCode].$_POST[Ds_Currency].$_POST[Ds_Response].$this->_KEY_COMMERCE));
+			$this->resetSermepa();		
+		//$this->_SIGNATURE = strtoupper(sha1($_POST[Ds_Amount].$_POST[Ds_Order].$_POST[Ds_MerchantCode].$_POST[Ds_Currency].$_POST[Ds_Response].$this->_KEY_COMMERCE));
+		$this->_SIGNATURE = strtoupper(hash('sha256',$_POST[Ds_Amount].$_POST[Ds_Order].$_POST[Ds_MerchantCode].$_POST[Ds_Currency].$_POST[Ds_Response].$this->_KEY_COMMERCE));
 		if ( $_POST[Ds_Signature]==$this->_SIGNATURE ){
 			$this->intentos = 0;
 			return true;

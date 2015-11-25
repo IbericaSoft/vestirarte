@@ -21,7 +21,7 @@
 			                  <div id=""><span><?=self::$shop->cliente->direccion?></span></div>
 			                  <div id=""><span><?=self::$shop->cliente->poblacion?></span></div>
 			                  <div id=""><span><?=utf_server(self::$shop->cliente->provincia_)?> (<?=self::$shop->cliente->cpostal?>)</span></div>
-			                  <div id=""><span><?=utf_server(self::$shop->cliente->pais_)?></span></div>
+			                  <div id=""><span><?=(self::$shop->cliente->pais_)?></span></div>
 			                  			
 			            </div>
 			           
@@ -32,7 +32,7 @@
 			                  <div id=""><span><?=self::$shop->cliente->direccion_facturacion?></span></div>
 			                  <div id=""><span><?=self::$shop->cliente->poblacion_facturacion?></span></div>
 			                  <div id=""><span><?=utf_server(self::$shop->cliente->provincia_facturacion_)?> (<?=self::$shop->cliente->cpostal_facturacion?>)</span></div>
-			                  <div id=""><span><?=utf_server(self::$shop->cliente->pais_facturacion_)?></span></div>
+			                  <div id=""><span><?=(self::$shop->cliente->pais_facturacion_)?></span></div>
 			                  <div id="">&nbsp;</div>
 			            </div>
 			            
@@ -77,15 +77,17 @@
 				        
 				        <div id="seleccion-metodo">
 				        <br>
-				            <span>Métodos de pago permitidos</span>      
-				            <div id="visa"><img src="{web}/images/visa.jpg" alt=""></div>
+				            <span>Métodos de pago permitidos</span>
+				            <img src="{web}/images/redsys.png" alt="" width="100">      
+				            <!-- <div id="visa"><img src="{web}/images/visa.jpg" alt=""></div>
 				            <div id="mastercard"><img src="{web}/images/mc.png" alt=""></div>
-				            <div id="americanexpress"><img src="{web}/images/ae.png" alt=""></div>
+				            <div id="americanexpress"><img src="{web}/images/ae.png" alt=""></div> -->
 				       	</div> 
 				       <div id="seleccion-metodo">
-				        	<br><br>
+				        	
 				            <span>Observaciones a la entrega</span>      
 				            <textarea id="observaciones" name="observaciones" placeholder="Entregar a nombre de ..." style="resize: none;width:75%;border:1px solid silver"></textarea>
+				            
 				       	</div> 
 				       	<div class="total">
 				            <div id="total-pedido"><p>subtotal</p><span><?=$json->importe_articulos_con_iva?></span></div>
@@ -93,7 +95,6 @@
 				            <div id="total-iva" style="margin-top:30px; border-top: solid black 3px; padding-top: 13px;"><p>TOTAL PEDIDO</p><span><?=$json->total_cesta_con_iva?></span><span class="txt11">Todos los precios con iva</span></div>
 				      	</div>
 	      				
-	      		
 				      	
 	      				<div id="container-center"><button id="atras">ATRÁS</button><button id="comprar">PAGAR PEDIDO</button></div>
 	      				<br>

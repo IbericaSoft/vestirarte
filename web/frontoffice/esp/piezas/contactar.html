@@ -3,24 +3,17 @@
 <head>
     <?echo $this->executeBlock('DATA')?>
     <?echo $this->executeBlock('HEAD')?>
-    <style>
-    textarea{
-    	width:50%;
-    	height:80px;
-    }
-    </style>
 </head>
-<body>
-
-	<div id="contenido">
-            <div id="wrapper">
-
-				<!-- menu PÁGINA -->
-            	<?require("menu_header.html")?>
-    
-				<div id="main">
-					<?require("menu_movil.html")?>
-    				<form action="/contactar-envio.html" method="post">
+<body class="home-<?=self::$shop->categoria_actual?>">
+	
+		<div id="wrapper">
+			<div id="main">
+				<?require("menu_header.html")?>
+    			
+    			<p>&nbsp;</p>
+    			<p>&nbsp;</p>	
+				<form action="/contactar-envio.html" method="post">
+					
 					<div class="formulario-alta-usuario">
            				
            				<div>
@@ -34,18 +27,15 @@
 	            					<option value="incidencias">Incidencias en la tienda</option>	            					
 	            				</select> 
 							</div>
-	            			<div><span>Exponga su consulta</span><textarea name="consulta" id="consulta"></textarea></div>
+	            			<div><span>Exponga su consulta</span><textarea name="consulta" id="consulta" style="width:50%;height:80px;"></textarea></div>
 	            			<div><span>Seguridad: <img style="padding-top:10px" src="<?=self::$shop->captcha_image?>"/></span><input  id="captcha" type="text" name="captcha" style="width:50px;margin-top:10px;font-size:18px" /><br></div>	            			
             			</div>
            				<button id="enviar">enviar</button>
            				
       				</div>
-      				</form>
-				</div>
+      				
 				
-				<div id="espacio"></div>
-				
-            	<!-- FOOTER -->
+				</form>
 				<?require("footer.html")?>
         	</div>
       </div>
@@ -72,7 +62,6 @@
 			?>
 		});
     </script>
-    
     
 </body>
 </html>
